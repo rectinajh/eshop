@@ -1,0 +1,159 @@
+body,
+html,
+div,
+a,
+span,
+p,
+img,
+li,
+ul,
+strong,
+i,
+textarea {
+	padding: 0;
+	margin: 0;
+	font-size: 0;
+}
+a {
+	text-decoration: none;
+}
+
+ul,
+li {
+	list-style-type: none;
+}
+.t_topic {
+	height: 0.92rem;
+	width: 100%;
+	margin-top: 0.27rem;
+}
+.h_wrap{
+	background: #f3f5f4;
+}
+.h_put {
+	padding-left: 0.37rem;
+	font-size: 0.4rem;
+	line-height: 0.87rem;
+	height: 0.87rem;
+	color: #5d5d5d;
+	background: #FFFFFF;
+}
+
+.h_put span {
+	display: inline-block;
+	font-size: 1rem;
+	width: 0.12rem;
+	height: 0.38rem;
+	margin-top: 0.01rem;
+	background: #fa0081;
+	margin-right: 0.17rem;
+}
+.u_names{
+	background: #FFFFFF;
+	margin-top: 0.27rem;
+	font-size: 0.5rem;
+	border-bottom: 1px solid #d5d5d5;
+	border-top: 1px solid #d5d5d5;
+}
+.u_names li{
+	margin: 0 0.2rem 0 0.38rem;
+	font-size: 0.36rem;
+	line-height: 0.8rem;
+	color: #cbcbcb;
+}
+.u_names li input{
+	line-height: 0.72rem;
+	font-size: 0.36rem;
+	border: none;
+	width: 4.22rem;
+	float: right;
+	border-bottom: 1px solid #d5d5d5;
+	color: #8f8f8f;
+}
+
+.u_selfPicture{
+	border-bottom: 1px solid #d5d5d5;
+	border-top: 1px solid #d5d5d5;
+	margin-top: 0.27rem;
+	background: #FFFFFF;
+}
+.u_selfPicture p{
+	font-size: 0.36rem;
+	line-height: 0.8rem;
+	color: #cbcbcb;
+	margin-left: 0.38rem;
+}
+
+.a-upload {
+	margin-left: 0.7rem;
+	vertical-align: top;
+    padding: 0.04rem 0.6rem 0.04rem 0.1rem;
+    line-height: 0.69rem;
+    position: relative;
+    cursor: pointer;
+    color: #8f8f8f;
+    background: #fafafa;
+    overflow: hidden;
+    display: inline-block;
+    font-size: 0.33rem;
+    margin-left: 1rem;
+}
+
+.a-upload  input {
+    position: absolute;
+    right: ;
+    top: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    cursor: pointer;
+    outline:none;
+}
+
+.u_uploadBtn{
+	font-size: 0.33rem;
+	line-height: 0.33rem;
+	color: #fa0081;
+	border: none;
+	cursor: pointer;
+	background: #FFFFFF;
+}
+.u_picture span{
+	color: #8f8f8f;
+	font-size: 0.33rem;
+	line-height: 0.77rem;
+	margin-left: 2.5rem;
+}
+.u_selfPicture p > textarea{
+	height: 3.18rem;
+	vertical-align: top;
+	float: right;
+	margin-right: 0.3rem;
+	width: 4.22rem;
+	line-height: 0.75rem;
+	font-size: 0.35rem;
+	color: #8f8f8f;
+
+	resize: none;
+	border: none;
+	overflow:hidden; 
+}
+.u_btnDiv{
+	text-align: center;
+	margin-top: 0.32rem;
+}
+.u_btnDiv > input{
+	border: none;
+	font-size: 0.33rem;
+	line-height: 0.64rem;
+	/*height: 0.64rem;*/
+	padding: 0 0.7rem 0; 
+}
+.u_tijiao{
+	background: #fa0081;
+	color: #FFFFFF;
+	margin-right: 0.92rem;
+}
+.u_again{
+	background: #d2d2d2;
+	color: #5c5c5c;
+}

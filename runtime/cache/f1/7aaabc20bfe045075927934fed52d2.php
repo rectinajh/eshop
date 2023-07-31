@@ -1,0 +1,3 @@
+<?php
+//000000000000a:16:{s:9:"file_size";s:1:"3";s:8:"reg_jump";s:19:"https://fir.im/3jnq";s:15:"default_storage";s:3:"999";s:11:"withdrawals";s:1:"1";s:4:"need";s:3:"100";s:3:"min";s:3:"100";s:3:"fee";s:2:"10";s:7:"jin_fee";s:1:"0";s:21:"consumeToWithdrawBase";s:3:"100";s:23:"consumeToWithdrawRebate";s:6:"1000:1";s:20:"consumeToWithdrawFee";s:5:"10000";s:3:"tax";s:2:"10";s:12:"hot_keywords";s:25:"法国红酒|日常用品";s:5:"tjone";s:0:"";s:5:"tjtow";s:0:"";s:7:"tjthree";s:0:"";}
+?>

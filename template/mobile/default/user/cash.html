@@ -1,0 +1,51 @@
+<include file="public/header" title="我的钱包" body="g4"/>
+
+    <div class="myhearder bankhearder">
+        <div class="top_nav_back">
+            <a href="javascript:history.back(-1);">
+                <img src="__STATIC__/images/newBack.png" alt="返回">
+             </a>
+             <span>提现</span>
+        </div>
+        <div class="title-money-box">
+            <div class="xiaofei">
+                <div class="money-name">提现币(元)</div>
+                <div class="money-value">{$withdraw_money}</div>
+            </div>
+        </div>
+
+    </div>
+    <div class="floor-floor">
+        <ul class="floor-items">
+            <li><a href="{:U('Mobile/User/withdrawals')}">
+                <div class="itlt">
+                    <i class="iconfont icon-tixian" style="color: #f3b21d;font-size: .64rem"></i>
+                    <span>提现</span>
+                </div>
+                <div class="itrt">
+                    <i class="Mright"></i>
+                </div>
+            </a></li>
+            <li><a href="{:U('Mobile/User/withdrawals_list')}">
+                    <div class="itlt">
+                        <i class="iconfont icon-mingxi" style="color: #f96369"></i>
+                        <span>提现明细</span>
+                    </div>
+                    <div class="itrt">
+                        <i class="Mright"></i>
+                    </div>
+                </a></li>
+        </ul>
+    </div>
+    <!--底部导航-start-->
+
+    <include file="public/footer" />
+
+    <!--底部导航-end-->
+
+<script src="__STATIC__/js/style.js" type="text/javascript" charset="utf-8"></script>
+
+</body>
+
+</html>
+

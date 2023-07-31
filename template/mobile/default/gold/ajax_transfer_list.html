@@ -1,0 +1,10 @@
+<foreach name="account_log" item="v">  
+    <div class="tr_box">
+        <div class="tr_item time "><span class="line"></span>{$v['nickname']}<span class="time2"> {:date('Y.m.d H:i',$v[add_time])}</span>  </div>
+            <div class="tr_item2"><div class="left">转账金额</div> <div class="right">{$v['money']}</div></div>
+            <div class="tr_item2"><div class="left">手续费</div> <div class="right">{$v['shouxu']}</div></div>
+            <div class="tr_item2"><div class="left">实际到账</div> <div class="right">{$v['shi_money']}</div></div>
+            <div class="tr_item2"><div class="left">备注</div> <div class="right">{$v['desc']}</div></div>
+            
+    </div>
+</foreach>

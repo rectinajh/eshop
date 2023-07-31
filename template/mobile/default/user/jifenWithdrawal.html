@@ -1,0 +1,150 @@
+<link rel="shortcut  icon" type="image/x-icon" href="__ROOT__/public/js/layer/skin/layer.css"/>
+<include file="public/header" title="积分提现" body=""/>
+
+<include file="public/header_nav" title="积分提现" href="javascript:history.back(-1)"/>
+
+		<div class="loginsingup-input ma-to-20">
+
+			<form method="post" id="returnform">
+
+				<div class="content30">
+
+                    <div class="lsu">
+
+                        <span>可提现积分总额：</span>
+
+                        <input type="text" name="money" id="money" value="{$user.pay_points}" readonly>
+
+                    </div>
+                    <div class="lsu">
+
+                        <span>提现额度：</span>
+
+                        <input type="text" name="pay_points" id="pay_points" value="" placeholder="提现积分额度" onKeyUp="CheckTransfer()">
+
+                    </div>
+                    <div class="lsu">
+                        <span></span>
+                        <input type="text" name="shouxu" id='shouxu' value="" readonly>
+                        <input type="hidden" name="fee" id='fee' value="{$shouxu}" readonly>
+                    </div>
+					<div class="lsu submit">
+
+                        <input type="hidden" name="__token__" value="{$Request.token}" />
+
+						<input type="button" onclick="checkSubmit()" value="确认提现">
+
+					</div>
+
+				</div>
+
+			</form>
+
+		</div>
+
+<script src="__STATIC__/js/style.js" type="text/javascript" charset="utf-8"></script>
+<script src="__ROOT__/public/js/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+    /**
+
+     * 提交表单
+
+     * */
+     if({$shouxu}==''){
+       var shou=0;
+    }
+    var shou={$shouxu};
+    
+    function CheckTransfer(){
+        var pay_points = $.trim($('#pay_points').val());
+
+        var num=pay_points*(shou/100);
+        num=num.toFixed(2);
+        document.getElementById('shouxu').value='提现手续费：'+shou+'%共计'+num+'积分';
+    }
+    function checkSubmit(){
+
+        var money = $.trim($('#money').val());
+
+       
+
+        var pay_points = $.trim($('#pay_points').val());
+
+        var shouxu = $.trim($('#fee').val());
+        //手机号
+        //var str='转'+pay_points+'积分到账户:'+mobile+'需收取：'+shouxu+'%手续费';
+       
+        if(pay_points == '' ){
+
+            layer.msg('提现积分不能为空')
+
+            return false;
+
+        }
+        
+        if(pay_points >  parseInt(money)){
+
+            layer.msg("提现积分大于您的可提现积分额度")
+
+            return false;
+
+        }
+        var str='提现'+pay_points+'积分到账户余额需收取：'+shouxu+'%手续费';
+        layer.confirm(str,{
+                btn:['确定','取消']
+                },function(){
+                    $.ajax({
+
+                    type: "post",
+
+                    url :"{:U('mobile/User/jifenWithdrawal')}",
+
+                    dataType:'json',
+
+                    data:$('#returnform').serialize(),
+
+                    success: function(data)
+
+                        {
+                            //showErrorMsg(data.msg);
+                            layer.msg(data.msg, {icon: 2});
+                            if(data.status == 1){
+
+                                window.location.href=data.url;
+
+                            } else {
+                            	 //layer.msg(data.msg, {icon: 2});
+                                //window.location.reload();
+                            }
+
+                        }
+
+                    });
+                },function(){
+                    layer.msg('确定取消转账？', {
+                    time: 2000, //20s后自动关闭
+                    btn: ['确定']
+                  });
+                });
+    }
+
+    /**
+
+     * 提示弹窗
+
+     * @param msg
+
+     */
+
+    function showErrorMsg(msg){
+
+        layer.open({content:msg,time:3});
+
+    }
+
+</script>
+
+	</body>
+
+</html>
+

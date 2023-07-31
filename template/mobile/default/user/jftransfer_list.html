@@ -1,0 +1,116 @@
+<include file="public/header" title="提现申请记录" body=""/>
+
+<include file="public/header_nav" title="提现申请记录" href="javascript:history.back(-1)"/>
+<style>
+td{
+    padding: 9px 22px;
+}
+body{
+    font-size: 24px;
+}
+table{
+    margin-top:18px;
+}
+</style>
+<div class="application-record">
+
+    <div class="maleri30">
+
+        <!-- <ul class="re_tit">
+
+            <li class="li1"><span>收款人</span></li>
+
+            <li class="li2"><span>转账日期</span></li>
+
+            <li class="li3"><span>金额</span></li>
+
+            <li class="li4"><span>手续费</span></li>
+
+        </ul> -->
+        <table>
+            <tr>
+                <th>收款人</th>
+                <th>转账日期</th>
+                <th>积分</th>
+                <th>手续费</th>
+            </tr>
+            <foreach name="list" item="v">
+            <tr style="color:#aaa">
+                <td>{$v[mobile]}</td>
+                <td>{:date("Y-m-d",$v['change_time'])}</td>
+                <td style="color:#e01222;">{$v[pay_points]}</td>
+                <td>{$v[shouxu]}</td>
+            </tr>
+
+            </foreach>
+        </table>
+        <!-- <foreach name="list" item="v">
+
+            <ul>
+
+                <li class="li1"><span>{$v[mobile]}</span></li>
+
+                <li class="li2"><span>{$v[mobile]}</span></li>
+
+                <li class="li3"><span>{$v[mobile]}</span></li>
+
+                <li class="li4"><span>{$v[mobile]}</li>
+
+            </ul>
+
+        </foreach> -->
+
+    </div>
+
+    <div id="getmore"  style="font-size:.32rem;text-align: center;color:#888;padding:.25rem .24rem .4rem; clear:both;display: none">
+
+        <a >已显示完所有记录</a>
+
+    </div>
+
+    <script type="text/javascript" src="__STATIC__/js/sourch_submit.js"></script>
+
+</div>
+
+<script src="__STATIC__/js/style.js" type="text/javascript" charset="utf-8"></script>
+
+<script>
+
+    var page = 1;
+
+    function ajax_sourch_submit(){
+
+        page++;
+
+        $.ajax({
+
+            type:'GET',
+
+            url:'/index.php/Mobile/User/jifensfer_list/is_ajax/1/p/'+page,
+
+            success:function(data){
+
+                if($.trim(data)==''){
+
+                    $('#getmore').show();
+
+                    return false;
+
+                }else{
+
+                    $('.maleri30').append(data);
+
+                }
+
+            }
+
+        });
+
+    }
+
+</script>
+
+</body>
+
+</html>
+

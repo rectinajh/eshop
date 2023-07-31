@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>登录 - www.ohbbs.cn 欧皇源码论坛 </title>
+<include file="public/header_style"/>
+<link rel="stylesheet" href="__STATIC__/css/style.css">
+<!--<link rel="stylesheet" type="text/css" href="__STATIC__/css/iconfont.css"/>-->
+<link rel="stylesheet" type="text/css" href="__ROOT__/public/css/style.css"/>
+<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_515459_0axhxsmwhp6kzkt9.css"/>
+<style>
+.login_dl .login_div {
+    width: 90%;
+   
+	margin:0 auto;
+}
+.login_dl .button2 {
+    width: 75%;
+    margin: 0 auto;
+    padding-left: 0;
+	margin-top: 0.3rem;
+}
+.you{
+	    margin-top: -0.15rem;
+	    background-color: #eee;
+    	display: inline-block;
+	    position: absolute;
+}
+.pin{
+	border-top: 1px solid #dedede;
+    font-size: 12px;
+    margin-top: 1.5rem;
+    text-align: center;
+	position: relative;
+}
+body{
+	width: 100%;
+	background:url("__STATIC__/images/store.jpg") no-repeat;
+	background-size:cover;
+	
+}
+
+#footers{
+  height: 1rem;
+}
+#footers a p{
+  line-height: .5rem;
+ font-size: .6rem !important;
+}
+#footers a span{
+  font-size: .25rem;
+}
+#footers .icon-size{
+  font-size: .4rem;
+}
+</style>
+</head>
+<body>
+<header id="header" class='header'>
+	<h1>登录</h1>
+      </header><section>
+  <form method="post" name='theForm' onsubmit="return false;">
+    <div class="login_dl">
+    <table cellspacing="0" cellpadding="0" align="center" width="100%">
+      <tr>
+        <td class="logo_img"></td>
+      </tr>
+      <tr>
+        <td><div class="login_div"><label class="label_input1"></label><input type="text" name="username" class="text_input text_input1" placeholder="请输入用户名"/></div></td>
+      </tr>
+      <tr>
+        <td><div class="login_div"><label class="label_input2"></label><input type="password" name="password"  class="text_input text_input2" placeholder="请输入密码"/></div></td>
+      </tr>
+            <tr>
+        <td align="center"><input type="button" value="登&nbsp;录" onclick="validate()" class="button2" /></td>
+      </tr>
+      <!-- <tr class="low_height">
+        <td><label class="bf1 login_ffri">
+            <input type="checkbox" name="remember" id="remember" value="1" checked="" >
+            保存登录信息</label>
+          <a class="login_ffleft" href="user.php?act=get_password&step=1">找回密码</a></td>
+      </tr> -->
+    </table>
+      <!-- <div class="pin">	
+    	<div class="you">优品贡社所有</div>
+      </div> -->		
+    <input type="hidden" name="act" value="signin" />
+    </div>
+  </form>
+</section>
+<!--全局导航-Start-->
+<div style="height:50px; line-height:50px; clear:both;"></div>
+
+<div id="footers">
+    <a <if condition="CONTROLLER_NAME eq 'Index'"> class="on" </if> href="{:U('Mobile/Index/index')}">
+        <p><i class="iconfont icon-shouye" style="font-size:16px"></i></p>
+        <span style="font-size:12px">首页</span>
+    </a>
+    <a <if condition="CONTROLLER_NAME eq 'Goods'"> class="on" </if> href="{:U('Mobile/Goods/categoryList')}">
+        <p><i class="iconfont icon-fenlei" style="font-size:16px"></i></p>
+        <span style="font-size:12px">分类</span>
+    </a>
+     <a <if condition="CONTROLLER_NAME eq 'Login'"> class="on" </if> href="{:U('Merch/Login/login')}">
+        <p><i class="iconfont icon-shangjia" style="font-size:16px"></i></p>
+        <span style="font-size:12px">商家</span>
+    </a>
+    <a <if condition="CONTROLLER_NAME eq 'Cart'"> class="on" </if> href="{:U('Mobile/Cart/index')}">
+        <p><i class="iconfont icon-gouwuche" style="font-size:16px"></i></p>
+        <span style="font-size:12px">购物车</span>
+    </a>
+    <a <if condition="CONTROLLER_NAME eq 'User'"> class="on" </if> href="{:U('Mobile/User/index')}">
+        <p><i class="iconfont icon-wode" style="font-size:16px" ></i></p>
+        <span style="font-size:12px">我的</span>
+    </a>
+</div>
+</body>
+</html>
+<script src="__ROOT__/public/js/jquery-1.10.2.min.js"></script>
+<script src="__ROOT__/public/js/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+<script>
+      function validate()
+      {
+        var username = document.forms['theForm'].username.value;
+        var password = document.forms['theForm'].password.value;
+        username = $.trim(username);
+        password = $.trim(password);
+        if(username == '')
+        {
+            layer.msg('用户名不能为空&nbsp;');
+            return false;
+        }
+        if(password == '')
+        {
+          layer.msg('密码不能为空&nbsp;');
+          return false;
+        }
+        
+        $.ajax({
+          url:'{:U("Login/login")}',
+          type:'post',
+          dataType:'json',
+          data:'username='+username+'&password='+password,
+          success:function(data){
+            
+            if(data.status == 1){
+                layer.msg(data.msg, {icon: 1});
+                window.location.href=data.url;
+
+            } else {
+                layer.msg(data.msg);
+                //window.location.reload();
+            }
+          }
+        });
+      }
+    </script>

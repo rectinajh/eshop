@@ -1,0 +1,231 @@
+.servicedetail{
+    background: white;
+}
+.no_service{
+    line-height: 100px/$ppr;
+    border-bottom: 1px solid #e3e5e9;
+    position: relative;
+    span{
+        display: block;
+    }
+    .item-no{
+        font-size: 28px/$ppr;
+        color: #222222;
+        float: left;
+        width: 564px/$ppr;
+        overflow: hidden;
+    }
+    .status{
+        font-size: 32px/$ppr;
+        color: #e23435;
+        float: right;
+    }
+    .Mright{
+        position: absolute;
+        top: 50%;
+        right: 0;
+        margin-top: -14px/$ppr;
+    }
+}
+.overwell{
+    height: auto;
+    .item-no{
+        line-height: 50px/$ppr;
+        word-break: break-all;
+        padding: 20px/$ppr 0;
+        width: 644px/$ppr;
+    }
+}
+.schdule_t{
+    height: 250px/$ppr;
+    padding: 100px/$ppr 0 50px/$ppr 0;
+    display: block;
+    padding-left: 126px/$ppr;
+    .lc{
+        float: left;
+        text-align: center;
+        position: relative;
+        i{
+            background: url(../images/lc.png) no-repeat;
+            background-size: 257px/$ppr;
+            display: inline-block;
+            width: 68px/$ppr;
+            height: 68px/$ppr;
+        }
+        .tis{
+            position: absolute;
+            background: #50c65f;  
+            color: white;
+            border-radius: 20px/$ppr;
+            padding: 6px/$ppr 8px/$ppr;
+            font-size: 28px/$ppr;
+            top: -60px/$ppr;   
+            left: 50%;
+            margin-left: -48px/$ppr;
+            &:after{
+                content: "";
+                width: 0;
+                height: 0;
+                border-left: 8px/$ppr solid transparent;
+                border-right: 8px/$ppr solid transparent;
+                border-top: 8px/$ppr solid #50c65f;
+                position: absolute;
+                bottom: -6px/$ppr;
+                left: 50%;
+                margin-left: -8px/$ppr;
+            }       
+        }
+    }
+    .f-s{
+        .sendapply{
+            background-position: 13px/$ppr 2px/$ppr;
+        }
+        .gr{
+            display: block;
+            color: #50c65f;
+            font-size: 28px/$ppr;   
+        }
+    }
+    .m-s{
+        top: 30px/$ppr;
+        left: -12px/$ppr;
+        .wait{
+            width: 28px/$ppr;
+            height: 28px/$ppr;
+            background-position: -165px/$ppr -18px/$ppr;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -14px/$ppr;
+            margin-top: -14px/$ppr;
+        }
+        .box{
+            display: block;
+            position: relative;
+            border-radius: 4px/$ppr;
+            width: 170px/$ppr;
+            height: 6px/$ppr;
+            background: #cbcbcb;
+        }
+        span{
+            display: block;
+            border-radius: 4px/$ppr;
+            width: 170px/$ppr;
+            height: 6px/$ppr;
+            background: #50c65f;
+            &.half{
+                width: 50%;
+            }
+        }
+    }
+    .e-s{
+        left: -82px/$ppr;
+        .thirdsales{
+            background-position: -200px/$ppr 2px/$ppr;
+        }
+        .gr{
+            display: block;
+            color: #222222;
+            font-size: 28px/$ppr;   
+        }
+        .tis{
+            top: -50px/$ppr;
+            display: none;
+        }
+    }
+    .change .e-s{
+        .tis{
+            display: block;
+        }
+        .gr{
+            color: #50c65f;
+        }
+        .thirdsales{
+            background-position: -80px/$ppr 2px/$ppr;
+        }
+    }
+    .change .m-s{
+        .tis{
+            display: none;
+        }
+        span.half{
+            width: 100%;
+            .wait{
+                display: none;
+            }
+        }
+    }
+    .pass{
+        .gr{
+            color: #50c65f;
+        }
+        .thirdsales{
+            background-position: 13px/$ppr 2px/$ppr;
+        }
+        .box{
+            width: 75px/$ppr;
+            .half{
+                width: 100%;
+            }
+        }
+    }
+}
+.sc_lc{
+    padding-left: 0;
+    .lc{
+        position: absolute;
+    }
+    .f-s{
+        .tis{
+            top: -50px/$ppr;
+            display: none;
+        }
+    }
+    .m-s{
+        left: 10px/$ppr;
+        width: 75px/$ppr;
+        .box{
+            width: 75px/$ppr;
+        }
+    }
+    .e-s{
+        left: 62px/$ppr;
+        width: 120px/$ppr;
+    }
+}
+.servicedetail_q{
+    background: white;
+    line-height: 100px/$ppr;
+}
+.la_q_dis{
+    border-bottom: 1px solid #e3e5e9;
+}
+.la_q_q{
+    line-height: 50px/$ppr;
+    padding: 25px/$ppr 0;
+    @include box-sizing(initial);
+    .dis{
+        font-size: 28px/$ppr;
+        color: #333333;
+    }
+    .time{
+        font-size: 28px/$ppr;
+        color: #999999;
+    }
+}
+.cancel_app{
+    background: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 750px/$ppr;
+}
+.last_lc{
+    position: relative;
+    float: left;
+    height: 100px/$ppr;
+    width: 150px/$ppr;
+}
+.ml86{
+    margin-left: 86px/$ppr;
+}

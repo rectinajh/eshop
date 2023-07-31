@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>积分转账 - www.ohbbs.cn 欧皇源码论坛 </title>
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/myaccount.css" />
+		<link rel="shortcut  icon" type="image/x-icon" href="__ROOT__/public/js/layer/skin/layer.css"/>
+		<script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__ROOT__/public/js/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body class="bg-f5">
+		<include file="user/header"/>
+		<div class="home-index-middle">
+			<div class="w1224">
+				<div class="g-crumbs">
+			       	<a href="/">我的商城</a>
+			       	<i class="litt-xyb"></i>
+			       	<span>账户积分</span>
+			    </div>
+			    <div class="home-main">
+					<include file="user/menu"/>
+			    	<div class="ri-menu fr">
+						<div class="menumain p">
+							<div class="goodpiece">
+								<h1>积分转账</h1>
+								<!-- <a href=""><span class="co_blue">账户余额说明</span></a>
+								<input type="hidden" id="openid" value="{$user.openid}"> -->
+							</div>
+							<div class="personerinfro tixbox">
+								<form action="" method="post" id="distribut_form">
+									<ul class="hend_jz">
+										<li class="infor_wi_le"><a href="javascript:void(0);"><i class="star">*</i>转账额度：</a></li>
+										<li class="infor_img">
+											<div class="duleyuan">
+												<input type="text" name="pay_points" id="pay_points"  onpaste="this.value=this.value.replace(/[^\d]/g,'')" onKeyUp="this.value=this.value.replace(/[^\d]/g,''),CheckTransfer()"/>
+												</a>
+												<span>分</span>
+												<input type="hidden" name="money" id="money" value="{$pay_points}" readonly />
+											</div>
+											<span class="keyj">(<!-- 最低提现额度{$tpshop_config['basic_min']}， -->当前账户积分：<em>{$user.pay_points}</em>分)</span>
+										</li>
+									</ul>
+									<ul class="name_jz">
+										<li class="infor_wi_le"><a href="javascript:void(0);"><i class="star">*</i>收款账号：</a></li>
+										<li>
+											<a href="javascript:void(0);"><input class="name_zjxs" type="text" name="mobile" id="mobile"/></a>
+											<p class="adviceql">收款人手机号</p>
+										</li>
+									</ul>
+									<ul class="name_jz">
+										<li class="infor_wi_le"><a href="javascript:void(0);"><i class="star">*</i>转账手续费：</a></li>
+										<li>
+											<a href="javascript:void(0);">
+											<input class="name_zjxs" type="text" name="shouxu" id="shouxu" value="" readonly /></a>
+											<input type="hidden" name="fee" id='fee' value="{$shouxu}" readonly>
+										</li>
+									</ul>
+									<ul class="hobby_jz">
+										<li class="infor_wi_le"><a href="javascript:void(0);"></a></li>
+										<li class="infor_wi_ri">
+											<div class="save_s">
+												<input class="save" type="button" onclick="checkSubmit()" value="确认转账" />
+												<input class="save closoff" type="reset" onclick="location.href='{:U('User/account')}'" value="取消并返回" />
+											</div>
+										</li>
+									</ul>
+								</form>
+							</div>
+						</div>
+			    	</div>
+			    </div>
+			</div>
+		</div>
+		<!--footer-s-->
+		<include file="user/footer" />
+		<!--footer-e-->
+		<script src="__STATIC__/js/style.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			 if({$shouxu}==''){
+	       var shou=0;
+	    }
+	    var shou={$shouxu};
+	    
+	    function CheckTransfer(){
+
+	        var pay_points = $.trim($('#pay_points').val());
+	        var num=pay_points*(shou/100);
+	        num=num.toFixed(2);
+	        document.getElementById('shouxu').value=shou+'%,共计'+num+'积分';
+	    }
+	    function checkSubmit(){
+	    	var money = $.trim($('#money').val());
+	        var mobile = $.trim($('#mobile').val());
+
+	        var pay_points = $.trim($('#pay_points').val());
+
+	        var shouxu = $.trim($('#fee').val());
+	        if(mobile == '' ){
+	            layer.msg("手机号不能空")
+	            return false;
+
+	        }
+	        if(pay_points == '' ){
+
+	            layer.msg("转账数额不能为空")
+	            return false;
+
+	        }
+	        
+            if(pay_points > parseInt(money)){
+            	layer.msg("转账额度大于您的可转积分总额度")
+
+	            return false;
+
+            }
+	        var str='转'+pay_points+'积分到账户:'+mobile+'需收取：'+shouxu+'%手续费';
+	        layer.confirm(str,{
+	        	btn:['确定','取消']
+		        },function(){
+		        	$.ajax({
+
+		            type: "post",
+
+		            url :"{:U('Home/User/jftransfer')}",
+
+		            dataType:'json',
+
+		            data:$('#distribut_form').serialize(),
+
+		            success: function(data)
+
+			            {
+			                //showErrorMsg(data.msg);
+			                layer.msg(data.msg, {icon: 2});
+			                if(data.status == 1){
+
+			                    window.location.href=data.url;
+
+			                } else {
+
+			                    window.location.reload();
+			                }
+
+			            }
+
+		        	});
+		    	},function(){
+		    		layer.msg('确定取消转账？', {
+				    time: 2000, //20s后自动关闭
+				    btn: ['确定']
+				  });
+		    	});
+		}
+		</script>
+	</body>
+</html>

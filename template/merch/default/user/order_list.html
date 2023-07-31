@@ -1,0 +1,341 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>订单列表 - www.ohbbs.cn 欧皇源码论坛 </title>
+<include file="public/header_style"/>
+<style>
+.order_listtop li {
+    width: 16%;
+    }
+</style>
+<script type='text/javascript'>
+  Zepto(function($)
+  {
+    $.zcontent.set("url","{:U('User/order_list')}");
+        $.zcontent.set("act","list");
+        $.zcontent.set("order_sn","");
+        $.zcontent.set("consignee","");
+        $.zcontent.set("email","");
+        $.zcontent.set("address","");
+        $.zcontent.set("zipcode","");
+        $.zcontent.set("tel","");
+        $.zcontent.set("mobile","0");
+        $.zcontent.set("country","0");
+        $.zcontent.set("province","0");
+        $.zcontent.set("city","0");
+        $.zcontent.set("district","0");
+        $.zcontent.set("shipping_id","0");
+        $.zcontent.set("pay_id","0");
+        $.zcontent.set("order_status","-1");
+        $.zcontent.set("shipping_status","-1");
+        $.zcontent.set("pay_status","-1");
+        $.zcontent.set("user_id","0");
+        $.zcontent.set("user_name","");
+        $.zcontent.set("composite_status","-1");
+        $.zcontent.set("group_buy_id","0");
+        $.zcontent.set("sort_by","add_time");
+        $.zcontent.set("sort_order","DESC");
+        $.zcontent.set("start_time","");
+        $.zcontent.set("end_time","");
+        $.zcontent.set("page","1");
+        $.zcontent.set("page_size","10");
+        $.zcontent.set("record_count","4");
+        $.zcontent.set("page_count","1");
+        $.zcontent.add_static("act")
+        $.intimidatetime.setDefaults($.intimidatetime.i18n['zh-CN']);
+   $(document).on('ajaxStart', $.zprogress.start).on('ajaxStop', $.zprogress.done)
+   $("#toTop").scrollToTop();
+  });
+          // 这里把JS用到的所有语言都赋值到这里
+      var process_request = "正在处理您的请求...";
+      var todolist_caption = "记事本";
+      var todolist_autosave = "自动保存";
+      var todolist_save = "保存";
+      var todolist_clear = "清除";
+      var todolist_confirm_save = "是否将更改保存到记事本？";
+      var todolist_confirm_clear = "是否清空内容？";
+      var remove_confirm = "删除订单将清除该订单的所有信息。您确定要这么做吗？";
+      var confirm_merge = "您确实要合并这两个订单吗？";
+      var input_price = "自定义价格";
+      var pls_search_user = "请搜索并选择会员";
+      var confirm_drop = "确认要删除该商品吗？";
+      var invalid_goods_number = "商品数量不正确";
+      var pls_search_goods = "请搜索并选择商品";
+      var pls_select_area = "请完整选择所在地区";
+      var pls_select_shipping = "请选择配送方式";
+      var pls_select_payment = "请选择支付方式";
+      var pls_select_pack = "请选择包装";
+      var pls_select_card = "请选择贺卡";
+      var pls_input_note = "请您填写备注！";
+      var pls_input_cancel = "请您填写取消原因！";
+      var pls_select_refund = "请选择退款方式！";
+      var pls_select_agency = "请选择办事处！";
+      var pls_select_other_agency = "该订单现在就属于这个办事处，请选择其他办事处！";
+      var loading = "加载中...";
+      var remove_invoice_confirm = "您确定删除该订单的发票信息吗？";
+   </script>    <script src='__ROOT__/public/merch/js/touch.js'></script>
+    <script>
+
+      function search_order()
+      {
+        if(check_form_empty('theForm'))
+        {
+          $.zalert.add('至少有一项输入不为空！',1)
+        }
+        else
+        {
+          $.zcontent.set('order_sn',$('#order_sn').val());
+          $.zcontent.set('user_name',$('#user_name').val());
+         return true;
+        }
+        return false;
+      }
+    </script>
+  </head>
+  <body>
+    <div id='container'>
+            <header id="header" class='header'>
+    <h1>订单列表</h1>
+    <a href="javascript:history.back(-1)" class="back">返回</a>
+      <!-- <a  class="clear" href="{:U('User/order_list')}">刷新</a> -->
+    </header>      <section>
+        <ul class="order_tab" style="position:relative">
+  <li id="order_manage1" class="first" onclick="toggle_menu();">订单列表    <i id="menu_list_marker" class='on'></i>
+    <include file="public/header_nav"/>
+  </li>
+  
+  <li id="order_manage2" onclick="toggle_search();"><span class="line"></span>查询<i class='search'></i></li>
+  <!--<li class="order_tab_li curr" id="type1" onclick="change_is_pay_ok('0')">本期结算</li>
+  <li class="order_tab_li " id="type2" onclick="change_is_pay_ok('1')">往期结算</li>-->
+  
+</ul>        
+<script type="text/javascript" src="__ROOT__/public/merch/js/mobile.js"></script>
+<script>
+;(function($){
+    Zepto(function($)
+    {
+        init_swipe();
+        $.zcontent.add_success(init_swipe);
+    })
+    
+    function init_swipe()
+    {
+                $('#status_list_1').swipeLeft(function()
+        {
+            $('#status_list_1').slideLeftOut(200,function(){$('#status_list_2').slideLeftIn(200)});
+        })
+        $('#status_list_1').swipeRight(function()
+        {
+            $('#status_list_1').slideRightOut(200,function(){$('#status_list_3').slideRightIn(200)});
+        })
+                $('#status_list_2').swipeLeft(function()
+        {
+            $('#status_list_2').slideLeftOut(200,function(){$('#status_list_3').slideLeftIn(200)});
+        })
+        $('#status_list_2').swipeRight(function()
+        {
+            $('#status_list_2').slideRightOut(200,function(){$('#status_list_1').slideRightIn(200)});
+        })
+                $('#status_list_3').swipeLeft(function()
+        {
+            $('#status_list_3').slideLeftOut(200,function(){$('#status_list_1').slideLeftIn(200)});
+        })
+        $('#status_list_3').swipeRight(function()
+        {
+            $('#status_list_3').slideRightOut(200,function(){$('#status_list_2').slideRightIn(200)});
+        })
+            }
+})(Zepto)
+function change_status(status)
+{
+    $.zcontent.set('composite_status',status);
+        $.zcontent.set('page',1);
+    search();
+}
+
+</script>
+<ul class="order_listtop">
+ <li><a <if condition="$a== 6"> class="on" </if> href="{:U('User/order_list')}">全部</a>
+<!-- -->
+ <li><a <if condition="$a== 1"> class="on" </if> href="{:U('User/order_list',array('pay_status'=>4))}">待付款</a>
+<!-- -->
+ <li><a <if condition="$a== 5"> class="on" </if> href="{:U('User/order_list',array('order_status'=>0,'pay_status'=>1))}">待确认</a>
+<!-- -->
+ <li><a <if condition="$a== 4"> class="on" </if> href="{:U('User/order_list',array('order_status'=>1,'pay_status'=>1,'shipping_status'=>0))}">待发货</a>
+<!--  -->
+ <li><a <if condition="$a== 3"> class="on" </if> href="{:U('User/order_list',array('order_status'=>1,'pay_status'=>1,'shipping_status'=>1))}">待收货</a>
+<!--  -->
+<li><a <if condition="$a== 2"> class="on" </if> href="{:U('User/order_list',array('order_status'=>6))}">已完成</a></li>
+</ul>
+<!--更多状态弹出层-->
+<div class="more_status_nav hid" id="menu">
+        <div class="Triangle">
+          <h2></h2>
+        </div>
+        <ul>
+          <li><a href="{:U('User/order_list',array('order_status'=>1,'pay_status'=>1,'shipping_status'=>1))}">待收货</a></li>
+          <li><a href="{:U('User/order_list',array('order_status'=>6))}">已完成</a></li>
+        </ul>
+       </div>        <div class="order_con" id="con_order_manage_2" style="display:none">
+          <div class="query_stock">
+            <div class='order_search'>
+              <form name="theForm" class="order_search" action="{:U('User/order_list')}" onsubmit='return search_order();'>
+                <table width="100%" border="0">
+                  <tr>
+                    <td>
+                      <input type="text" name="order_sn" id='order_sn' class="inputBg" placeholder="请输入订单号" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="text" name="user_name" id='user_name' class="inputBg" placeholder="请输入买家姓名"  />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="submit" class="button2" value="查找"/>
+                    </td>
+                  </tr>
+                </table>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="order_con" id="con_order_manage_1">
+          <div class="order_pd"  id="con_type_1">
+            <div class="order order_manage_list">
+              <ul class="order_list">
+                  <foreach name="order_list" item="v">
+                    <li style="margin-bottom:0;">
+                        <div class="mt">
+                            <div class="mt_t">
+                                <div class="user_name">
+                                    <span class="user_icon"></span>
+                                    <em>{$v['consignee']}</em>
+                                </div>
+                                <span class="order_status">{$v['pay_status']},{$v['shipping_status']},{$v['order_status']}</span>
+                            </div>
+                            <div class="mt_b">
+                                <span class="order_time">{$v['pay_time']|date='Y-m-d H:i:s',###}</span>
+                                <span class="order_num">订单号：<a href="{:U('User/orderInfo',array('order_id'=>$v['order_id']))}">{$v['order_sn']}</a></span>
+                            </div>
+                        </div>
+                        <foreach name="v.level" item="vv">
+                        <div class="mc">
+                            <div class="order_goods ">
+                                <a href="{:U('User/orderInfo',array('order_id'=>$v['order_id']))}">
+                                    <div class="goods_img">
+                                        <img src="__ROOT__{$vv['original_img']}">
+                                    </div>
+                                    <div class="goods_name">
+                                        <strong>{$vv['goods_name']}</strong>
+                                        <span></span>
+                                    </div>
+                                    <div class="goods_price">{$vv['goods_price']}<em>x{$vv['goods_num']}</em></div>
+                                </a>
+                            </div>
+                        </div>
+                        </foreach>
+                        <div class="order_fee">
+                            <span>金额：¥{$v['total_amount']}</span>
+                        </div>
+                        <div class="m_b">
+                          <if condition="$v['pay_status']=='已付款'  && $v['order_status'] =='待确认'">
+                            <a href="javascript:queryOrder({$v['order_id']})">确认订单</a>
+                          <elseif condition="$v['pay_status']=='已付款' && $v['shipping_status']=='未发货' && $v['order_status']=='已确认'">
+                            <a href="javascript:confirmOrder({$v['order_id']})">确认发货</a>
+                          </if>
+                            <a href="{:U('User/orderInfo',array('order_id'=>$v['order_id']))}" class="font" >查看订单</a>
+                        </div>
+                    </li>
+                  </foreach>
+                </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+<!-- 脚部 -->
+<!-- <include file="public/footer_nav"/> -->
+ <footer>
+  <div class="global-nav global-nav-current">
+    <div class="global-nav__nav-wrap">
+        <div class="global-nav__nav-item">
+            <a  href="{:U('User/index')}" > 
+                <p><i class="iconfont icon-size" >&#xe605;</i></p>
+                <span>首页</span>
+            </a>
+        </div>
+        <div class="global-nav__nav-item">
+            <a href="{:U('User/order_list')}" class="on" >
+               <p><i class="iconfont icon-size">&#xe60f;</i></p>
+                <span>订单管理</span>
+            </a>
+        </div>
+        <div class="global-nav__nav-item">
+            <a  href="{:U('User/commission')}" >
+               <p><i class="iconfont icon-size">&#xe608;</i></p>
+                <span>佣金管理</span>
+            </a>
+        </div>
+        <div class="global-nav__nav-item">
+            <a  href="{:U('Login/logout')}" >
+               <p><i class="iconfont icon-size">&#xe642;</i></p>
+                <span>退出</span>
+            </a>
+        </div>
+    </div>
+</div>
+</footer> 
+<!-- 脚部 -->         
+</div>
+<div id='zalert'></div>
+<div id='zprogress'><div id='zprogress_indicator'></div></div>
+<a href="#top" id="toTop"></a>    
+<script type="text/javascript">
+    $(function(){
+        check_more();   
+    })
+    </script>
+  </body>
+</html>
+<script type="text/javascript" src="__ROOT__/public/merch/js/mobile.js"></script>
+<script src="__ROOT__/public/js/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+<script>
+function queryOrder(order_id){
+        $.ajax({
+          type:'get',
+          url:'{:U("User/queryOrder")}',
+          data:'order_id='+order_id,
+          dataType:'json',
+          success:function(data){
+            layer.msg(data.msg,{icon: 2});
+            if(data.status==1){
+              
+              window.location.reload();
+            }else{
+              //layer.msg(data.msg);
+            }
+          }
+        });
+}
+function  confirmOrder(order_id){
+        $.ajax({
+          type:'get',
+          url:'{:U("User/confirmOrder")}',
+          data:'order_id='+order_id,
+          dataType:'json',
+          success:function(data){
+            layer.msg(data.msg,{icon: 2});
+            if(data.status==1){
+
+              window.location.reload();
+            }else{
+              //layer.msg(data.msg);
+            }
+          }
+        });
+}
+</script>
+
+
+

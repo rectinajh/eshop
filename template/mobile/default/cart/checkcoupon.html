@@ -1,0 +1,68 @@
+<include file="public/header" title="使用优惠券" body="f3"/>
+<include file="public/header_nav" title="使用优惠券" href="{:U('Mobile/Cart/cart2')}"/>
+<div class="two-bothshop">
+    <div class="maleri30">
+        <ul>
+            <li class="couponstatus red" data-show="able"><a href="javascript:;"><span>可用优惠券</span></a></li>
+            <li class="couponstatus " data-show="unusable"><a href="javascript:;"><span>不可用优惠券</span></a></li>
+        </ul>
+    </div>
+</div>
+<div class="coupon_csswri">
+    <div class="maleri30">
+        <ul class="able">
+            <volist name="userCartCouponList" id="userCoupon">
+                <if condition="$userCoupon[coupon][able] eq 1">
+                    <li  data-date="{$userCoupon[coupon][is_expiring]}" data-coupon-id="{$userCoupon[id]}" data-shopid="{$userCoupon[coupon][store_id]}">
+                        <div class="cp_alo">
+                            <div class="pon_top">
+                                <h1><em class="fosi">￥</em><em>{$userCoupon.coupon[money]}</em></h1>
+                                <p>满￥{$userCoupon[coupon][condition]}使用</p>
+                            </div>
+                            <div class="pon_dow">
+                                <p>{$userCoupon.coupon[name]}</p>
+                                <if condition="$Request.param.id eq $userCoupon.coupon['id']">
+                                    <a class="usecoupon" href="{:U('Mobile/cart/cart2')}">取消使用</a>
+                                <else/>
+                                    <a class="usecoupon" href="{:U('Mobile/cart/cart2',array('cid'=>$userCoupon.cid,'lid'=>$userCoupon.id))}">立即使用</a>
+                                </if>
+                            </div>
+                            <p class="xd_time">限{:date('Y.m.d',$userCoupon.coupon[use_end_time])}前使用</p>
+                        </div>
+                    </li>
+                </if>
+            </volist>
+        </ul>
+        <ul class="unusable" hidden>
+            <volist name="userCartCouponList" id="userCoupon">
+                <if condition="$userCoupon[coupon][able] eq 0">
+                    <li>
+                        <div class="cp_alo">
+                            <div class="pon_top" style="background-color:#CDCDCD;">
+                                <h1><em class="fosi">￥</em><em>{$userCoupon.coupon[condition]}</em></h1>
+                                <p>满￥{$userCoupon[coupon][condition]}使用</p>
+                            </div>
+                            <div class="pon_dow">
+                                <p>{$userCoupon.coupon[name]}</p>
+                                <a class="usecoupon" disabled>当前订单不可用</a>
+                            </div>
+                            <p class="xd_time">限{:date('Y.m.d',$userCoupon.coupon[use_end_time])}前使用</p>
+                        </div>
+                    </li>
+                </if>
+            </volist>
+        </ul>
+    </div>
+</div>
+
+
+<script src="__STATIC__/js/style.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    $(document).on('click','.couponstatus',function(){
+        $(this).addClass('red').siblings('li').removeClass('red');
+        var  a= $(this).data('show');
+        $('.'+a).show().siblings('ul').hide();
+    })
+</script>
+</body>
+</html>

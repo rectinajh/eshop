@@ -1,0 +1,3 @@
+<?php
+//000000000000a:12:{s:12:"sms_platform";s:1:"1";s:10:"sms_appkey";s:16:"LTAIuKcRz49OCPRX";s:13:"sms_secretKey";s:30:"CyeypnMAohwKWUSVfQnC4a1VLgEpDz";s:11:"sms_product";s:12:"麦淘商城";s:16:"regis_sms_enable";s:1:"1";s:21:"forget_pwd_sms_enable";s:1:"1";s:22:"bind_mobile_sms_enable";s:1:"1";s:20:"order_add_sms_enable";s:1:"1";s:20:"order_pay_sms_enable";s:1:"1";s:25:"order_shipping_sms_enable";s:1:"1";s:24:"virtual_goods_sms_enable";s:1:"1";s:12:"sms_time_out";s:2:"60";}
+?>

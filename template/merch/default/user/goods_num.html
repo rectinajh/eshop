@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<title>库存列表 - www.ohbbs.cn 欧皇源码论坛 </title>
+<head>
+<include file="public/header_style"/>
+
+<script type='text/javascript'>
+  Zepto(function($)
+  {
+    $.zcontent.set("url","/mobile/supplier/goods_stock.php");
+        $.zcontent.set("act","list");
+            $.zcontent.set("goods_name","");
+        $.zcontent.set("goods_sn","");
+        $.zcontent.set("record_count","3");
+        $.zcontent.set("page","1");
+        $.zcontent.set("page_size","15");
+        $.zcontent.set("page_count","1");
+        $.zcontent.set("start","0");
+            $.zcontent.add_static("act")
+    	  $.intimidatetime.setDefaults($.intimidatetime.i18n['zh-CN']);
+   $(document).on('ajaxStart', $.zprogress.start).on('ajaxStop', $.zprogress.done)
+   $("#toTop").scrollToTop();
+  });
+          // 这里把JS用到的所有语言都赋值到这里
+      var process_request = "正在处理您的请求...";
+      var todolist_caption = "记事本";
+      var todolist_autosave = "自动保存";
+      var todolist_save = "保存";
+      var todolist_clear = "清除";
+      var todolist_confirm_save = "是否将更改保存到记事本？";
+      var todolist_confirm_clear = "是否清空内容？";
+   </script>    <script type="text/javascript">
+      function search_stock()
+       {
+         if(check_form_empty('theForm'))
+         {
+           $.zalert.add('至少有一项输入不为空！',1)
+         }
+         else
+         {
+           $.zcontent.set('goods_name',$('#goods_name').val());
+           $.zcontent.set('goods_sn',$('#goods_sn').val());
+           return true;
+         }
+         return false;
+       }
+    </script>
+  </head>
+  <body>
+    <div id='container'>
+            <header id="header" class='header'>
+	<h1>库存列表</h1>
+  	<a href="javascript:history.back(-1)" class="back">返回</a>
+    <a onClick="refresh();" class="clear">刷新</a>
+    </header>      
+<section>
+  <ul class="order_tab" style="position:relative">
+	  <li id="order_manage1" class="first" onclick="toggle_menu();">库存列表<i id="menu_list_marker" class='on'></i>
+	    <include file="public/header_nav"/>
+	  </li>
+	  
+	  <li id="order_manage2" onclick="toggle_search();"><span class="line"></span>查询<i class='search'></i></li>
+	  <!--<li class="order_tab_li curr" id="type1" onclick="change_is_pay_ok('0')">本期结算</li>
+	  <li class="order_tab_li " id="type2" onclick="change_is_pay_ok('1')">往期结算</li>-->
+  
+  </ul>        
+	<div class="order_con" id="con_order_manage_2" style="display:none">
+        <div class="order_pd">
+            <div class="order order_t">
+              <form name="theForm" method="" action="{:U('User/goods_num')}" class="order_search" onsubmit='return search_stock();return false;'>
+                <table width="100%" border="0">
+                  <tr>
+                    <td>
+                      <input type="text" name="goods_name" id='goods_name' class="inputBg" placeholder="请输入商品名称" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="text" name="goods_sn" id='goods_sn' class="inputBg" placeholder="请输入商品货号"  />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="submit" class="button2" value="查找"/>
+                    </td>
+                  </tr>
+                </table>
+              </form>
+            </div>
+          </div>
+		  
+        </div>
+        <div class="order_pd goods_pd"  id="con_order_manage_1">
+
+		    <div class="goods">
+            <ul class="goods_list">
+            <volist name="goodsNum" id="v">
+                <li class="goods_list_info" >
+	                <p>{$v['goods_name']}</p>
+	                <p>货号：{$v['goods_sn']}</p>
+                    <p>库存：<span class="font">{$v['store_count']}</span></p>
+                </li>  
+            </volist>       
+            </ul>
+        </div>      
+	</div>
+</section>
+<!-- 脚部 -->
+<!-- <include file="public/footer_nav"/> -->
+ <footer>
+  <div class="global-nav global-nav-current">
+    <div class="global-nav__nav-wrap">
+        <div class="global-nav__nav-item">
+            <a  href="{:U('User/index')}" > 
+                <p><i class="iconfont icon-size" >&#xe605;</i></p>
+                <span>首页</span>
+            </a>
+        </div>
+        <div class="global-nav__nav-item">
+            <a href="{:U('User/order_list')}" class="on">
+               <p><i class="iconfont icon-size">&#xe60f;</i></p>
+                <span>订单管理</span>
+            </a>
+        </div>
+        <div class="global-nav__nav-item">
+            <a  href="{:U('User/commission')}" >
+               <p><i class="iconfont icon-size">&#xe608;</i></p>
+                <span>佣金管理</span>
+            </a>
+        </div>
+        <div class="global-nav__nav-item">
+            <a  href="{:U('Login/logout')}" >
+               <p><i class="iconfont icon-size">&#xe642;</i></p>
+                <span>退出</span>
+            </a>
+        </div>
+    </div>
+</div>
+</footer> 
+
+<!-- 脚部 -->
+</div>
+<div id='zalert'></div>
+<div id='zprogress'><div id='zprogress_indicator'></div></div>
+<a href="#top" id="toTop"></a>  
+</body>
+</html>
+

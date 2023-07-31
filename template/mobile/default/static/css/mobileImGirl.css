@@ -1,0 +1,116 @@
+body,
+html,
+div,
+a,
+span,
+p,
+img,
+li,
+ul,
+strong,
+i,
+textarea {
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+}
+a {
+    text-decoration: none;
+    color: #000;
+}
+ul,
+li {
+    list-style-type: none;
+}
+.h_wrap{
+    background: #f3f5f4;
+}
+.top_banner{
+    width:100%;
+    height:2.0rem;
+}
+.top_banner img{
+    width:100%;
+    height:2.0rem;
+}
+.center_logo{
+    width:100%;
+    height:1.2rem;
+    margin-top: 0.2rem;
+    background: #fff;
+    text-align: center;
+    border-bottom:1px solid #d9d9d9;
+}
+.center_logo img{
+    width:3.7rem;
+    height: 0.8rem;
+    margin-top: 0.2rem;
+}
+.girl_lists{
+    width:100%;
+}
+.girl_lists li{
+    width: 100%;
+    padding:0.2rem 0;
+    height: 1.26rem;
+    background: #fff;
+    margin-bottom: 0.1rem;
+    overflow: hidden;
+}
+.girl_lists li div{
+    float: left;
+}
+.girl_msg{
+    width:5.0rem;
+    margin-left: 0.2rem;
+}
+.girl_header img{
+    width: 1.26rem;
+    height: 1.26rem;
+    border-radius: 50%;
+}
+.msg_txt{
+    margin-left: 0.2rem;
+    margin-top: 0.23rem;
+}
+.msg_txt .girl_name{
+    font-size: 0.32rem;
+    margin-bottom: 0.1rem;
+}
+.girl_all{
+    display: flex;
+    justify-content:space-between;
+    width:3.2rem;
+}
+.girl_all span{
+    display: block;
+    font-size: 0.28rem;
+    color:#969696;
+}
+.get_phone{
+    width:auto;
+    padding:0 0.04rem;
+    height: 0.48rem;
+    line-height: 0.48rem;
+    color: #ff3a6d;
+    border:1px solid #ff3a6d;
+    border-radius: 4px;
+    margin-right: 0.2rem;
+    text-align: center;
+    font-size: 0.28rem;
+    margin-top: 0.56rem;
+}
+.mychange{
+    color: #fff;
+    border:1px solid #e30100;
+    background: #e30100;
+}
+
+
+
+
+
+
+
+
+

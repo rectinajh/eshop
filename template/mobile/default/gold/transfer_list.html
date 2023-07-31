@@ -1,0 +1,125 @@
+<include file="public/header" title="转账明细记录" body=""/>
+<include file="public/header_nav" title="转账明细记录" href="javascript:history.back(-1)"/>
+<div class="allaccounted" style="margin-bottom: 65px">
+    <div class="maleri30" style="margin: 0.32rem;">
+        <div class="head_acc ma-to-20">
+            <ul>
+                <li <if condition="$type eq 'plus'">class="red"</if> style="width: 48%;">
+                    <a href="{:U('Gold/transfer_list',array('type'=>'plus'))}"   data-list="2">成功</a>
+                </li>
+                <li  <if condition="$type eq 'minus'">class="red"</if> style="width: 48%;">
+                    <a href="{:U('Gold/transfer_list',array('type'=>'minus'))}"  data-list="3">失败</a>
+                </li>
+            </ul>
+        </div>
+<style>
+    body{
+        height: 100%;
+        background-color:#F5F5F5;
+    }
+    .fll_acc{
+        /* background-color: #F5F5F5; */
+        padding: .4rem ;
+        height: 100%;
+    }
+    .tr_box{
+        display: flex;
+        display: -webkit-flex;
+        flex-wrap: wrap;
+        border: 1px solid #ddd; 
+        background-color: #fff;
+        border-radius: .5rem ;
+        margin-bottom: .5rem ; 
+        padding-left: .5rem;
+    }
+    .tr_item{
+        width: 100%;
+        font-size: .6rem;
+        border-collapse: collapse;
+        display: flex;
+        padding: .4rem;
+        align-items: center;
+    }
+    .tr_item2{
+        width: 100%;
+        font-size: .6rem;
+        border-collapse: collapse;
+        display: flex;
+        padding: .4rem;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .time{
+        font-size: .8rem;
+        border-bottom: 1px solid #ddd;
+    }
+    .line{
+        display: inline-block;
+        height: .8rem;
+        background-color: #2A81F4;
+        width:.2rem ;
+        margin-right: .4rem;
+    }
+    .time2{
+        font-size: .5rem;
+        color:#888;
+        margin-left: 1rem;
+    }
+    .tr_item .left{
+        color:#888;
+        font-size: .6rem;
+        justify-self: left;
+        
+    }
+    .tr_item .right{
+        color:#333;
+        font-size: .6rem;
+        justify-content: right;
+    }
+</style>
+        <div class="allpion">
+	         <div class="fll_acc" style="text-align: center;">
+                <foreach name="account_log" item="v">  
+                    <div class="tr_box">
+                        <div class="tr_item time "><span class="line"></span>{$v['nickname']}<span class="time2"> {:date('Y.m.d H:i',$v[add_time])}</span>  </div>
+                            <div class="tr_item2"><div class="left">转账金额</div> <div class="right">{$v['money']}</div></div>
+                            <div class="tr_item2"><div class="left">手续费</div> <div class="right">{$v['shouxu']}</div></div>
+                            <div class="tr_item2"><div class="left">实际到账</div> <div class="right">{$v['shi_money']}</div></div>
+                            <div class="tr_item2"><div class="left">备注</div> <div class="right">{$v['desc']}</div></div>
+                            
+                    </div>
+                </foreach>
+	         </div>
+         </div>
+        <div id="getmore"  style="font-size:.5rem;text-align: center;color:#888; margin-bottom:1.5rem; clear:both;display: none">
+            <a >已显示完所有记录</a>
+        </div>
+    </div>
+</div>
+<!--底部导航-start-->
+        <include file="public/footer"/>
+        <!--底部导航-end-->
+<script type="text/javascript">
+    var page = 0;
+    function ajax_sourch_submit()
+    {
+        page ++;
+        $.ajax({
+            type : "GET",
+            url:"/index.php?m=mobile&c=Gold&a=transfer_list&is_ajax=1&type={$type}&p="+page,//+tab,
+            success: function(data)
+            {
+                if($.trim(data) == '') {
+                    $('#getmore').show();
+                    return false;
+                }else{
+                    $(".allpion").append(data);
+                }
+            }
+        });
+    }
+</script>
+<script src="__STATIC__/js/style.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="__STATIC__/js/sourch_submit.js"></script>
+</body>
+</html>

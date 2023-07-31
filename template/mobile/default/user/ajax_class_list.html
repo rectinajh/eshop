@@ -1,0 +1,20 @@
+<foreach name="comment_list" item="comment">
+
+                <div class="shopprice dapco p" style="background:#fff;margin-bottom:0.2rem;padding:0.2rem 0;">
+
+                    <div class="sonfbst" style="padding: 0.2rem 0;">
+
+                        <div class="maleri30">
+                            <span>会员昵称：{$comment[nickname]}</span>
+                        </div>
+
+                    </div>
+
+                    <div class="fon_or fl" style="width: 100%;">
+                        <span class="pall0">手机号：{$comment.mobile}</span>
+                        <span class="pall0">团队业绩:{$comment.team_performance}</span>
+                        <span class="pall0">{$comment.reg_time|date='Y.m.d H:i',###}</span>
+                    </div> 
+                </div>
+
+            </foreach>

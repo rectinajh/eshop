@@ -1,0 +1,8 @@
+<foreach name="list" item="v">
+    <tr style="color:#aaa">
+        <td>{$v[mobile]}</td>
+        <td>{:date("Y-m-d",$v['pay_points'])}</td>
+        <td style="color:#e01222;">{$v[money]}</td>
+        <td>{$v[shouxu]}</td>
+    </tr>
+</foreach>

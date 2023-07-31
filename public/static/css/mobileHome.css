@@ -1,0 +1,135 @@
+body,html,div,a,span,p,img,li,ul,strong,i,textarea,input{
+	padding: 0;
+	margin: 0;
+	font-size: 0;
+}
+a{
+	text-decoration: none;
+}
+ul,li{
+	list-style-type: none;
+}
+ .h_titleDiv{
+ 	background: #f3f5f4;
+ 		padding-bottom: 0.24rem;
+ }
+.h_titleDiv ul{
+	background: #ffffff;
+}
+.h_titleDiv ul li{
+	display: inline-block;
+	width: 2.06rem;
+	border-radius: 3px;
+	text-align: center;
+	margin: 0.18rem 0 0.28rem 0.28rem;
+	margin-top: 0.18rem;
+	margin-bottom: 0.28rem;
+}
+.h_border{
+	width: 100%;
+	height: 100%;
+}
+.h_man{
+	line-height: 0.66rem;
+	font-size: 0.33rem;	
+	color: #3498ff;
+}
+.h_woman{
+	line-height: 0.66rem;
+	font-size: 0.33rem;	
+	color: #e55ca3;
+
+}
+.h_upviews{
+	line-height: 0.66rem;
+	color: #d553f6;
+	font-size: 0.33rem;	
+}
+.h_topicImg{
+	width: 100%;
+	margin-top: 0.24rem;
+	background: #ffffff;
+	padding-bottom: 0.12rem;
+}
+.h_topicImg img{
+	width: 0.77rem;
+	height: 0.84rem;
+	display: inline-block;
+	margin-top: 0.14rem;
+	margin-left: 0.34rem;
+	overflow: hidden;
+}
+.h_topicCont{
+	display: inline-block;
+	width: 4.8rem;
+}
+.h_topic{
+	line-height: 0.47rem;
+	font-size: 0.33rem;
+	color: #5d5d5d;
+	width: 5.2rem;
+	overflow:hidden; 
+	white-space:nowrap; 
+	text-overflow:ellipsis;
+	margin-left:0.78rem ;
+}
+.h_topic >span{
+	display: inline-block;
+	font-size: 1rem;
+	height: 0.3rem;
+	width: 0.47rem;
+	background: url(../img/dian.png) no-repeat center center;
+	background-size: 0.1rem 0.1rem;
+	margin-right: 0.02rem;
+}
+.h_bottomDiv{
+	width: 6.78rem;
+	margin: 0 auto;
+	margin-top: 0.26rem;
+}
+.h_put{
+	font-size: 0.4rem;
+	color: #5d5d5d;
+}
+.h_put span{
+	display: inline-block;
+	font-size: 1rem;
+	width: 0.12rem;
+	height: 0.38rem;
+	margin-top: 0.01rem;
+	background: #fa0081;
+	margin-right: 0.17rem;
+}
+.h_bottomDiv ul{
+	margin-top:0.53rem ;
+}
+.h_bottomDiv ul li{
+	display: inline-block;
+	height: 3.36rem;
+}
+.h_bottomDiv ul li:nth-child(2n+1){
+	margin-right: 0.33rem;
+}
+.h_bottomDiv ul li a{
+	
+}
+.h_bottomDiv ul li a img{
+	width: 3.22rem;
+	height: 2.24rem;
+}
+.h_bottomDiv ul li a p{
+	font-size: 0.33rem;
+	color: #5f5f5f;
+	line-height: 0.8rem;
+	text-align: center;
+}
+.h_bottomDiv > a{
+	margin-left: 0.98rem;
+	display: inline-block;
+	color: #ffffff;
+	font-size: 0.45rem;
+	padding: 0.15rem 1.94rem;
+	background: #fa0081;
+	border-radius: 15px;
+	margin-bottom: 2rem;
+}

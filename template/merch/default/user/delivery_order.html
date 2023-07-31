@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>发货单列表 - www.ohbbs.cn 欧皇源码论坛 </title>
+<include file="public/header_style"/>
+
+<script type='text/javascript'>
+  Zepto(function($)
+  {
+    $.zcontent.set("url","/mobile/supplier/order.php");
+        $.zcontent.set("act","delivery_list");
+            $.zcontent.set("delivery_sn","");
+        $.zcontent.set("order_sn","");
+        $.zcontent.set("order_id","0");
+        $.zcontent.set("consignee","");
+        $.zcontent.set("status","-1");
+        $.zcontent.set("sort_by","update_time");
+        $.zcontent.set("sort_order","DESC");
+        $.zcontent.set("page","1");
+        $.zcontent.set("page_size","15");
+        $.zcontent.set("record_count","4");
+        $.zcontent.set("page_count","1");
+            $.zcontent.add_static("act")
+    	  $.intimidatetime.setDefaults($.intimidatetime.i18n['zh-CN']);
+   $(document).on('ajaxStart', $.zprogress.start).on('ajaxStop', $.zprogress.done)
+   $("#toTop").scrollToTop();
+  });
+          // 这里把JS用到的所有语言都赋值到这里
+      var process_request = "正在处理您的请求...";
+      var todolist_caption = "记事本";
+      var todolist_autosave = "自动保存";
+      var todolist_save = "保存";
+      var todolist_clear = "清除";
+      var todolist_confirm_save = "是否将更改保存到记事本？";
+      var todolist_confirm_clear = "是否清空内容？";
+      var remove_confirm = "删除订单将清除该订单的所有信息。您确定要这么做吗？";
+      var confirm_merge = "您确实要合并这两个订单吗？";
+      var input_price = "自定义价格";
+      var pls_search_user = "请搜索并选择会员";
+      var confirm_drop = "确认要删除该商品吗？";
+      var invalid_goods_number = "商品数量不正确";
+      var pls_search_goods = "请搜索并选择商品";
+      var pls_select_area = "请完整选择所在地区";
+      var pls_select_shipping = "请选择配送方式";
+      var pls_select_payment = "请选择支付方式";
+      var pls_select_pack = "请选择包装";
+      var pls_select_card = "请选择贺卡";
+      var pls_input_note = "请您填写备注！";
+      var pls_input_cancel = "请您填写取消原因！";
+      var pls_select_refund = "请选择退款方式！";
+      var pls_select_agency = "请选择办事处！";
+      var pls_select_other_agency = "该订单现在就属于这个办事处，请选择其他办事处！";
+      var loading = "加载中...";
+      var remove_invoice_confirm = "您确定删除该订单的发票信息吗？";
+   </script>    <script>
+      function search_delivery()
+      {
+        if(check_form_empty('theForm'))
+        {
+          $.zalert.add('至少有一项输入不为空！',1)
+        }
+        else
+        {
+          $.zcontent.set('delivery_sn',$('#delivery_sn').val());
+          $.zcontent.set('order_sn',$('#order_sn').val());
+          $.zcontent.set('consignee',$('#consignee').val());
+          search();
+        }
+        return false;
+      }
+    </script>
+  </head>
+  <body>
+    <div id='container'>
+            <header id="header" class='header'>
+	<h1>发货单列表</h1>
+  	<a href="javascript:history.back(-1)" class="back">返回</a>
+      <a onClick="refresh();" class="clear">刷新</a>
+    </header>      <section>
+        <ul class="order_tab" style="position:relative">
+  <li id="order_manage1" class="first" onclick="toggle_menu();">发货单列表    <i id="menu_list_marker" class='on'></i>
+    <include file="public/header_nav"/>
+  </li>
+  
+  <li id="order_manage2" onclick="toggle_search();"><span class="line"></span>查询<i class='search'></i></li>
+  <!--<li class="order_tab_li curr" id="type1" onclick="change_is_pay_ok('0')">本期结算</li>
+  <li class="order_tab_li " id="type2" onclick="change_is_pay_ok('1')">往期结算</li>-->
+  
+</ul>        
+        <div class="order_con" id="con_order_manage_2" style="display:none">
+          <div class="order_pd">
+            <div class="order order_t">
+              <form name="theForm" method="" action="" class="order_search" onsubmit='search_delivery();return false;'>
+                <table width="100%" border="0">
+                  <tr>
+                    <td>
+                      <input type="text" name="delivery_sn" id='delivery_sn' class="inputBg" placeholder="请输入发货单流水号" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="text" name="order_sn" id='order_sn' class="inputBg" placeholder="请输入订单号" //>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="text" name="consignee" id='consignee' class="inputBg" placeholder="请输入收货人" //>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="submit" name="" class="button2" value="查找"/>
+                    </td>
+                  </tr>
+                </table>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="order_con order_con1" id="con_order_manage_1">
+		          <div class="order_pd">
+            <div class="order">
+              <ul class="order_list delivery_list">
+                  <li>
+                    <table width="100%" cellpadding="3" cellspacing="1" >
+                      <tr>
+                        <td align="left"><span>发货单流水号</span>20171218034805775</td>
+                      </tr>
+                      <tr>
+                        <td align="left"><span>订单号</span>2017091202299<div class="buy_name"><i>收货人</i>罗欢欢</div></td>
+                      </tr>
+                      <tr>
+                        <td align="left"><span>下单时间</span>2017-09-12 10:30:05</td>
+                      </tr>
+                      <tr>
+                        <td align="left"><span>发货时间</span>2017-12-18 11:48:42</td>
+                      </tr>
+                      <tr>
+                        <td align="left"><span>发货状态</span>已发货                        <a href="order.php?act=remove_delivery&delivery_id=1676" class="font1">移除</a>
+                          <a href="order.php?act=delivery_info&delivery_id=1676">查看</a></td>
+                      </tr>
+                    </table>
+                  </li>
+              </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- 脚部 -->
+<include file="public/footer_nav"/>
+<!-- 脚部 -->         
+</div>
+<div id='zalert'></div>
+<div id='zprogress'><div id='zprogress_indicator'></div></div>
+<a href="#top" id="toTop"></a>  
+</body>
+</html>

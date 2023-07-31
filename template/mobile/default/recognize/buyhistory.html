@@ -1,0 +1,303 @@
+<include file="public/header" title="购买记录"/>
+<include file="public/header_nav" title="购买记录"  href="javascript:history.go(-1);"/>
+<style>
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+.history{
+    background-color: #EBEBEB;	
+}
+.history .box{
+
+}
+.history .box .item{
+    display: flex;
+    height: 4rem;
+    padding-left: .5rem;
+    background-color: #fff;
+    border-bottom: .1rem solid #ebebeb;
+}
+.history .box .item .left{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex: 1;
+    font-size: .56rem;
+}
+.history .box .item .left .time{
+    font-size: .5rem;
+    color:#a0a0a0;
+}
+.history .box .item .right{
+    width: 22%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.history .box .item .right .status{
+    display: inline-block;
+    color:#2A81F4;
+    font-size: .56rem;
+}
+.history .box .item .right .status.active{
+    background-color: #2a81f4;
+    padding: .3rem .4rem;
+    color:#fff;
+    border-radius: .3rem;
+}
+.history .data_none{
+    margin-top: 2rem;
+    text-align: center;
+    background-color: #fff;
+}
+.history .data_none img{
+    width: 4rem;
+    height: 4rem;
+}
+.history .data_none p{
+    margin-top: .6rem;
+    font-size: .7rem;
+    color:#a0a0a0;
+}
+.payBtn {
+    color: #fff;
+    background: #43c2e8;
+    border: none;
+    padding: 30px 10px;
+    border-radius: 6px;
+}
+.cancelBtn {
+    width: 50%;
+    background: transparent;
+    border: none;
+    color: #9c9c9c;
+}	
+.lay_chong{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #333;
+    z-index: 8;
+    display: none;
+}
+.lay_chong .chong_box{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    background-color: #fff;
+    font-size: .56rem;
+    border-radius: .3rem;
+    padding: 1.5rem .5rem;
+    text-align: center;
+}
+.lay_chong .chong_box p{
+    font-size: .56rem;
+    color: #333;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+.lay_chong .chong_box .btn_go{
+    font-size: .5rem;
+    background-color: #2A81F4;
+    padding: .3rem ;
+    width: 80%;
+    color:#fff;
+    border-radius: .3rem;
+}
+.lay_chong .chong_box .close{
+    position: absolute;
+    right: .3rem;
+    top: .3rem;
+    width: .8rem;
+    height: .8rem;
+    background: url(__STATIC__/images/ico/guanbi.png) no-repeat center;
+}
+.pwdBox{
+    display: none;
+}
+
+.labelPwd {
+    line-height: 2rem;
+    font-size: .6rem;
+}
+
+.pwd {
+    border: none;
+    border-bottom: 1px solid #909090;
+    outline: none;
+    text-indent: .5rem;
+}
+
+.btnPwd {
+    margin-top: 1rem;
+    width: 40%;
+    height: 1.5rem;
+    border-radius: .2rem;
+    background-color: #2A81F4;
+    color: #fff;
+    text-align: center;
+    border: none;
+    outline: none;
+}
+
+.btnCancel {
+    width: 40%;
+    height: 1.5rem;
+    border-radius: .2rem;
+    background-color: #b9b9b9;
+    
+    color: #fff;
+    text-align: center;
+    border: none;
+    outline: none;
+    margin-right: 1rem;
+}
+</style>
+<div class="history">
+	<empty name="recognizeTrade">
+		<div class="data_none">
+			<img src="__STATIC__/images/ico/none_data.png" alt="">
+			<p>还没有数据呢！</p>
+		</div>
+	<else/>
+		<div class="box">
+			<foreach name="recognizeTrade" id="trade">
+				<div class="item">
+					<div class="left">
+						<p class="no">单号：{$trade.trade_no}</p>
+						<p class="num">数量：{$trade.buy_qty}</p>
+                      <p class="time">时间：{$trade.create_time}</p>
+					</div>
+					<div class="right">
+						<if condition="$trade.pay_status eq 0 && $trade.status eq 0">
+							<button class="payBtn" data-id="{$trade.id}">立即支付</button>
+                            <button class="cancelBtn" data-id="{$trade.id}">取消</button>
+						<else/>
+							<span class="status">{$trade.status_name}</span>
+						</if>	
+					</div>
+				</div>
+			</foreach>
+		</div>
+	</empty>
+	<div class="lay_chong">
+		<div class="chong_box">
+			<span class="close"></span>
+			<p>对不起,您的余额不足,当前余额:{$user.user_money}</p>
+			<a href="{:url('Mobile/User/recharge')}" style="background: #31addc;color: #fff;padding: 0.2rem 0.5rem;border-radius: 0.4rem;">立即充值</a>
+		</div>
+	</div>
+	<div class="pwdBox">
+		<form action="" method="POST" class="showPwd">
+			<label class="labelPwd">
+				<input type="password" class="pwd" name="password" placeholder="请输入密码">
+			</label>
+			<div>
+				<input type="button" class="btnCancel" value="取消">
+				<input type="submit" class="btnPwd" value="确定">
+			</div>
+		</form>
+	</div>
+</div>
+<script src="__STATIC__/js/style.js" type="text/javascript" charset="utf-8"></script>
+<script src="__STATIC__/js/polygonizr.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	$(function () {
+		$('.right .payBtn').click(function() {
+			var that = this;
+			var layerIndex = layer.open({
+				title: [
+					'输入密码',
+					'background-color: #2A81F4; color:#fff;font-size:.7rem;height:1.6rem;line-height:1.6rem;'
+				],
+				content: $('.showPwd').html(),
+		});
+		//确定按钮
+			$(document).on('click', '.btnPwd', function () {
+				var value = $('.layui-m-layer input[type=password]').val();
+				$.ajax({
+					url: '/Mobile/goldchain/validateSafePassword/',
+					type: 'POST',
+					data: {password: value},
+					success: function (res) {
+						if (res.code == 0) {
+							alert(res.msg);
+						} else {
+							$.ajax({
+								url: '/Mobile/Recognize/pay',
+								type: 'POST',
+								data: {
+									trade_id: $(that).attr('data-id'),
+									password:value
+								},
+								success: function (datas) {
+									switch (datas.code) {
+										case -1:
+											// $('.mask,.chain').hide();
+											$('.lay_chong').show();
+											break;
+										case 0:
+											alert(datas.msg);
+											break;
+										default:
+											layer.close(layerIndex);javascript:;
+											// alert(res.msg);
+											layer.open({
+												content:datas.msg,
+												time:2,
+												end:function(){
+													window.location.reload();
+												}
+											})
+											break;
+									}
+									
+								}
+							});
+							$(document).off('click', '.btnPwd');
+						}
+					}
+				});
+			})
+			$(document).one('click', '.btnCancel', function () {
+				$(document).off('click', '.btnPwd');
+				layer.close(layerIndex)
+			});
+		});
+		$('.right .cancelBtn').click(function() {
+			var that = this, id = $(that).data('id');
+			$.ajax({
+            	url: '/Mobile/Recognize/cancel',
+              	type: 'POST',
+              	data: {trade_id: id},
+              	success: function (res) {
+                  	console.log(res);
+                  if (res.code == 1) {
+                      layer.open({
+                          content: res.msg,
+                          time: 2,
+                          end: function() {
+						     window.location.reload();
+                          }
+                      });
+                  } else {
+                      layer.open({
+                          content: res.msg,
+                          time: 3
+                      });
+                  }
+                },
+            });
+		});
+	});
+</script>
+</body>
+</html>

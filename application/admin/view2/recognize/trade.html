@@ -1,0 +1,277 @@
+<include file="public/layout" />
+<script src="__ROOT__/public/static/js/layer/laydate/laydate.js"></script>
+
+<body style="background-color: rgb(255, 255, 255); overflow: auto; cursor: default; -moz-user-select: inherit;">
+	<div id="append_parent"></div>
+	<div id="ajaxwaitid"></div>
+	<div class="page">
+		<div class="fixed-bar">
+			<div class="item-title">
+				<div class="subject">
+					<h3>认筹管理</h3>
+					<h5>网站系统认筹活动审核与管理</h5>
+				</div>
+			</div>
+		</div>
+		<!-- 操作说明 -->
+		<div id="explanation" class="explanation" style="color: rgb(44, 188, 163); background-color: rgb(237, 251, 248); width: 99%; height: 100%;">
+			<div id="checkZoom" class="title">
+				<i class="fa fa-lightbulb-o"></i>
+				<h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+				<span title="收起提示" id="explanationZoom" style="display: block;"></span>
+			</div>
+			<ul>
+				<li>认筹管理, 由总平台设置管理.</li>
+			</ul>
+		</div>
+		<div class="flexigrid">
+			<div class="mDiv">
+				<div class="ftitle">
+					<h3>认筹活动列表</h3>
+					<h5>(共{$pager->totalRows}条记录)</h5>
+				</div>
+				<div title="刷新数据" class="pReload">
+					<i class="fa fa-refresh"></i>
+				</div>
+				<form class="navbar-form form-inline" id="search-form" action="{:url('Recognize/trade')}" method="get" onsubmit="return check_form();">
+					<div class="sDiv">
+						<div class="sDiv2" style="margin-right: 10px;">
+							<input type="text" size="30" id="start_time" name="start_time" value="{$start_time}" placeholder="起始时间" class="qsbox">
+							<input type="button" class="btn" value="起始时间">
+						</div>
+						<div class="sDiv2" style="margin-right: 10px;">
+							<input type="text" size="30" id="end_time" name="end_time" value="{$end_time}" placeholder="截止时间" class="qsbox">
+							<input type="button" class="btn" value="截止时间">
+						</div>
+						<div class="sDiv2">
+							<select name="status" class="select">
+								<option value="-1">交易状态</option>
+								<foreach name="statusList" item="st">
+									<option value="{$key}" <if condition="$Request.param.status heq $key.''">selected</if>>{$st}</option>
+								</foreach>
+							</select>
+							<select name="pay_status" class="select">
+								<option value="-1">支付状态</option>
+								<foreach name="payStatusList" item="st">
+									<option value="{$key}" <if condition="$Request.param.pay_status heq $key.''">selected</if>>{$st}</option>
+								</foreach>
+							</select>
+							<select name="pay_type" class="select">
+								<option value="-1">支付方式</option>
+								<foreach name="payTypeList" item="st">
+									<option value="{$key}" <if condition="$Request.param.pay_status heq $key.''">selected</if>>{$st}</option>
+								</foreach>
+							</select>
+							<input size="30" name="mobile" value="{$Request.param.mobile}" class="qsbox" placeholder="输入手机号" type="text">
+							<span> </span>
+							<input size="30" name="trade_no" value="{$Request.param.trade_no}" class="qsbox" placeholder="交易号" type="text">
+							<span> </span>
+							<input type="submit" class="btn" value="搜索">
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="hDiv">
+				<div class="hDivBox">
+					<table cellspacing="0" cellpadding="0">
+						<thead>
+							<tr>
+								<th class="sign" axis="col0">
+									<div style="width: 24px;">
+										<i class="ico-check"></i>
+									</div>
+								</th>
+								<th align="left" abbr="article_title" axis="col3" class="">
+									<div style="text-align: left; width: 160px;" class="">交易号</div>
+								</th>
+								<th align="left" abbr="article_title" axis="col3" class="">
+									<div style="text-align: left; width: 60px;" class="">用户id</div>
+								</th>
+								<th align="left" abbr="ac_id" axis="col4" class="">
+									<div style="text-align: center; width: 100px;" class="">用户手机</div>
+								</th>
+								<th align="center" abbr="article_show" axis="col5" class="">
+									<div style="text-align: center; width: 80px;" class="">购买数量</div>
+								</th>
+								<th align="center" abbr="article_time" axis="col6" class="">
+									<div style="text-align: center; width: 90px;" class="">应付金额</div>
+								</th>
+								<th align="center" abbr="article_time" axis="col6" class="">
+									<div style="text-align: center; width: 90px;" class="">支付金额</div>
+								</th>
+								<th align="center" abbr="article_time" axis="col6" class="">
+									<div style="text-align: center; width: 60px;" class="">状态</div>
+								</th>
+								<th align="center" abbr="article_time" axis="col6" class="">
+									<div style="text-align: center; width: 60px;" class="">支付状态</div>
+								</th>
+								<th align="center" abbr="article_time" axis="col6" class="">
+									<div style="text-align: center; width: 80px;" class="">支付方式</div>
+								</th>
+								<th align="center" abbr="article_time" axis="col6" class="">
+									<div style="text-align: center; width: 120px;" class="">支付凭证</div>
+								</th>
+								<th align="center" abbr="article_time" axis="col6" class="">
+									<div style="text-align: center; width: 120px;" class="">创建时间</div>
+								</th>
+								<th align="center" abbr="article_time" axis="col6" class="">
+									<div style="text-align: center; width: 120px;" class="">支付时间</div>
+								</th>
+								<th align="center" abbr="article_time" axis="col6" class="">
+									<div style="text-align: center; width: 120px;" class="">完成时间</div>
+								</th>
+								<th align="left" axis="col1" class="handle">
+									<div style="text-align: center; width: 150px;">操作</div>
+								</th>
+								<th style="width:100%" axis="col7">
+									<div></div>
+								</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+			</div>
+			<div class="bDiv" style="height: auto;">
+				<div id="flexigrid" cellpadding="0" cellspacing="0" border="0">
+					<table>
+						<tbody>
+							<foreach name="lists" item="vo" key="k">
+								<tr>
+									<td class="sign">
+										<div style="width: 24px;">
+											<i class="ico-check"></i>
+										</div>
+									</td>
+									<td align="left" class="">
+										<div style="text-align: left; width: 160px;">{$vo.trade_no}</div>
+									</td>
+									<td align="left" class="">
+										<div style="text-align: left; width: 60px;">{$vo.user_id}</div>
+									</td>
+									<td align="left" class="">
+										<div style="text-align: center; width: 100px;">{$vo.user.mobile}</div>
+									</td>
+									<td align="left" class="">
+										<div style="text-align: right; width: 80px;">{$vo.buy_qty}</div>
+									</td>
+									<td align="left" class="">
+										<div style="text-align: right; width: 90px;">{$vo.money}</div>
+									</td>
+									<td align="left" class="">
+										<div style="text-align: right; width: 90px;">{$vo.pay_money}</div>
+									</td>
+									<td align="left" class="">
+										<div style="text-align: center; width: 60px;">{$vo.status_name}</div>
+									</td>
+									<td align="left" class="">
+										<div style="text-align: center; width: 60px;">{$vo.pay_status_name}</div>
+									</td>
+									<td align="center" class="">
+										<div style="text-align: center; width: 80px;">{$vo.pay_type_name}</div>
+									</td>
+									<td align="left" class="">
+										<div style="text-align: center; width: 120px;">{$vo.transaction_id}</div>
+									</td>
+									<td align="left" class="">
+										<div style="text-align: center; width: 120px;">{$vo.create_time}</div>
+									</td>
+									<td align="left" class="">
+										<div style="text-align: center; width: 120px;">{$vo.pay_time}</div>
+									</td>
+									<td align="left" class="">
+										<div style="text-align: center; width: 120px;">{$vo.complete_time}</div>
+									</td>
+									<td align="left" class="handle">
+										<div style="text-align: left; width: 170px; max-width:170px;">
+											<if condition="$vo.pay_status == 0 and $vo.status == 0">
+												<a class="btn blue btn-cancel" href="javascript:;" data-url="{:url('Recognize/cancelTrade')}" data-id="{$vo.id}">
+													<i class="fa fa-edit"></i>取消</a>
+											</if>
+											<if condition="$vo.pay_status == 1 and $vo.status == 0">
+												<a class="btn blue btn-refund" href="javascript:;" data-url="{:url('Recognize/refundTrade')}" data-id="{$vo.id}">
+													<i class="fa fa-edit"></i>退款</a>
+											</if>
+										</div>
+									</td>
+									<td align="" class="" style="width: 100%;">
+										<div>&nbsp;</div>
+									</td>
+								</tr>
+							</foreach>
+						</tbody>
+					</table>
+				</div>
+				<div class="iDiv" style="display: none;"></div>
+			</div>
+			<!--分页位置-->
+			{$page} </div>
+	</div>
+	<script>
+		$(document).ready(function () {
+			// 表格行点击选中切换
+			$('#flexigrid > table>tbody >tr').click(function () {
+				$(this).toggleClass('trSelected');
+			});
+
+			// 点击刷新数据
+			$('.fa-refresh').click(function () {
+				location.href = location.href;
+			});
+
+			$('#start_time').layDate();
+			$('#end_time').layDate();
+		});
+
+		function check_form() {
+			var start_time = $.trim($('#start_time').val());
+			var end_time = $.trim($('#end_time').val());
+			if (start_time == '' ^ end_time == '') {
+				layer.alert('请选择完整的时间间隔', { icon: 2 });
+				return false;
+			}
+			if (start_time !== '' && end_time !== '') {
+				$('#timegap').val(start_time + " - " + end_time);
+			}
+			if (start_time == '' && end_time == '') {
+				$('#timegap').val('');
+			}
+			return true;
+		}
+
+		$('.btn-cancel').click(function () {
+			var url = $(this).data('url'), id = $(this).data('id');
+			layer.confirm('确定要取消吗?', {
+				title: '提示',
+				icon: 3
+			}, function() {
+				$.ajax({
+					url: url,
+					type: 'POST',
+					data: {trade_id: id},
+					success: function (res) {
+						if (res.code == 1) {
+							layer.msg(res.msg, {
+								time: 2000,
+								end: function() {
+									window.location.reload();
+								}
+							});
+						} else {
+							layer.msg(res.msg);
+						}
+					},
+					error: function() {
+
+					}
+				});
+			});
+		});
+
+		$('.btn-refund').click(function () {
+			layer.confirm('确定要退款吗?', function() {
+				layer.msg('此功能未开发,请人员处理');
+			});
+		});
+	</script>
+</body>
+</html>

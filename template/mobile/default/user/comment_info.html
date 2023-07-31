@@ -1,0 +1,97 @@
+<include file="public/header" title="评论详情"   body="g4"/>
+	<body class="g4">
+		<div class="classreturn loginsignup">
+			<div class="content">
+				<div class="ds-in-bl return">
+					<a href="javascript:void(0);"><img src="images/newBack.png" alt="返回"></a>
+				</div>
+				<div class="ds-in-bl search center">
+					<span>评价详情</span>
+				</div>
+				<div class="ds-in-bl menu">
+					<a href="javascript:void(0);"><img src="images/class1.png" alt="菜单"></a>
+				</div>
+			</div>
+		</div>
+	<include file="public/footer_nav">
+		<div class="assess-top detailremark">
+			<div class="maleri30">
+				<span class="user-portrait">                
+					<img src="images/5473e62aNdb4251d8.png">
+				</span>            
+				<span class="user-name">j***i</span>            
+				<!--<span class="vip-icon vip-copper-icon"></span>-->            
+				<span class="assess-date">{$comment_info['add_time']|date='Y-m-d H:i:s',###}</span>
+			</div>
+		</div>
+		<div class="assess-bottom detailcomment"> 
+			<div class="maleri30">
+				<span class="comment-item-star">                
+					<span class="real-star comment-stars-width4"></span>
+				</span>            
+				<p class="assess-content">{$comment_info.content}</p>
+				<notempty name="comment_info.img">
+				<div class="product-img-module">     
+					<a class="J_ping" report-eventid="MProductdetail_CommentPictureTab" report-pageparam="1725965683" href="">         
+						<ul class="jd-slider-container">
+							<foreach name="comment_info.img" item="vm">
+							<li class="jd-slider-item product-imgs-li">
+								<img src="vm">
+							</li>
+							</foreach>
+						</ul>
+					</a>
+				</div>
+				</notempty>  
+				<div class="de_font desupp p">
+					<div class="keep fr">
+						<i class=""></i>
+						<span>1</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="replaylist ma-to-20">
+			<div class="replay_tit">
+				<div class="maleri30">
+					<p>回复<em>({$reply|count})</em></p>
+				</div>
+			</div>
+			<notempty name="reply">
+			<div class="assess-top detailremark">
+				<foreach name="reply" item="vo">
+				<div class="restrict">
+					<div class="maleri30">
+						<div class="limitbox p">
+							<span class="user-portrait">                
+								<img src="images/5473e62aNdb4251d8.png">
+							</span>            
+							<span class="user-name">j***i</span>            
+							<!--<span class="vip-icon vip-copper-icon"></span>-->            
+							<span class="assess-date">刚刚</span>
+						</div>
+						<p class="replay_text">哈哈哈哈哈哈哈哈哈哈</p>
+					</div>
+				</div>
+				</foreach>
+			</div>
+			</notempty>
+		</div>
+		<div class="he108">
+			<div class="answersubmit">
+				<div class="maleri30">
+					<input class="vautxt" type="text" id="" value="" placeholder="说点什么呗~" />
+					<a class="send" href="">发送</a>
+				</div>
+			</div>
+		</div>
+		<script src="js/style.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//收藏点亮
+			$('.de_font .keep').click(function(){
+				$(this).find('i').toggleClass('red');
+			});
+		</script>
+	</body>
+<script src="__STATIC__/js/style.js" type="text/javascript" charset="utf-8"></script>
+</html>

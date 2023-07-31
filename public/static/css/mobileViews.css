@@ -1,0 +1,117 @@
+body,
+html,
+div,
+a,
+span,
+p,
+img,
+li,
+ul,
+strong,
+i,
+textarea {
+	padding: 0;
+	margin: 0;
+	font-size: 0;
+}
+a {
+	text-decoration: none;
+}
+
+ul,
+li {
+	list-style-type: none;
+}
+.t_topic {
+	height: 0.92rem;
+	width: 100%;
+	margin-top: 0.27rem;
+}
+.h_wrap{
+	background: #f3f5f4;
+}
+.h_put {
+	padding-left: 0.37rem;
+	font-size: 0.4rem;
+	line-height: 0.87rem;
+	height: 0.87rem;
+	color: #5d5d5d;
+	background: #FFFFFF;
+}
+
+.h_put span {
+	display: inline-block;
+	font-size: 1rem;
+	width: 0.12rem;
+	height: 0.38rem;
+	margin-top: 0.01rem;
+	background: #fa0081;
+	margin-right: 0.17rem;
+}
+.swiper-container{
+	width: 7.49rem;
+	height: 4.94rem;
+}
+.swiper-slide > a >img{
+	width: 7.49rem;
+	height: 4.94rem;
+}
+.swiper-pagination span{
+	width: 0.2rem;
+	height: 0.2rem;
+}
+.v_name{
+	font-size: 0.46rem;
+	padding: 0.3rem 0 0.3rem 0.33rem;
+	background: #FFFFFF;
+	color: #5E5E5E;
+	
+}
+.v_name > a{
+	margin-left: 1.32rem;
+	font-size: 0.35rem;
+	color: #FFFFFF;
+	line-height: 0.48rem;
+	padding: 0 0.33rem;
+	background: #fa0081;
+}
+.v_selfViews{
+	background: #FFFFFF;
+	margin-top: 0.26rem;
+}
+.v_speakYourself{
+	font-size: 0.35rem;
+	color: #aaaaaa;
+	text-align: center;
+	padding-top: 0.38rem;
+}
+
+.v_selfViews > p span{
+	display: inline-block;
+	border-bottom: 1px solid #ABABAB;
+	width: 1.19rem;
+	vertical-align: middle;
+	margin: 0 0.4rem;
+}
+
+.v_selfViews > ul{
+	margin-top: 0.34rem;
+}
+.v_selfViews > ul li{
+	font-size: 0.28rem;
+	line-height: 0.6rem;
+	color: #444444;
+	margin: 0 0.38rem;
+}
+.v_selfViews > ul li > span{
+	display: inline-block;
+	font-size: 0.28rem;
+	line-height: 0.6rem;
+	color: #444444;
+}
+.v_cont{
+	font-size: 0.28rem;
+	line-height: 0.6rem;
+	color: #444444;
+	margin: 0.38rem 0.38rem 0;
+}

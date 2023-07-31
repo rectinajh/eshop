@@ -1,0 +1,127 @@
+body,
+html,
+div,
+a,
+span,
+p,
+img,
+li,
+ul,
+strong,
+i,
+textarea {
+	padding: 0;
+	margin: 0;
+	font-size: 0;
+}
+a {
+	text-decoration: none;
+}
+
+ul,
+li {
+	list-style-type: none;
+}
+.t_topic {
+	height: 0.92rem;
+	width: 100%;
+	margin-top: 0.27rem;
+}
+.h_wrap{
+	background: #f3f5f4;
+}
+.h_put {
+	padding-left: 0.37rem;
+	font-size: 0.4rem;
+	line-height: 0.87rem;
+	height: 0.87rem;
+	color: #5d5d5d;
+	background: #FFFFFF;
+}
+
+.h_put span {
+	display: inline-block;
+	font-size: 1rem;
+	width: 0.12rem;
+	height: 0.38rem;
+	margin-top: 0.01rem;
+	background: #fa0081;
+	margin-right: 0.17rem;
+}
+.h_bottomDiv{
+	background:#FFFFFF;
+	margin-top: 0.02rem;
+	padding-top: 0.3rem;
+}
+.h_put{
+	font-size: 0.4rem;
+	color: #5d5d5d;
+}
+.h_put span{
+	display: inline-block;
+	font-size: 1rem;
+	width: 0.12rem;
+	height: 0.38rem;
+	margin-bottom: 0.1rem;
+	background: #fa0081;
+	margin-right: 0.17rem;
+	vertical-align: middle;
+}
+.h_bottomDiv ul{
+	padding-bottom: 0.3rem;
+	width: 6.78rem;
+	margin: 0 auto;
+	margin-top:0.3rem ;
+}
+.h_bottomDiv ul li{
+	display: inline-block;
+	height: 3.36rem;
+}
+.h_bottomDiv ul li:nth-child(2n+1){
+	margin-right: 0.33rem;
+}
+.h_bottomDiv ul li a{
+	
+}
+.h_bottomDiv ul li a img{
+	width: 3.22rem;
+	height: 2.24rem;
+}
+.h_bottomDiv ul li a p{
+	font-size: 0.33rem;
+	color: #5f5f5f;
+	line-height: 0.8rem;
+	text-align: center;
+}
+
+/*分页部分 样式*/
+.t_btnDiv{
+	width: 7.07rem;
+	margin: 0 auto 2rem;
+	background: #FFFFFF;
+}
+.t_paging {
+	text-align: center;
+	padding-top: 0.4rem;
+}
+
+.t_paging input {
+	display: inline-block;
+	background: #f8f8f8;
+	border: none;
+	margin-right: 0.1rem;
+	font-size: 0.16rem;
+	color: #666666;
+	line-height: 0.5rem;
+	padding: 0 0.24rem;
+	border: 1px solid #c1c1c1;
+	outline: none;
+	cursor: pointer;
+	border-radius: 1px;
+}
+
+.t_paging>.t_on {
+	background: #f73fa5;
+	color: #FFFFFF;
+	border-color: #d40076;
+}

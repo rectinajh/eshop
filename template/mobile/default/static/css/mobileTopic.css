@@ -1,0 +1,138 @@
+body,
+html,
+div,
+a,
+span,
+p,
+img,
+li,
+ul,
+strong,
+i,
+textarea {
+	padding: 0;
+	margin: 0;
+	font-size: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+ul,
+li {
+	list-style-type: none;
+}
+
+.t_topic {
+	background: #f3f5f4;
+	height: 0.92rem;
+	width: 100%;
+	padding-top: 0.27rem;
+}
+
+.h_put {
+	padding-left: 0.37rem;
+	font-size: 0.4rem;
+	line-height: 0.87rem;
+	height: 0.87rem;
+	color: #5d5d5d;
+	background: #fff;
+}
+
+.h_put span {
+	display: inline-block;
+	font-size: 1rem;
+	width: 0.12rem;
+	height: 0.38rem;
+	margin-top: 0.01rem;
+	background: #e30000;
+	margin-right: 0.17rem;
+}
+
+.t_word {
+	height: 1.46rem;
+}
+
+.t_word img {
+	display: inline-block;
+	width: 2.15rem;
+	height: 1.46rem;
+}
+
+.t_contDiv {
+	display: inline-block;
+	width: 4.78rem;
+	height: 1.46rem;
+	vertical-align: top;
+	margin-left: 0.14rem;
+	position: absolute;
+}
+
+.t_title {
+	font-size: 0.33rem;
+	line-height: 0.51rem;
+	width: 3.85rem;
+	color: #5e5e5e;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.t_cont {
+	margin-top: 0.1rem;
+	width: 3.85rem;
+	font-size: 0.23rem;
+	line-height: 0.36rem;
+	color: #ababab;
+	height: 0.72rem;
+	overflow: hidden;
+}
+
+.t_right {
+	background: url(../img/right.png) no-repeat 0 0/100% 100%;
+	position: absolute;
+	font-size: 0.5rem;
+	width: 0.27rem;
+	height: 0.52rem;
+	top: 50%;
+	margin-top: -0.26rem;
+	right: 0.1rem;
+}
+
+.h_wrap ul li {
+	width: 7.07rem;
+	margin: 0 auto;
+	height: 1.77rem;
+	border-bottom: 1px solid #e5e5e5;
+	margin-top: 0.27rem;
+}
+.t_btnDiv{
+	width: 7.07rem;
+	margin: 0 auto;
+}
+.t_paging {
+	text-align: center;
+	padding-top: 0.4rem;
+}
+
+.t_paging input {
+	display: inline-block;
+	background: #f8f8f8;
+	border: none;
+	margin-right: 0.1rem;
+	font-size: 0.16rem;
+	color: #666666;
+	line-height: 0.5rem;
+	padding: 0 0.24rem;
+	border: 1px solid #c1c1c1;
+	outline: none;
+	cursor: pointer;
+	border-radius: 1px;
+}
+
+.t_paging>.t_on {
+	background: #f73fa5;
+	color: #FFFFFF;
+	border-color: #d40076;
+}

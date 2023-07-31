@@ -1,0 +1,315 @@
+body,img,a,input,p,div,i,strong,form,label,ul,li{
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+				-ms-box-sizing: border-box;
+			}
+			a{
+				text-decoration: none;
+				color: #666666;
+			}
+			ul,li{
+				list-style-type: none;
+			}
+			.mengB{
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				background: url(../imgMobile/title.png) no-repeat center 2rem;
+				background-size: 6rem 2rem;
+				background-color: rgb(142,1,74);
+			}
+			.isSee{
+				display: none;
+			}
+			.m_p{
+				color: #FFFFFF;
+				font-size: 0.5rem;
+				margin-top: 5rem;
+			}
+			.mengB{
+				text-align: center;
+			}
+			#m_form{
+				font-size: 0.4rem;
+				color: #FFFFFF;
+				margin-top: 0.5rem;
+			}
+			#woman{
+				margin-top: 0.5rem;
+			}
+			.m_eng{
+				color: #FFFFFF;
+				font-size: 0.3rem;
+			}
+			header{
+				font-size: 0.3rem;
+			}
+			.top{	
+				color:white;
+				height: 1rem;
+				width: 100%;
+				background: url(../imgMobile/header.png) 0 0 no-repeat;
+				background-size: contain;
+			}
+			.top > a{
+				background: url(../imgMobile/home.png) no-repeat 0.25rem 0.2rem;
+				background-size: 0.5rem 0.5rem;
+				color:white;
+				height: 0.9rem;
+				width: 0.8rem;
+				display: inline-block;
+			}
+			nav ul {
+				display: flex;
+				margin-top: -0.05rem;
+			}
+			nav ul li{
+				float: left;
+				flex: 1;
+				text-align: center;
+				line-height: 0.6rem;
+			}
+			nav ul li a{
+				color: #FFFFFF;
+			}
+			
+			@-webkit-keyframes greenPulse {
+			  from { background-color: #c80068; -webkit-box-shadow: 0 0 9px #333; }
+			  50% { background-color: #c80068; -webkit-box-shadow: 0 0 18px #91bd09; }
+			  to { background-color: #c80068; -webkit-box-shadow: 0 0 9px #333; }
+			}
+			.button {
+			  -webkit-animation-name: greenPulse;
+			  -webkit-animation-duration: 2s;
+			  -webkit-animation-iteration-count: infinite;
+			}
+			header > img{
+				width: 100%;
+			}
+			.section{
+				font-size: 0.3rem;
+				width: 90%;
+				margin: auto;
+				/*border: 1px solid red;*/
+			}
+			
+			/*话题部分*/
+			.left {
+				width: 100%;
+				display: inline-block;
+				height: 100%;
+				padding: 0.1rem;
+			}
+			.left>p {
+				background: url(../img/heart.png) 0.1rem 0.08rem no-repeat;
+				background-size:0.8rem 0.8rem;
+			}
+			
+			.left>p strong {
+				margin-left: 0.4rem;
+				font-size: 0.4rem;
+				line-height: 1rem;
+				color: #c80068;
+			}
+			
+			.left>p span {
+				margin-left: 2 .5rem;
+				color: #c80068;
+				font-size: 0.32rem;
+				line-height: 1rem;
+			}
+			
+			.topic {
+				width: 100%;
+				height: 1.95rem;
+				border: 1px solid #e1e1e1;
+				border-radius: 0.04rem;
+				box-shadow: 0 0 4px #e5e5e5;
+				padding: 0.1rem;
+			}
+			
+			.topic-cont > img{
+				height: 1.7rem;
+			}
+			.topic-cont>p{
+				display: inline-block;
+				width: 50%;
+				margin-left: 0.3rem;
+			}
+			
+			.topic-cont>p strong {
+				font-size: 0.2rem;
+				color: #C80068;
+			}
+			
+			.left ul {
+				width: 100%;
+				margin-left: 0.01rem;
+				padding: 0.3rem;
+			}
+			.topicNewStyle{
+				font-size: 0.2rem;
+				display: block;
+				color: #999999;
+			}
+			
+			.topicStyle {
+				font-size: 0.3rem;
+				color: #999999;
+				display: inline-block;
+				float: left;
+				vertical-align: bottom;
+				line-height: 0.5rem;
+			}
+			.left ul li strong {
+				vertical-align: bottom;
+				display: inline-block;
+				width: 2.3rem;
+				overflow:hidden; 
+				white-space:nowrap; 
+				text-overflow:ellipsis;
+				margin-left: 0.3rem;
+				font-size: 0.3rem;
+				color: #C80068;
+				line-height: 0.5rem;
+				margin-left: ;
+			}
+			.left ul li {
+				border-bottom: 1px solid #E1E1E1;
+				box-sizing: border-box;
+				-ms-box-sizing: border-box;
+				padding-top: 0.15rem;
+				padding-bottom: 0.1rem;
+			}
+			.left ul li > a > p:last-child{
+				float: right;
+			}
+			/*愛情見證*/
+			.right {
+				display: inline-block;
+				width:6.7rem;
+				height: 5rem;
+				/*vertical-align: top;*/
+				border: 1px solid #E1E1E1;
+				box-shadow: 0 0 4px #e5e5e5;
+				border-radius: 9px;
+				margin-top: 0.3rem;
+				padding-left: 0.2rem;
+			}
+			
+			.right>p {
+				line-height:0.8rem;
+				color: #C80068;
+				font-size: 0.3rem;
+			}
+			
+			.right>p>a {
+				float: right;
+			}
+			.right>p>a>img{
+				width: 0.78rem;
+				/*height: 0.72rem;*/
+			}
+			.right>p span {
+				margin-left: 0.4rem;
+				font-size: 0.32rem;
+			}
+			
+			.right>ul {
+				display: inline-block;
+			}
+			
+			.right>ul li {
+				display: inline-block;
+			}
+			
+			.right>ul li:nth-child(n+2) {
+				margin-left: 0.15rem;
+			}
+			
+			.right>ul li>a>p:first-child {
+				width: 1.95rem;
+				height: 2.64rem;
+				border: 1px solid #e5e5e5;
+				box-shadow: 0 0 4px #e5e5e5;
+				padding: 0.08rem;
+			}
+			.right>ul li>a>p img{
+				width: 1.75rem;
+				height: 2.44rem;
+			}
+			.right>ul li>a>p:nth-child(2) {
+				margin-left: 0.1rem;
+				border-bottom: 1px dotted #a9a9a9;
+				width: 1.45rem;
+				font-size: 0.24rem;
+				line-height: 0.5rem;
+				color: #a9a9a9;
+			}
+			
+			.right>ul li>a>p:nth-child(3) {
+				margin-left: 0.16rem;
+				font-size: 0.2rem;
+				color: #a9a9a9;
+				line-height: 0.5rem;
+			}
+			.center {
+				margin-top: 0.4rem;
+				width:6.7rem;
+				line-height: 0.52rem;
+				background-color: #c80068;
+				color: #ffffff;
+				font-size: 0.3rem;
+				border-radius: 0.05rem;
+			}
+			.center a > img{
+				width: 0.8rem;
+			}
+			.center a {
+				float: right;
+			}
+			
+			.center>strong {
+				margin-left: 0.1rem;
+			}
+			
+			.center>span {
+				margin-left: 0.1rem;
+				font-size: 0.17rem;
+			}
+			
+			/*最受欢迎会员 列表*/
+			.bottomUl{
+				margin-top: 0.2rem;
+			}
+			
+			.bottomUl li {
+				display: inline-block;
+				width: 2.98rem;
+				margin-left: 0.2rem;
+			}
+			.bottomUl li > a p img{
+				width: 2.78rem;
+			}
+			.bottomUl li p:nth-child(1) {
+				height: 2.1rem;
+				border: 1px solid #e5e5e5;
+				box-shadow: 0 0 4px #e5e5e5;
+				padding: 0.08rem;
+			}
+			
+			.bottomUl li p:nth-child(2) {
+				color: #c80068;
+				line-height: 0.6rem;
+				font-size: 0.2rem;
+				margin-left: 0.1rem;
+			}
+			
+			.bottomUl li p:nth-child(3) {
+				color: #666666;
+				width: 2.76rem;
+				font-size: 0.18rem;
+				margin-bottom: 0.66rem;
+				margin-left: 0.1rem;
+			}

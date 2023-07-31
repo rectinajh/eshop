@@ -1,0 +1,60 @@
+<include file="public/header" title="新闻公告详情" />
+
+<include file="public/header_nav" title="公告详情" href="javascript:history.back(-1)" />
+<style>
+   .notice_detail{
+       padding: .5rem .3rem;
+   }
+  
+   .imgtext-title{
+        font-size:1rem;
+        padding-bottom:.8rem;
+        text-align: center;
+        font-weight: 400;
+        line-height: 1.4;
+    }
+    .img-text-box img{
+        max-width:100%;
+        margin:0.5rem 0;
+    }
+    .notice_detail .date{
+        font-size: .6rem;
+        color:#666;
+        font-weight: normal;
+      text-align:right;
+      display:flex;
+      align-items:center;
+      justify-content: flex-end;
+      margin-top:.5rem;
+    }
+    .notice_detail .date span{
+        margin-left: .5rem;
+    }
+    .content{
+        word-break: break-all;
+        word-wrap:break-word;
+        overflow: hidden;
+        width: 100%;
+        font-size: .56rem !important;
+      	margin:0 auto;
+    }
+  .content img{
+      width: 100%;
+  }
+  .content p{
+    line-height:1rem;
+    color:#666;
+    margin-bottom:.3rem;
+  }
+    
+</style>
+<div class="notice_detail">
+    <div class="header">
+        <h3 class="imgtext-title">{$article.title}</h3>
+    </div>
+    <div class="content">
+            {$article.content|htmlspecialchars_decode}
+    </div>
+    <h4 class="date">{$article.publish_time|date='Y-m-d',###} <span>新淘链</span></h4>
+
+</div>

@@ -1,0 +1,169 @@
+<link rel="shortcut  icon" type="image/x-icon" href="__ROOT__/public/js/layer/skin/layer.css"/>
+<script src="__ROOT__/template/mobile/default/static/js/jsbridge-mini.js"></script>
+<include file="public/header" title="新淘链转账" body=""/>
+<style>
+   .return a img{
+     margin-top:0.55rem;
+    }
+</style>
+<include file="public/header_nav" title="新淘链转账" href="javascript:history.back(-1)"/>
+		<div class="loginsingup-input ma-to-20">
+			<form method="post" id="returnform">
+				<div class="content30">
+                    
+					<div class="lsu">
+						<span>收款人公钥：</span>
+						<input type="text" name="public_key" id="public_key" value=""  placeholder="收款人公钥">
+                        <span class="lsuIcon"></span>
+					</div>
+                    <div class="lsu">
+                        <span>可转新淘链：</span>
+                        <input type="text" name="jin_num" id="jin_num" value="{$user['jin_num']}" readonly>
+                    </div>
+                    <div class="lsu">
+                        <span>转账额度：</span>
+                        <input type="text" name="money" id="money" value="" placeholder="请输入新淘链" onKeyUp="CheckTransfer()">
+                    </div>
+                    <div class="lsu">
+                        <span class="beizhuText">备注：</span>
+                        <textarea name="desc" id="beizhu" cols="35"  class="beizhu" rows="5" placeholder="请输入备注"></textarea>
+                    </div>
+                    <div class="lsu">
+                            <span></span>
+                            <input type="text" name="shouxu" id='shouxu' value="" readonly style="width: 10.856rem;">
+                            <input type="hidden" name="jin_fee" id='jin_fee' value="{$jin_fee}" readonly>
+                        </div>
+					<div class="lsu submit">
+                        <input type="hidden" name="__token__" value="{$Request.token}" />
+						<input type="button" onclick="checkSubmit()" value="确认转账">
+					</div>
+				</div>
+			</form>
+		</div>
+        <!--底部导航-start-->
+        <include file="public/footer"/>
+        <!--底部导航-end-->
+<style>
+	/*.layui-layer{
+		left: 50%;
+	}*/
+	body .demo-class .layui-layer-title{
+		background: red;
+	}
+	.layui-layer-dialog .layui-layer-content{
+		font-size: 0.5rem;
+		line-height: 0.7rem;
+		padding: 0.5rem;
+	}
+	.layui-layer-title{
+		font-size: 0.6rem;
+		line-height: 1rem;
+		height: 1rem;
+	}
+	.layui-layer-btn a{
+		line-height: 1rem;
+		font-size: 0.6rem;
+		height: 1rem;
+	}
+	.layui-layer-dialog{
+		width: 10rem;
+		
+		left: 3rem !important;
+	}
+</style>
+<script src="__STATIC__/js/style.js" type="text/javascript" charset="utf-8"></script>
+<script src="__ROOT__/public/js/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+    /**
+     * 提交表单
+     * */
+     if({$jin_fee}==''){
+       var jin_fee=0;
+    }
+    var shou={$jin_fee};
+    function CheckTransfer(){
+        var money = $.trim($('#money').val());
+        var num=money*(shou/100);
+      //  num=num.toFixed(2);
+        document.getElementById('shouxu').value='转账手续费：'+shou+'%共计'+num+'新淘链';
+    }
+    function checkSubmit(){
+        var money = $.trim($('#money').val());
+        var public_key = $.trim($('#public_key').val());
+        var jin_num = $.trim($('#jin_num').val());
+        var shouxu = $.trim($('#jin_fee').val());
+        
+        //手机号
+        //var str='转'+pay_points+'积分到账户:'+public_key+'需收取：'+shouxu+'%手续费';
+        if(public_key == '' ){
+            layer.msg('用户不能空')
+            return false;
+        }
+        if(money == '' ){
+            layer.msg('转账数额不能为空')
+            return false;
+        }
+        
+        if(Number(money) >  Number(jin_num)){
+            layer.msg("转账额度大于您的可转新淘链")
+            return false;
+        }
+        var str='转'+money+'新淘链到账户:'+public_key+'需收取：'+shouxu+'%手续费';
+        layer.confirm(str,{
+                btn:['确定','取消']
+                },function(){
+                    $.ajax({
+                    type: "post",
+                    url :"{:U('Gold/transfer')}",
+                    dataType:'json',
+                    data:$('#returnform').serialize(),
+                    success: function(data)
+                        {
+                            //showErrorMsg(data.msg);
+                            layer.msg(data.msg, {icon: 1});
+                            if(data.status == 1){
+                                window.location.href=data.url;
+                            } else {
+                                layer.msg(data.msg);
+                                //window.location.reload();
+                            }
+                        }
+                    });
+                },function(){
+                    layer.msg('确定取消转账？', {
+                    time: 2000, //20s后自动关闭
+                    btn: ['确定']
+                  });
+                });
+    }
+    /**
+     * 提示弹窗
+     * @param msg
+     */
+    function showErrorMsg(msg){
+        layer.open({content:msg,time:3});
+    }
+
+    $(function () {
+      jsBridge.ready(function() {
+        if (jsBridge.inApp) {
+            $('.lsuIcon').click(function () {
+               jsBridge.scan({
+                 needResult: true, //默认为false，扫描结果由App处理；true则直接返回扫描结果
+               }, function(code) {
+                  if (code) {
+                    var resObj = JSON.parse(code);
+                    $('#public_key').val(resObj.pub_key); 
+                  } else {
+                    //alert("扫码失败或取消了扫码");
+                  }
+                });
+           });
+        } else {    
+            alert("请在app内打开");
+        }  
+      });
+    });
+</script>
+	</body>
+</html>

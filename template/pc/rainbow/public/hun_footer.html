@@ -1,0 +1,71 @@
+<script type="text/javascript">
+		var trueNameClick = document.getElementById("h_click");
+		var tjiaoBtn = document.getElementById("h_tjiaoBtn");
+		var quxiaoBtn = document.getElementById("h_quxiaoBtn");
+		var mengban = document.getElementsByClassName("h_mengban")[0];
+		
+		
+		
+		trueNameClick.onclick = function() {
+			mengban.classList.remove('h_displayNone');
+		}
+		tjiaoBtn.onclick = function() {
+			mengban.classList.add('h_displayNone');
+
+			var num = document.getElementsByClassName("h_num")[0].value;
+			var name = document.getElementsByClassName("h_name")[0].value;
+			if(num == ""){
+				layer.msg("请输入您的身份证号", {
+					icon: 2,   // 失败图标
+					time: 1000 //2秒关闭（如果不配置，默认是3秒）
+				});
+				return false;
+			}else if(name == ""){
+				layer.msg("请输入您的姓名", {
+					icon: 2,   // 失败图标
+					time: 1000 //2秒关闭（如果不配置，默认是3秒）
+				});
+				return false;
+			}else{
+				var url = '/index.php?m=Home&c=Hunlian&a=getrenzheng';
+			    $.ajax({
+			        type : "GET",
+			        url  : url,
+			        data : "num="+ num +"&name="+name,
+			        success: function(ew) {
+			            if(ew == 1){
+			            	layer.msg("认证成功", {
+								icon: 1,   // 失败图标
+								time: 1000 //2秒关闭（如果不配置，默认是3秒）
+							});
+							return false;
+			            }else if(ew == 2){
+			            	layer.msg("认证失败,请重试", {
+								icon: 2,   // 失败图标
+								time: 1000 //2秒关闭（如果不配置，默认是3秒）
+							});
+							return false;
+			            }else if(ew == 3){
+			            	layer.msg("身份证号不正确,请重新确认", {
+								icon: 2,   // 失败图标
+								time: 1000 //2秒关闭（如果不配置，默认是3秒）
+							});
+							return false;
+			            }else if(ew == 4){
+			            	layer.msg("您已经实名认证过了", {
+								icon: 1,   // 失败图标
+								time: 1000 //2秒关闭（如果不配置，默认是3秒）
+							});
+							return false;
+			            }
+			        }
+			    });
+			}
+		}
+		quxiaoBtn.onclick = function() {
+			mengban.classList.add('h_displayNone');
+			
+			
+		}
+
+	</script>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>抽奖活动 - www.ohbbs.cn 欧皇源码论坛 </title>
+    <link rel="stylesheet" href="__ROOT__/public/static/lib/layui-v2.3.0/css/layui.css">
+    <script src="__ROOT__/public/static/lib/layui-v2.3.0/layui.js"></script>
+    <style>
+        .wrap {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="layui-form">
+            <div class="layui-inline">
+                <div class="layui-btn-group">
+                    <button class="layui-btn layui-btn-primary" id="activityAdd"><i class="layui-icon">&#xe654;</i>添加活动</button>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">活动状态</label>
+                <div class="layui-input-inline">
+                    <select name="status" lay-verify="required" lay-filter="status">
+                        <option value="-1">所有</option>
+                        <option value="1">启用</option>
+                        <option value="0">未启用</option>
+                    </select>
+                </div>
+            </div>
+			<div class="layui-inline">
+                <label class="layui-form-label">查找</label>
+                <div class="layui-input-inline">
+                    <input class="layui-input" type="text" name="title" value="" placeholder="请输入活动标题">
+                </div>
+			</div>
+			<button class="layui-btn layui-btn-primary btn-lottery-search" style="position:relative; left:-5px;"><!-- <i class="layui-icon">&#xe615;</i> -->搜索</button>
+        </div> 
+        <table id="lottery" lay-filter="lottery"></table>
+    </div>
+</body>
+<script type="text/html" id="toolbar">
+    <button class="layui-btn layui-btn-primary layui-btn-xs" lay-event="record">查看</button>
+    <button class="layui-btn layui-btn-xs" lay-event="prize">奖项</button>
+    <button class="layui-btn layui-btn-warm layui-btn-xs" lay-event="edit">编辑</button>
+    <button class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</button>
+</script>
+<script type="text/html" id="status">
+    <input type="checkbox" name="switch" lay-skin="switch" lay-text="开启|关闭" value="{{d.status}}" {{d.status ==1 ? ' checked' : ''}}>
+</script>
+<script>
+    var id = parseInt("{$Request.param.id}");
+    id  = isNaN(id) ? 0 : id;
+    layui.use(['element', 'form', 'table', 'jquery'], function () {
+        var element = layui.element, form = layui.form, table = layui.table, $ = layui.$;
+        var lotteryTable = table.render({
+            elem: '#lottery'
+            ,height: 'full'
+            ,url: '/admin/Lottery/lotteryList/' //数据接口
+            ,page: true //开启分页
+            ,cols: [[
+                //表头
+                {field: 'id', title: 'ID', width:80, sort: true, align: 'center', fixed: 'left'}
+                ,{field: 'title', title: '活动标题', width:220}
+                ,{field: 'total_limit', title: '最大抽奖次数', width:130}
+                ,{field: 'step', title: '直推奖励次数', width:130} 
+                ,{field: 'status', title: '状态', width:130, templet: '#status'}
+                ,{field: 'create_time', title: '添加时间', width: 160, sort: true}
+                ,{field: 'update_time', title: '修改时间', width: 160}
+                ,{field: 'operate', title: '操作', width: 260, toolbar: '#toolbar'}
+            ]]
+            ,where: {
+                id: id
+            }
+        });
+        table.on('tool(lottery)', function(obj) {
+            var layEvent = obj.event, id = obj.data.id;
+            switch (layEvent) {
+                case 'record':
+                    layerWindow('中奖记录', '/admin/lottery/record/lottery_id/' + id, 800, 600, true);
+                    break;
+                case 'prize':
+                    layerWindow('活动奖项', '/admin/lottery/prize/lottery_id/' + id, 1200, 600, false);
+                    break;
+                case 'edit':
+                    layerWindow('编辑活动', '/admin/lottery/activityEdit/id/' + id, 820, 620, false);
+                    break;
+                case 'del':
+                    lotteryDel(id);
+                    break;
+                default:
+                    layer.msg('非法事件');
+            }
+        });
+        function layerWindow(title, url, width, height, full) {
+            width = (width == undefined || width == null || isNaN(width)) ? 800 : width;
+            height = (height == undefined || height == null || isNaN(height)) ? 600 : height;
+            index = layer.open({
+                title: title
+                ,type: 2
+                ,content: url
+                ,maxmin: true
+                ,area: [width + 'px', height + 'px']
+            });
+            if (full == true) {
+                layer.full(index);
+            }
+            return index;
+        }
+        function lotteryDel(id) {
+            layer.confirm('真的确定要删除吗?', {title: '操作确认'}, function() {
+                $.ajax({
+                    url: '/admin/Lottery/lotteryDel'
+                    ,type: 'POST'
+                    ,data: {id: id}
+                    ,success: function(response) {
+
+                    }
+                });
+            });
+        }
+        $('.btn-lottery-search').click(function () {
+            var status = $('select[name=status]').val(),
+                title = $('input[name=title]').val()
+            lotteryTable.reload({
+                where: {
+                    status: status,
+                    title: title
+                }
+            });
+        });
+        form.on('select', function (data) {
+            var status = $('select[name=status]').val()
+            lotteryTable.reload({
+                where: {
+                    status: status
+                }
+            });
+        });
+        $('#activityAdd').click(function() {
+            layer.open({
+                title: '添加活动'
+                ,type: 2
+                ,content: '/admin/Lottery/activityAdd'
+                ,area: ['820px', '620px']
+            });
+        });
+    });
+</script>
+</html>

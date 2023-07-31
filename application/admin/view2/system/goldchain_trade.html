@@ -1,0 +1,202 @@
+<include file="public/layout"/>
+<style>
+    .fanui-btn {
+        background:#fff;
+        border: 1px solid #dcdcdc;
+        border-radius: 6px;
+        padding: 4px 20px;
+    }
+    .fanui-btn-primary {
+        border: 1px solid transparent;
+        color: #fff;
+        background: #2cbca3;
+    }
+    .fanui-btn-primary:hover {
+        background: #03dab5; 
+    }
+    .fanui-btn-danger {
+        border: 1px solid transparent;
+        color: #fff;
+        background: #fba20a;
+    }
+    .fanui-btn-danger:hover {
+        background: #FF5722;
+    }
+
+    #btnAddRatio {
+        margin-left:20px;
+    }
+    #tradeRatio {
+        width: 360px;
+    }
+    #tradeRatio input[type=text] {
+        width: 60px;
+        text-align: right;
+    }
+    #tradeRatio th {
+        width: 100px;
+    }
+</style>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title">
+            <div class="subject">
+                <h3>新淘链交易设置</h3>
+                <h5>新淘链交易参数</h5>
+            </div>
+            <ul class="tab-base nc-row">
+                <foreach name="group_list" item="v" key="k">
+                    <li><a href="{:U('System/index',['inc_type'=> $k])}" <if condition="$k==$inc_type">class="current"</if>><span>{$v}</span></a></li>
+                </foreach>
+            </ul>
+        </div>
+    </div>
+    <!-- 操作说明 -->
+    <div class="explanation" id="explanation">
+        <div class="title" id="checkZoom"><i class="fa fa-lightbulb-o"></i>
+            <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+            <span id="explanationZoom" title="收起提示"></span></div>
+        <ul>
+            <li>新淘链基本设置，商城及其他模块相关内容在其各自栏目设置项内进行操作。</li>
+        </ul>
+    </div>
+    <form method="post" enctype="multipart/form-data" name="form1" action="{:U('System/goldchain_trade')}">
+        <input type="hidden" name="inc_type" value="{$inc_type}">
+        <div class="ncap-form-default">
+            <dl class="row">
+                <dt class="tit">
+                    <label for="distribut_min">交易开关</label>
+                </dt>
+                <dd class="opt">
+                    <input name="allowTrade" value="1" type="radio" {$config['allowTrade'] == 1 ? ' checked' : ''}>开启
+                    <input name="allowTrade" value="0" type="radio" {$config['allowTrade'] == 1 ? '' : ' checked'}>关闭
+                    <p class="notic">关闭后将仅允许测试人员交易</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="init_price">初始开盘价</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="init_price" name="init_price" value="{$config['init_price']}" class="input-txt" type="text" {$disabled} >
+                    <p class="notic">系统初始开盘价(系统没有任何一笔交易时取的价格，一旦产生交易就不可再更改)</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="tomorrow_open_price">明日开盘价</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="tomorrow_open_price" name="inherit_price" value="{$inherit_price}" class="input-txt" type="text">
+                    <span>当前参考价格：{$close_price}</span>
+                    <p class="notic">如需要人工干预，则需要每天设定，不设定默认取今日收盘价</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="float_ratio">价格浮动比例</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="float_ratio" name="float_ratio" value="{$config['float_ratio']}" class="input-txt" type="text"><span>%</span>
+                    <p class="notic">正常挂卖时，用户输入价格的可浮动比例</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="import_goldchain_price">导入会员交易价格</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="import_goldchain_price" name="import_goldchain_price" value="{$config['import_goldchain_price']}" class="input-txt" type="text"><span></span>
+                    <p class="notic">导入的旧系统会员挂卖交易时新淘链的价格</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="import_goldchain_limit_day">导入会员交易限制天数</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="import_goldchain_limit_day" name="import_goldchain_limit_day" value="{$config['import_goldchain_limit_day']}" class="input-txt" type="text"><span>%</span>
+                    <p class="notic">导入会员交易限制天数</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="float_ratio">每日最高挂卖限制</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="limit_ratio" name="limit_ratio" value="{$config['limit_ratio']}" class="input-txt" type="text"><span>%</span>
+                    <p class="notic">每天最高挂卖持有数量的百分比,如果不设置或为0则不限制</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="float_ratio">手续费</label>
+                </dt>
+                <dd class="opt">
+                    <div style="background:#fff">
+                        <div style="clear:both;"></div>
+                        <p class="notic">说明：手续费是在交易成功之后才从提现币中扣除</p>
+                        <table id="tradeRatio" class="store-joinin" cellspacing="0" cellpadding="0" border="0">
+                            <thead>
+                                <tr>
+                                    <th>挂卖比例(大于等于)</th>
+                                    <th>手续费</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <volist name="trade_limit" id="vo">
+                                    <tr>
+                                        <td><input name="trade_limit[ratio][]" type="text" value="{$vo.ratio}">%</td>
+                                        <td><input name="trade_limit[poundage][]" type="text" value="{$vo.poundage}">%</td>
+                                        <td><button class="delRatio fanui-btn fanui-btn-danger" type="button">删除</button></td>
+                                    </tr>
+                                </volist>
+                            </tbody>
+                        </table>
+                        <label><span>交易比例：</span><input id="trade_limit_ratio" type="text" value="" placeholder="请输入比例">% ， </label>
+                        <label><span>手续费比例：</span><input id="trade_limit_poundage" type="text" value="" placeholder="请输入手续费">%</label>
+                        <button id="btnAddRatio" class="fanui-btn" type="button">添加</button>
+                        <div style="clear:both;"></div>
+                    </div>
+                </dd>
+            </dl>
+            <div class="bot">
+                <a href="JavaScript:void(0);" class="ncap-btn-big ncap-btn-green" onclick="document.form1.submit()">确认提交</a>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+
+</script>
+<div id="goTop">
+    <a href="JavaScript:void(0);" id="btntop">
+        <i class="fa fa-angle-up"></i>
+    </a>
+    <a href="JavaScript:void(0);" id="btnbottom">
+        <i class="fa fa-angle-down"></i>
+    </a>
+</div>
+</body>
+<script>
+    $(function() {
+        $(document).on('click', 'button.delRatio', function() {
+            $(this).parent().parent().remove();
+        });
+        $('#btnAddRatio').click(function() {
+            var ratio = $('#trade_limit_ratio').val(), poundage = $('#trade_limit_poundage').val();
+            var str = 
+            `<tr>
+                <td><input name="trade_limit[ratio][]" type="text" value="${ratio}">%</td>
+                <td><input name="trade_limit[poundage][]" type="text" value="${poundage}">%</td>
+                <td><button class="delRatio fanui-btn fanui-btn-danger" type="button">删除</button></td>
+            </tr>`;
+            $('#tradeRatio tbody').append(str);
+        });
+    });
+</script>
+</html>

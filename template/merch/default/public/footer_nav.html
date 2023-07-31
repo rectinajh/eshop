@@ -1,0 +1,32 @@
+ <footer>
+	<div class="global-nav global-nav-current">
+    <div class="global-nav__nav-wrap">
+        <div class="global-nav__nav-item">
+            <a <if condition="CONTROLLER_NAME eq 'index'"> class="on" </if> href="{:U('User/index')}" > 
+                <p><i class="iconfont icon-size" >&#xe605;</i></p>
+                <span>首页</span>
+            </a>
+        </div>
+        <div class="global-nav__nav-item">
+            <a <if condition="CONTROLLER_NAME eq 'order_list'"> class="on" </if> href="{:U('User/order_list')}" >
+               <p><i class="iconfont icon-size">&#xe60f;</i></p>
+                <span>订单管理</span>
+            </a>
+        </div>
+        <div class="global-nav__nav-item">
+            <a  <if condition="CONTROLLER_NAME eq 'commission'"> class="on" </if> href="{:U('User/commission')}" >
+               <p><i class="iconfont icon-size">&#xe608;</i></p>
+                <span>佣金管理</span>
+            </a>
+        </div>
+        <div class="global-nav__nav-item">
+            <a <if condition="CONTROLLER_NAME eq 'logout'"> class="on" </if> href="{:U('Login/logout')}" >
+               <p><i class="iconfont icon-size">&#xe642;</i></p>
+                <span>退出</span>
+            </a>
+        </div>
+    </div>
+</div>
+</footer> 
+
+

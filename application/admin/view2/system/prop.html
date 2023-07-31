@@ -1,0 +1,328 @@
+<include file="public/layout"/>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title">
+            <div class="subject">
+                <h3>新淘链比例设置</h3>
+                <h5>网站全局内容比例设置</h5>
+            </div>
+            <ul class="tab-base nc-row">
+                <foreach name="group_list" item="v" key="k">
+                    <li><a href="{:U('System/index',['inc_type'=> $k])}" <if condition="$k==$inc_type">class="current"</if>><span>{$v}</span></a></li>
+                </foreach>
+            </ul>
+        </div>
+    </div>
+    <!-- 操作说明 -->
+    <div class="explanation" id="explanation">
+        <div class="title" id="checkZoom"><i class="fa fa-lightbulb-o"></i>
+            <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+            <span id="explanationZoom" title="收起提示"></span></div>
+        <ul>
+            <li>新淘链基本设置，商城及其他模块相关内容在其各自栏目设置项内进行操作。</li>
+        </ul>
+    </div>
+    <form method="post" enctype="multipart/form-data" name="form1" action="{:U('System/prop')}">
+        <input type="hidden" name="inc_type" value="{$inc_type}">
+        <div class="ncap-form-default">
+            <dl class="row">
+                <dt class="tit">
+                    <label for="one_consume">一级算力要求</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="one_consume" name="one_consume" value="{$prop.one_consume}" class="input-txt" type="text">
+                    <p class="notic">一级算力要求</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="one_percent">一级算力百分比奖励</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="one_percent" name="one_percent" value="{$prop.one_percent}" class="input-txt" type="text">
+                    <p class="notic">一级算力百分比奖励</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="two_consume">二级算力要求</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="two_consume" name="two_consume" value="{$prop.two_consume}" class="input-txt" type="text">
+                    <p class="notic">二级算力要求</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="two_percent">二级算力百分比奖励</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="two_percent" name="two_percent" value="{$prop.two_percent}" class="input-txt" type="text">
+                    <p class="notic">二级算力百分比奖励</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="three_consume">三级算力要求</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="three_consume" name="three_consume" value="{$prop.three_consume}" class="input-txt" type="text">
+                    <p class="notic">三级算力要求</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="three_percent">三级算力百分比奖励</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="three_percent" name="three_percent" value="{$prop.three_percent}" class="input-txt" type="text">
+                    <p class="notic">三级算力百分比奖励</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="four_consume">四级算力要求</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="four_consume" name="four_consume" value="{$prop.four_consume}" class="input-txt" type="text">
+                    <p class="notic">四级算力要求</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="four_percent">四级算力百分比奖励</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="four_percent" name="four_percent" value="{$prop.four_percent}" class="input-txt" type="text">
+                    <p class="notic">四级算力百分比奖励</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="five_consume">五级算力要求</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="five_consume" name="five_consume" value="{$prop.five_consume}" class="input-txt" type="text">
+                    <p class="notic">五级算力要求</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="five_percent">五级算力百分比奖励</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="five_percent" name="five_percent" value="{$prop.five_percent}" class="input-txt" type="text">
+                    <p class="notic">五级算力百分比奖励</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="global_consume">全球算力百分比</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="global_consume" name="global_consume" value="{$prop.global_consume}" class="input-txt" type="text">
+                    <p class="notic">全球算力百分比</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="one_role">直接奖励百分比</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="one_role" name="one_role" value="{$prop.one_role}" class="input-txt" type="text">
+                    <p class="notic">直接分享区块动能算力额外奖励百分比</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="two_role">创业奖励百分比</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="two_role" name="two_role" value="{$prop.two_role}" class="input-txt" type="text">
+                    <p class="notic">创业合伙区块动能算力额外奖励百分比</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="three_role">经销奖励百分比</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="three_role" name="three_role" value="{$prop.three_role}" class="input-txt" type="text">
+                    <p class="notic">经销推广区块动能算力额外奖励百分比</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="four_role">代理奖励百分比</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="four_role" name="four_role" value="{$prop.four_role}" class="input-txt" type="text">
+                    <p class="notic">代理区域区块动能算力额外奖励百分比</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="five_role">股东奖励百分比</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="five_role" name="five_role" value="{$prop.five_role}" class="input-txt" type="text">
+                    <p class="notic">股东合伙区块动能算力额外奖励百分比</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="vis_role">平级算力</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="vis_role" name="vis_role" value="{$prop.vis_role}" class="input-txt" type="text">
+                    <p class="notic">平级算力</p>
+                </dd>
+            </dl>
+          	<dl class="row">
+                <dt class="tit">
+                    <label for="static_minimum_guarantee">静态奖励最低保底奖励</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="static_minimum_guarantee" name="static_minimum_guarantee" value="{$prop.static_minimum_guarantee}" class="input-txt" type="text">
+                    <p class="notic">没有消费业绩时,静态奖励的最小保底奖励值</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="static_deduct">静态超额扣除百分比</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="static_deduct" name="static_deduct" value="{$prop.static_deduct}" class="input-txt" type="text">
+                    <p class="notic">静态超额扣除百分比</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="static_capping">静态封顶</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="static_capping" name="static_capping" value="{$prop.static_capping}" class="input-txt" type="text"><span>倍</span>
+                    <p class="notic">静态封顶倍数</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="two_capping">创业合伙人封顶</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="two_capping" name="two_capping" value="{$prop.two_capping}" class="input-txt" type="text">
+                    <p class="notic">创业合伙人封顶</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="three_capping">经销商封顶</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="three_capping" name="three_capping" value="{$prop.three_capping}" class="input-txt" type="text">
+                    <p class="notic">经销商封顶</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="four_capping">代理商封顶</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="four_capping" name="four_capping" value="{$prop.four_capping}" class="input-txt" type="text">
+                    <p class="notic">代理商封顶</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="five_capping">股东合伙人封顶</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="five_capping" name="five_capping" value="{$prop.five_capping}" class="input-txt" type="text">
+                    <p class="notic">股东合伙人封顶</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="dynamic_day_capping">动态算力日封顶</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="dynamic_day_capping" name="dynamic_day_capping" value="{$prop.dynamic_day_capping}" class="input-txt" type="text">
+                    <p class="notic">动态算力日封顶</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="one_min_consume">一级算力最低要求</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="one_min_consume" name="one_min_consume" value="{$prop.one_min_consume}" class="input-txt" type="text">
+                    <p class="notic">一级算力最低要求</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="two_min_consume">二级算力最低要求</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="two_min_consume" name="two_min_consume" value="{$prop.two_min_consume}" class="input-txt" type="text">
+                    <p class="notic">二级算力最低要求</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="three_min_consume">三级算力最低要求</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="three_min_consume" name="three_min_consume" value="{$prop.three_min_consume}" class="input-txt" type="text">
+                    <p class="notic">三级算力最低要求</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="four_min_consume">四级算力最低要求</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="four_min_consume" name="four_min_consume" value="{$prop.four_min_consume}" class="input-txt" type="text">
+                    <p class="notic">四级算力最低要求</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="five_min_consume">五级算力最低要求</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="five_min_consume" name="five_min_consume" value="{$prop.five_min_consume}" class="input-txt" type="text">
+                    <p class="notic">五级算力最低要求</p>
+                </dd>
+            </dl>
+
+            <dl class="row">
+                <dt class="tit">
+                    <label for="ti_money">提现币每日提现上限</label>
+                </dt>
+                <dd class="opt">
+                    <input  id="ti_money" name="ti_money" value="{$prop.ti_money}" class="input-txt" type="text">
+                    <p class="notic">提现币每日提现上限</p>
+                </dd>
+            </dl>
+
+            <div class="bot"><a href="JavaScript:void(0);" class="ncap-btn-big ncap-btn-green" onclick="document.form1.submit()">确认提交</a></div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+
+</script>
+<div id="goTop">
+    <a href="JavaScript:void(0);" id="btntop">
+        <i class="fa fa-angle-up"></i>
+    </a>
+    <a href="JavaScript:void(0);" id="btnbottom">
+        <i class="fa fa-angle-down"></i>
+    </a>
+</div>
+</body>
+</html>

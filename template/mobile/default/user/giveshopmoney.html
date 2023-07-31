@@ -1,0 +1,195 @@
+<link rel="shortcut  icon" type="image/x-icon" href="__ROOT__/public/js/layer/skin/layer.css"/>
+<include file="public/header" title="支付页面" body=""/>
+
+<include file="public/header_nav" title="余额支付" href="javascript:history.back(-1)"/>
+
+        <div class="loginsingup-input ma-to-20">
+
+            <form method="post" id="returnform">
+                <!-- <div class="pay"><a><span>支付宝</span></a></div> -->
+                <div class="pay"><a><span>微信支付</span></a></div>
+                <div class="pay"><span onclick="zuile()">余额支付</span></div>
+                
+               
+                <div class="content30" id="pay" style="display:none">
+
+
+                    <div class="lsu">
+
+                        <span>收款人手机号：</span>
+
+                        <input type="text" name="mobile" id="mobile" value="{$mobile_phone}" readonly>
+
+                    </div>
+                    <div class="lsu">
+
+                        <span>商家昵称：</span>
+
+                        <input type="text" name="nick_name" id="nick_name" value="{$nick_name}" readonly>
+
+                    </div>
+                    <div class="lsu">
+
+                        <span>转账额度：</span>
+
+                        <input type="text" name="makemoney" id="makemoney" value="" placeholder="转积分额度" onKeyUp="CheckTransfer()" />
+
+                    </div>
+                    <div class="lsu">
+                        <span>赠送积分：</span>
+                        <input type="text" name="pay_points" id='pay_points' value="" readonly >
+                    </div>
+                    <div class="lsu submit">
+
+                        <input type="hidden" name="code" id="code" value="{$code}" />
+                        <input type="hidden" name="type" id="type" value="" />
+                        <input type="hidden" name="seller_id" id="seller_id" value="{$user_id}" />
+                        <input type="button" onclick="checkSubmit()" value="确认支付">
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+        <!--底部导航-start-->
+
+        <include file="public/footer"/>
+
+        <!--底部导航-end-->
+<style>
+    /*.layui-layer{
+        left: 50%;
+    }*/
+    body .demo-class .layui-layer-title{
+        background: red;
+    }
+    .layui-layer-dialog .layui-layer-content{
+        font-size: 0.5rem;
+        line-height: 0.7rem;
+        padding: 0.5rem;
+    }
+    .layui-layer-title{
+        font-size: 0.6rem;
+        line-height: 1rem;
+        height: 1rem;
+    }
+    .layui-layer-btn a{
+        line-height: 1rem;
+        font-size: 0.6rem;
+        height: 1rem;
+    }
+    .layui-layer-dialog{
+        width: 10rem;
+        
+        left: 3rem !important;
+    }
+    .pay{
+        margin: auto auto;
+        text-align: center;
+        padding: 30px 10px;
+        font-size: 24px;
+        
+    }
+    .pay span{
+        background-color: #14ca2b;
+        padding:10px 20px;
+        border-radius: 9%;
+    }
+
+</style>
+<script src="__STATIC__/js/style.js" type="text/javascript" charset="utf-8"></script>
+<script src="__ROOT__/public/js/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+    /**
+
+     * 提交表单
+
+     * */ 
+     var type=0;
+    function zuile(){
+       $("#type").val(1);
+        $("#pay").show();
+    }
+    function CheckTransfer(){
+        var money = $('#makemoney').val();
+        $('#pay_points').val(money+'积分');
+    }
+    function checkSubmit(){
+        var mobile =$("#mobile").val();
+
+        var seller_id = $.trim($('#seller_id').val());
+
+        var code = $.trim($('#code').val());
+
+        var makemoney = $.trim($('#makemoney').val());
+        //手机号
+        //var str='转'+pay_points+'积分到账户:'+mobile+'需收取：'+shouxu+'%手续费';
+        if(makemoney == '' ){
+
+            layer.msg('支付数额不能为空')
+
+            return false;
+
+        }
+        var str='确定要支付'+makemoney+'余额到账户:'+mobile+'吗';
+        layer.confirm(str,{
+                btn:['确定','取消']
+                },function(){
+                    $.ajax({
+
+                    type: "post",
+
+                    url :"{:U('mobile/User/giveshopmoney')}",
+
+                    dataType:'json',
+
+                    data:$('#returnform').serialize(),
+
+                    success: function(data)
+
+                        {
+                            //showErrorMsg(data.msg);
+                            
+                            if(data.status == 1){
+                                layer.msg(data.msg, {
+                                    time:0,});
+                                window.location.href=data.url;
+
+                            } else {
+                                layer.msg(data.msg);
+                                //window.location.reload();
+                            }
+
+                        }
+
+                    });
+                },function(){
+                    layer.msg('确定要取消支付？', {
+                    time: 2000, //20s后自动关闭
+                    btn: ['确定']
+                  });
+                });
+    }
+
+    /**
+
+     * 提示弹窗
+
+     * @param msg
+
+     */
+
+    function showErrorMsg(msg){
+
+        layer.open({content:msg,time:3});
+
+    }
+
+</script>
+
+    </body>
+
+</html>
+

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>订单详情 - www.ohbbs.cn 欧皇源码论坛 </title>
+<include file="public/header_style"/>
+<script src="__STATIC__/js/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+<script type='text/javascript'>
+  Zepto(function($)
+  {
+    $.zcontent.set("url","/mobile/supplier/order.php");
+        $.zcontent.set("act","info");
+        $.zcontent.set("order_id","2104");
+                $.zcontent.add_static("act")
+        $.zcontent.add_static("order_id")
+    	  $.intimidatetime.setDefaults($.intimidatetime.i18n['zh-CN']);
+   $(document).on('ajaxStart', $.zprogress.start).on('ajaxStop', $.zprogress.done)
+   $("#toTop").scrollToTop();
+  });
+          // 这里把JS用到的所有语言都赋值到这里
+      var process_request = "正在处理您的请求...";
+      var todolist_caption = "记事本";
+      var todolist_autosave = "自动保存";
+      var todolist_save = "保存";
+      var todolist_clear = "清除";
+      var todolist_confirm_save = "是否将更改保存到记事本？";
+      var todolist_confirm_clear = "是否清空内容？";
+      var remove_confirm = "删除订单将清除该订单的所有信息。您确定要这么做吗？";
+      var confirm_merge = "您确实要合并这两个订单吗？";
+      var input_price = "自定义价格";
+      var pls_search_user = "请搜索并选择会员";
+      var confirm_drop = "确认要删除该商品吗？";
+      var invalid_goods_number = "商品数量不正确";
+      var pls_search_goods = "请搜索并选择商品";
+      var pls_select_area = "请完整选择所在地区";
+      var pls_select_shipping = "请选择配送方式";
+      var pls_select_payment = "请选择支付方式";
+      var pls_select_pack = "请选择包装";
+      var pls_select_card = "请选择贺卡";
+      var pls_input_note = "请您填写备注！";
+      var pls_input_cancel = "请您填写取消原因！";
+      var pls_select_refund = "请选择退款方式！";
+      var pls_select_agency = "请选择办事处！";
+      var pls_select_other_agency = "该订单现在就属于这个办事处，请选择其他办事处！";
+      var loading = "加载中...";
+      var remove_invoice_confirm = "您确定删除该订单的发票信息吗？";
+   </script>    <script type="text/javascript">
+        function open_surplus()
+        {
+           $('#hidebg').css('height',$(document).height());
+           $('#hidebg').css('display','block');
+           $('#popup_window').css('display','block');
+        }
+        
+        function close_surplus()
+        {
+           $('#hidebg').css('display','none');
+           $('#popup_window').css('display','none');
+        }
+      
+        function quick_delivery()
+        {
+          if($.trim($('#express_no').val()) == '')
+          {
+            $.zalert.add('请输入快递单号！',1);
+            return false;
+          }
+          else
+          {
+            return true;
+          }
+        }
+    </script> 
+  </head>
+  <body>
+<style>
+
+    .editInfo{
+      background:rgba(51,51,51,.5);
+     
+      position:absolute;
+      width: 100%;
+      height:100%;
+      box-sizing:border-box;
+      -webkit-box-sizing:border-box;
+      padding: 0 1rem;
+      display: none;
+    }
+    .tankuang{
+      background:#fff;
+      display: block;
+      box-sizing:border-box;
+      -webkit-box-sizing:border-box;
+      padding:0;
+      right:0;
+      margin:0;
+      padding:  1rem;
+      
+      position:absolute;
+    
+      top: 30%;
+      left: 0;
+    
+    }
+    .btnxiugai{
+      width:80%;  
+      height:2rem;
+      background: #e30000;
+      color:#fff;
+      margin: .3rem;
+    }
+    .order_consign{
+     overflow:hidden;
+    }
+    .tankuang input[type='text'],
+    .tankuang input[type='tel']{
+      border: 0;
+      text-align: left;
+      text-indent: 2em;
+    }
+    .tankuang textarea{
+      vertical-align: text-top;
+      border: 0;
+      text-indent: 1.5em;
+    }
+    .tankuang tr{
+      border-bottom: 1px dashed #eee;
+      padding: .3rem;
+    }
+   .dizhi{
+    display: inline-block;
+    vertical-align: text-top;
+   }
+    .dizhi input[type='text']{
+      border-bottom: 1px dashed #eee;
+      line-height: 2rem;
+    }
+    .dizhi input[type='text']:last-child{
+      border: 0;
+    }
+        
+</style>
+<script type="text/javascript">
+  
+  $(function(){
+    // 点击编辑按钮
+
+    $('#myedit').click(function(){
+      $('.editInfo').show();
+      return false;
+    });
+      var shouhuoren=$('#shouhuoren').val();
+      var mobile=$('#mobile').val();
+      var order_id={$orderInfo[order_id]};
+      var address='{$orderInfo['address']}';
+      var info = address.split("，");// 在每个逗号(,)处进行分解。
+      
+      $('#sheng').val(info[0]);
+      $('#shi').val(info[1]);
+      $('#xian').val(info[2]);
+      $('#qu').val(info[3]);
+     
+    // 点击修改按钮
+    $('#xiugai').click(function(){
+    	 var sheng=$('#sheng').val();
+         var shi=$('#shi').val();
+         var xian=$('#xian').val();
+         var qu=$('#qu').val();
+         console.log(qu);
+      $.ajax({
+          type:'POST',
+          url:"{:U('User/editinfo')}",
+          dataType:'json',
+          data:'shouhuoren='+shouhuoren+"&mobile="+mobile+"&order_id="+order_id+"&sheng="+sheng+"&shi="+shi+"&xian="+xian+"&qu="+qu,
+         
+          success:function(data){
+              if(data.status==1){
+	            layer.open({content:data.msg,time:2});
+	            window.location="{:U('User/order_list')}";
+            } else{
+            	layer.open({content:data.msg,time:2});
+            } 
+          	
+          }
+        })
+       
+      
+      });
+      // 点击取消按钮
+      $('#quxiaoxiugai').click(function(){
+          $('.editInfo').hide();
+
+      })
+
+    
+  })
+</script>
+
+  
+    <div class="consignee_info editInfo" >
+    <div class="tankuang">
+            <p class="edit"><span>修改信息</span></p>
+            <div class="order_consign">
+              <table width="100%" >
+                <tr>
+                  <td colspan="2"> 收货人：<input type="text" value="{$orderInfo['consignee']}" id='shouhuoren'></td>
+                  </tr>
+                  <tr><td colspan="2">　<a href="tel:{$orderInfo['mobile']}" class="phone">　
+                  <input type="tel"  value="{$orderInfo['mobile']}" id='mobile'></a></td>
+                </tr>
+                <tr>
+                  <td colspan="2">地　址：<div class="dizhi"><input type="text" name="sheng" id='sheng' value=""><br><input type="text" name="shi" id='shi'><br><input type="text" id='xian' name="xian"><br><input type="text" id='qu' name="qu"></div></td>
+                </tr>
+                <tr>
+                  <td > <input type="button" value="修改" id='xiugai' class="btnxiugai"></td><td><input  class="btnxiugai" type="button" value="取消" id='quxiaoxiugai'></td>
+                </tr>
+              </table>
+            </div> 
+           </div>  
+         </div>
+
+    <div id='container'>
+            <!-- 显示购货人信息 start -->
+      <div id="hidebg" onclick='close_surplus()'></div>
+      <div id="popup_window" style="position:fixed;display:none;">
+        <a class='close' onclick="close_surplus()"></a>
+        <div class="buyer">
+          <h4>购货人信息</h4>
+          <div class="info">
+            <table width="100%" >
+              <tr>
+                <td width="30%">电子邮件：</td>
+                <td><a href="mailto:{$userInfo['email']?$userInfo['email']:''}" class='phone'>{$userInfo['email']?$userInfo['email']:'未设置'}</a></td>
+              </tr>
+              <tr>
+                <td>账户余额：</td>
+                <td>{$userInfo['user_money']}</td>
+              </tr>
+              <tr>
+                <td>消费积分：</td>
+                <td>{$userInfo['pay_points']}</td>
+              </tr>
+              <!-- <tr>
+                <td>会员等级：</td>
+                <td>普通会员</td>
+              </tr>
+              <tr>
+                <td>红包数量：</td>
+                <td>0</td>
+              </tr> -->
+            </table>
+          </div>
+          <div class="info">
+            <table width="100%" border="0">
+    <caption><strong> 收货人 : {$orderInfo['consignee']} </strong></caption>
+    <if condition="$orderInfo['email']!=''">
+    <tr>
+      <td> 电子邮件 </td>
+      <td> <a href="mailto:15903901616@139.com">{$orderInfo['email']}</a> </td>
+    </tr>
+    </if>
+    <tr>
+      <td> 地址 </td>
+      <td> {$orderInfo['address']} </td>
+    </tr>
+    <tr>
+      <td> 邮编 </td>
+      <td> {$orderInfo['zipcode']}</td>
+    </tr>
+    <tr>
+      <td> 电话 </td>
+      <td> {$orderInfo['mobile']} </td>
+    </tr>
+    <tr>
+      <td> 备用电话 </td>
+      <td> {$userInfo['mobile']} </td>
+    </tr>
+  </table>
+            </div>
+        </div>
+      </div>
+      <header id="header" class='header'>
+	<h1>订单详情</h1>
+  	<a href="javascript:history.back(-1)" class="back">返回</a>
+      <a onClick="refresh();" class="clear">刷新</a>
+    </header>   
+       <section style="padding-bottom:60px;">
+      	<div class="order_info_con"><!-- 
+         <div class="one_delivery_box">
+              
+        </div> -->
+        </div>
+       
+
+  
+        <div class="order_info_con">
+          <div class="consignee_info" >
+
+            <p class="edit"><span>收货人信息 <if condition="$orderInfo['shipping_status']!='已发货'"><a href="javascript:void(0)" class="special" id='myedit'>编辑</a></if></span></p>
+            <div class="order_consign">
+              <table width="100%" >
+                <tr>
+                  <td>收货人：{$orderInfo['consignee']}</td>
+                  <td><a href="tel:{$orderInfo['mobile']}" class="phone">{$orderInfo['mobile']}</a></td>
+                </tr>
+                <tr>
+                  <td colspan="2">地址：{$orderInfo['address']}<!-- <a href='navigate.php?act=navigate&order_id=2104'><img src='__ROOT__/public/merch/images/location.png' style='height:20px;'/></a> -->&nbsp;&nbsp;</td>
+                </tr>
+                <tr>
+                  <td colspan="2">最佳送货时间：仅工作日送货</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="goods_info">
+            <p class="edit"><span>商品信息</span></p>
+            <div class="order_goods">
+            <volist name="orderInfo['goods']" id="v">
+              <table width="100%" style="border:0;">
+                <tr>
+                  <td colspan="3">{$v['goods_name']}<span class="attr"></span></td>
+                </tr>
+                <tr>
+                  <td>¥<span style="color:red">{$v['goods_price']}</span> x <span>{$v['goods_num']}</span></td>
+                  <td>库存：{$v['store_count']}</td>
+                </tr>
+              </table>
+            </volist>
+            <div>小计：¥<span style="color:red">{$orderInfo['total_amount']}</span></div>
+            </div>
+          </div>
+          <div class="order_base">
+            <p class="edit" id="order_base"  onclick='$(".base_info_one").slideToggle()'><span>基本信息</span> <i></i></p>
+            <div class="base_info_one">
+              <p>订单号：{$orderInfo['order_sn']}</p>
+              <p>购货人：{$userInfo['nickname']} <a href="javascript:open_surplus();" class="">购货人信息</a><!-- <a href="user_msg.php?act=add&order_id=2104&user_id=3223">发送/查看留言</a></p> -->
+              <p>下单时间：{$orderInfo['add_time']|date='Y-m-d H:i:s',###}</p>
+              <p>付款时间：{$orderInfo['pay_time']|date='Y-m-d H:i:s',###}</p>
+              <p>发货时间：{$orderInfo['shipping_time']|date='Y-m-d H:i:s',###}</p>
+            </div>
+            <div class="base_info">
+              <p>订单状态：{$orderInfo['pay_status']},{$orderInfo['shipping_status']},{$orderInfo['order_status']}</p>
+              <p>支付方式：{$orderInfo['pay_name']}</p>
+              <p>配送方式：{$orderInfo['shipping_name']}</p>
+              <!--如果配送方式是“门店自提”，则显示以下自提点 star-->
+                            <!--如果配送方式是“门店自提”，则显示以下自提点 end-->
+                            <p>发货单号：{$orderInfo['shipping_code']}</p>
+                          </div>
+          </div>
+          <div class="order_qita">
+            <!-- <p class="edit" id="order_qita"  onclick='$(".qita_info").slideToggle()'>
+              <span>其他信息
+                            </span>
+              <i></i>
+            </p>
+            <div class="qita_info">
+              <!--{如果有普通发票 start*}-->
+                                          <!--{如果有发票 end}
+                            <p>缺货处理：等待商家备齐后再发</p>
+                          </div>
+          </div> -->
+            
+            <div class="order_history">
+            <p class="edit" id="order_history"  onclick='$(".history_info").slideToggle()'>
+              <span>操作 </span>
+              <i></i>
+            </p>
+            <div class="history_info">
+              <div class="history_info_list" style="border:0;">
+              	<h5><span>操作者：{$store}</span></h5>
+                <ul>
+                	<li><span>订单状态</span><em>{$orderInfo['order_status']}</em></li>
+                    <li><span>付款状态</span><em>{$orderInfo['pay_status']}</em></li>
+                    <li><span>发货状态</span><em>{$orderInfo['shipping_status']}</em></li>
+                </ul>
+                <!-- <p>备注：Wap端一键发货</p> -->
+              </div>
+            </div>
+       </div>
+</section>
+</div>
+<div id='zalert'></div>
+<div id='zprogress'><div id='zprogress_indicator'></div></div>
+<a href="#top" id="toTop"></a>  </body>
+</html>

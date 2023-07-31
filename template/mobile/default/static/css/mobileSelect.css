@@ -1,0 +1,199 @@
+body,
+html,
+div,
+a,
+span,
+p,
+img,
+li,
+ul,
+strong,
+i,
+textarea {
+    padding: 0;
+    margin: 0;
+    font-size: 0.24rem;
+}
+a {
+    text-decoration: none;
+    color: #000；
+}
+ul,
+li {
+    list-style-type: none;
+}
+.h_wrap{
+    background: #f3f5f4;
+}
+header{
+    width:100%;
+}
+.header{
+    width:100%;
+    height:1.0rem;
+    background: #e30000;
+    text-align: center;
+    line-height: 1.0rem;
+    color: #fff;
+    font-size: 0.24rem;
+    position: relative;
+}
+.header i{
+    position: absolute;
+    left:0.267rem; 
+    font-size: 0.28rem;
+    color: #fff;
+}
+.find_warp{
+    width:100%;
+}
+.find_box{
+    width:100%;
+    padding:0.533rem 0;
+    border-bottom:1px solid #ddd;
+}
+.find_obj{
+    display:flex;
+    justify-content:space-between;
+    margin:0 auto;
+    width:4.0rem;
+    font-size: 0.373rem;
+}
+.find_obj div{
+    width:1.8rem;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    text-align: center;
+    border:1px solid #ddd;
+    border-radius: 4px;
+    position: relative;
+}
+.find_obj .checked{
+    border:1px solid #dc93a7;
+}
+.find_obj div.checked span{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 12px;
+    height: 12px;
+    overflow: hidden;
+    text-indent: -99em;
+    display: block;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-image: url("/template/mobile/default/static/images/mobile/check.png");
+}
+.find_obj i{
+    display: inline-block;
+    color: #d999af; 
+    font-size: 0.427rem;
+    margin-right: 3px;
+}
+.find_obj i.boy{
+    color:#78d9e6;
+    font-size: 0.373rem;
+}
+.infomation{
+    width: 100%;
+}
+.infomation li{
+    padding:0 0.2rem;
+    border-bottom:1px solid #ddd;
+    display: flex;
+    justify-content:space-between;
+}
+.infomation li div:first-child{
+    color:#999;
+}
+.infomation li div{
+    text-align: center;
+    height: 0.7rem;
+    line-height: 0.7rem;
+    display: flex;
+    justify-content:space-between;
+}
+.infomation li div select,
+.infomation li div input{
+    text-align: center;
+    border:1px solid #ddd;
+    width:1.4rem;
+    height: 0.5rem;
+    line-height: 0.4rem;
+    margin-top:0.08rem;
+    border-radius: 4px;
+    appearance:none;  
+    -moz-appearance:none;  
+    -webkit-appearance:none; 
+    outline: none;
+}
+
+.sure_button{
+    width:100%;
+    padding:0.4rem 0;
+}
+.sure_button p{
+    width:90%;
+    height:0.6rem;
+    margin:0 auto;
+    line-height: 0.6rem;
+    text-align: center;
+    background: #e30000;
+    color:#fff;
+    border-radius: 4px;
+    font-size: 0.24rem;
+}
+.popular{
+    background: #f0f1f5;
+    padding:0.267rem;
+}
+.popular span{
+    display: inline-block;
+    color: #e30000;
+    font-size: 0.32rem;
+    height: 0.4rem;
+    line-height: 0.4rem;
+}
+.popular span:before{
+    margin-right: 5px;
+    font-size: 0.533rem;
+}  
+.pop_items{
+    width:100%;
+}
+.pop_items ul{
+    box-sizing: border-box;
+    padding: 0 0.1rem;
+    width:100%;
+    display: flex;
+    flex-wrap:wrap;
+    margin:0.2rem auto;
+}
+.pop_items ul li{
+width: 1.82rem;
+text-align: center;
+margin-bottom: 0.2rem;
+} 
+.pop_items ul li img{
+    display: block;
+    width:1.7rem;
+    height:1.8rem;
+    margin: 0 auto;
+}
+.pop_items ul li p{
+    width:1.7rem;
+    height:0.8rem;
+    line-height:0.8rem;
+    text-align: center;
+    color: #999;
+    margin: 0 auto;
+}
+
+
+
+
+
+
+
+
+

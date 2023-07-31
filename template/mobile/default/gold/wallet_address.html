@@ -1,0 +1,36 @@
+<include file="public/header" title="钱包地址"/>
+<include file="public/header_nav" title="钱包地址"  href="javascript:history.go(-1);"/>
+<style>
+
+</style>
+<div class="wallet_code">
+    <img src="__ROOT__{$pic}" alt="">
+</div>
+<div class="code_key">
+    <div>
+        <span>我的公钥:</span>
+        <p class="copy">{$pub_key}</p>
+    </div>
+    <div style="margin-top: 50px;">
+        <span>我的私钥:</span>
+        <p class="copy">{$pri_key}</p>
+    </div>
+</div>
+<div class="notice" style="width:100%;margin-top: 30px;text-align: center;font-size:.512rem;display: none">
+    温馨提示：轻点即可复制
+ </div>
+ <!--底部-start-->
+    
+ <include file="public/footer"/>
+<script>
+    $(".copy").click(function(){
+        BSL.CopyText($(this).html())
+    })
+    var userAgent = navigator.userAgent;
+        if(userAgent.indexOf("bsl") > 0 ){
+		$(".notice").show();
+		}else{$(".notice").hide();}
+</script>
+ <!--底部-end-->
+</body>
+</html>

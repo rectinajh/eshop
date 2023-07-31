@@ -1,0 +1,44 @@
+.footer-nav {
+    background-color: rgba(254,253,252,1);
+    left: 0;
+    right: 0;
+    position: fixed;
+    margin: 0 auto;
+    bottom: 0;
+    z-index: 11;
+    box-shadow: 1px 5px 5px rgba(50,50,50,.3);
+    border-top: 1px solid #f6f6f9;
+    padding: .1rem 0;
+   
+}
+.dis-box {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-box;
+    display: box;
+    display: -webkit-flex;
+    display: flex;
+}
+.box-flex {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -ms-box-flex: 1;
+    box-flex: 1;
+    display: block;
+    width: 100%;
+}
+.footer-nav .nav-list {
+    font-size: .24rem;
+    display: block;
+    text-align: center;
+    padding-top: 0;
+    color: #595959;
+}
+.footer-nav .nav-list.active {
+    color: #e30000;
+}
+
+
+.clearBox{
+	margin-top: .9rem;
+}

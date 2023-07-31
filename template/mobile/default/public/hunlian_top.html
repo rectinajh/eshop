@@ -1,0 +1,65 @@
+<style>
+	.hunlian_header .mgt{
+	margin-top: 1rem;
+}
+.hunlian_header .classreturn {
+    width:  100%;
+    /*height: 1.87733rem;*/
+    color: #fff;
+    background-color: #e30000;
+    border-bottom: 1px solid #dedede;
+    
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9;
+    /*line-height: 1.37733rem;*/
+    /*background:  url(__STATIC__/images/mobile/logo.png) 0 0 no-repeat;*/
+    /*-webkit-background-size: cover;
+    background-size: cover;*/
+}
+.hunlian_header  .classreturn   .return{
+    position: absolute;
+    left: .42667rem;
+}
+
+.hunlian_header  .ds-in-bl {
+    display: inline-block;
+    line-height: 1rem;
+
+}
+.classreturn .return a{
+	display: inline-block;
+	/*height: .78933rem;*/
+	vertical-align: middle;
+}
+.classreturn .hunlian_bg{
+	width:100%;
+	display: block;
+	position: absolute;
+	 left: 0;
+	 top: 0;
+	 height: 1rem;
+}
+.classreturn  .return img{
+	width: 50%;
+	display: block;
+}
+.classreturn .returnhome{
+    display: block;
+    position: absolute;
+    height: 1rem;
+    width: 100%;
+}
+</style>
+
+<div class="hunlian_header">
+	<div class="classreturn">
+		<a href="{:U('/Mobile/Index')}" class="returnhome"><img class="hunlian_bg" src="__STATIC__/images/mobile/logo.png" alt="优品公社--婚恋网" /></a>
+        <div class="ds-in-bl return">					
+            	<a href="javascript:history.back(-1);"><img src="__STATIC__/images/newBack.png" alt="返回"></a>
+        </div>
+    </div>
+    <div class="mgt"></div>
+</div>

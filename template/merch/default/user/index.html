@@ -1,0 +1,123 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>首页 - www.ohbbs.cn 欧皇源码论坛 </title>
+<include file="public/header_style"/>
+<script type='text/javascript'>
+  Zepto(function($)
+  {
+    $.zcontent.set("url","/mobile/supplier/index.php");
+        $.zcontent.set("act","");
+            	  $.intimidatetime.setDefaults($.intimidatetime.i18n['zh-CN']);
+   $(document).on('ajaxStart', $.zprogress.start).on('ajaxStop', $.zprogress.done)
+   $("#toTop").scrollToTop();
+  });
+          // 这里把JS用到的所有语言都赋值到这里
+      var process_request = "正在处理您的请求...";
+      var todolist_caption = "记事本";
+      var todolist_autosave = "自动保存";
+      var todolist_save = "保存";
+      var todolist_clear = "清除";
+      var todolist_confirm_save = "是否将更改保存到记事本？";
+      var todolist_confirm_clear = "是否清空内容？";
+   </script>    <script></script>
+
+
+  </head>
+  <body>
+    <div id='container' class='shouye'>
+            <header id="header" class='header'>
+<div class="toplog">
+    <dl>
+    <dt><img src="__ROOT__/public/merch/images/logo1.png"></dt>
+    <dd><span>{$store}</span></dd>
+    </dl>
+</div>
+<div class="topnav">
+    <ul>
+    <li class="bain"><a href="javascript:void(0)" ><span>{$money}</span>今日销售额</a></li>
+    <li class="bain"><a href="javascript:void(0)"><span>{$order_num}</span>今日订单数</a></li>
+    <li style=" border:0"><a href="{:U('User/order_list',array('order_status'=>1,'pay_status'=>1,'shipping_status'=>0))}"><span>{$wait_order}</span>待发货订单</a></li>
+    </ul>
+</div>
+</header>	<!--我的订单-->
+	<div class="Order">
+    	<dl><a href="{:U('User/order_list')}"><dt><strong>全部订单</strong><span>查看全部订单</span></dt></a></dl>
+		<ul>
+			<li><a href="{:U('User/order_list',array('pay_status'=>0))}"><!-- <em class="ordem2"> --><if condition="$no_pay_order!=0"><span>{$no_pay_order}</span></if><i class="iconfont iconfont-color-gray">&#xe661;</i><!-- </em> --><p>待付款</p></a></li>
+			<li><a href="{:U('User/order_list',array('order_status'=>1,'pay_status'=>1,'shipping_status'=>0))}"><if condition="$wait_order!=0"><span>{$wait_order}</span></if><i class="iconfont iconfont-color-gray">&#xe618;</i><p>待发货</p></a></li>
+			<li><a href="{:U('User/order_list',array('order_status'=>1,'shipping_status'=>1,'pay_status'=>1))}"><if condition="$shouhua_order!=0"><span>{$shouhua_order}</span></if>
+        <i class="iconfont iconfont-color-gray">&#xe60e;</i>
+
+      <p>待收货</p></a></li>
+			<li><a href="{:U('User/order_list',array('order_status'=>6))}"><if condition="$success_order!=0"><span>{$success_order}</span></if><i class="iconfont iconfont-color-gray">&#xe6a2;</i><p>已完成</p></a></li>
+		</ul>
+	</div>
+      <section>
+      	<ul class="border_b">
+        	<li class="border_r">
+            	<a href="{:U('User/commission')}">
+                	<span><img alt="" src="__ROOT__/public/merch/images/n1.png"></span>
+                    <p>佣金管理</p>
+                </a>
+            </li>
+            <li class="border_r">
+            	<a href="{:U('User/order_list')}">
+                	<span><img alt="" src="__ROOT__/public/merch/images/n2.png"></span>
+                    <p>订单列表</p>
+                </a>
+            </li>
+            <li>
+            	<a href="{:U('User/goods_num')}">
+                	<span><img alt="" src="__ROOT__/public/merch/images/n3.png"></span>
+                    <p>库存列表</p>
+                </a>
+            </li>
+        </ul>
+        <!-- <ul class="border_b">
+        	<li class="border_r">
+            	<a href="{:U('User/delivery_order')}">
+                	<span><img alt="" src="__ROOT__/public/merch/images/n4.png"></span>
+                    <p>发货单</p>
+                </a>
+            </li>
+        </ul> -->
+      </section>
+<!-- 脚部 -->
+<!-- <include file="public/footer_nav"/> -->
+ <footer>
+  <div class="global-nav global-nav-current">
+    <div class="global-nav__nav-wrap">
+        <div class="global-nav__nav-item">
+            <a  href="{:U('User/index')}" class="on" > 
+                <p><i class="iconfont icon-size" >&#xe605;</i></p>
+                <span>首页</span>
+            </a>
+        </div>
+        <div class="global-nav__nav-item">
+            <a href="{:U('User/order_list')}" >
+               <p><i class="iconfont icon-size">&#xe60f;</i></p>
+                <span>订单管理</span>
+            </a>
+        </div>
+        <div class="global-nav__nav-item">
+            <a  href="{:U('User/commission')}" >
+               <p><i class="iconfont icon-size">&#xe608;</i></p>
+                <span>佣金管理</span>
+            </a>
+        </div>
+        <div class="global-nav__nav-item">
+            <a  href="{:U('Login/logout')}" >
+               <p><i class="iconfont icon-size">&#xe642;</i></p>
+                <span>退出</span>
+            </a>
+        </div>
+    </div>
+</div>
+</footer> 
+<!-- 脚部 -->         
+  </div>
+
+</body>
+</html>

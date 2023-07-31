@@ -1,0 +1,38 @@
+<include file="public/header" title="系统提示">
+<include file="public/header_nav" title="系统提示" href="javascript:history.back(-1)"/>
+
+    <div class="successsystem">
+        <?php if($code == 1) {?>
+            <img src="__STATIC__/images/icogantanhao.png"></div>
+        <?php }else{ ?>
+            <img src="__STATIC__/images/icogantanhao-sb.png"></div>
+        <?php }?>
+    </div>
+    <p class="prompt_s">
+        <?php if($code == 1) {?><?php echo(strip_tags($msg)); ?>
+        <?php }else{?>
+        <?php echo(strip_tags($msg)); ?>
+        <?php }?> ，等待时间：<b id="wait"><?php echo($wait); ?></b>
+    </p>
+
+    <div class="systemprompt">
+        <a href="<?php echo($url); ?>" id="href">返回上一页</a>
+        <a href="{:U('Index/index')}">返回首页</a>
+    </div>
+
+<script src="__STATIC__/js/style.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    (function(){
+        var wait = document.getElementById('wait'),href = document.getElementById('href').href;
+        var interval = setInterval(function(){
+            var time = --wait.innerHTML;
+            if(time <= 0) {
+                location.href = href;
+                clearInterval(interval);
+            };
+        }, 1000);
+    })();
+
+</script>
+</body>
+</html>

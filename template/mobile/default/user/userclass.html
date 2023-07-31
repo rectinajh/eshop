@@ -1,0 +1,163 @@
+<include file="public/header" title="我的盟友" body="f3"/>
+
+<include file="public/header_nav" title="我的盟友" href="javascript:history.back(-1)"/>
+
+<div class="pjiscion p after-set-li">
+
+    <ul>
+
+        <a href="{:U('Mobile/User/userclass',array('status'=>1))}">
+
+            <li <if condition='$Request.param.status eq 1'>class="red"</if>>
+
+                <p>一级盟友</p><p></p>
+
+            </li>
+
+        </a>
+
+        <a href="{:U('Mobile/User/userclass',array('status'=>2))}" >
+
+            <li <if condition='$Request.param.status eq 2'>class="red"</if>>
+
+                <p>二级盟友</p><p></p>
+
+            </li>
+
+        </a>
+
+        <a href="{:U('Mobile/User/userclass',array('status'=>3))}">
+
+            <li <if condition='$Request.param.status eq 3'>class="red"</if>>
+
+                <p>三级盟友</p><p></p>
+
+            </li>
+
+        </a>
+
+    </ul>
+
+</div>
+
+<div class="quedbox bg_white">
+
+    <!--<div class="sonfbst">-->
+
+        <!--<div class="maleri30">-->
+
+            <!--<span><i class="fbs"></i>立即发表评价晒图，最多可获得50积分</span>-->
+
+        <!--</div>-->
+
+    <!--</div>-->
+
+    <if condition="empty($comment_list)">
+
+        <div class="nonenothing">
+
+            <!-- <img src="__STATIC__/images/nothing.png"/> -->
+
+            <p>没找到相关记录</p>
+
+            <!-- <a href="{:U('Mobile/Index/index')}">去逛逛</a> -->
+
+        </div>
+
+    <else/>
+
+    <div class="fukcuid mae" style="background:none;">
+
+        <div class="maleri30" id="maleri30" style="margin:0">
+            <foreach name="comment_list" item="comment">
+
+                <div class="shopprice dapco p" style="background:#fff;margin-bottom:0.2rem;padding:0.2rem 0;">
+
+                    <div class="sonfbst" style="padding: 0.2rem 0;">
+
+                        <div class="maleri30">
+                            <span>会员昵称：{$comment[nickname]}</span>
+                        </div>
+
+                    </div>
+
+                    <div class="fon_or fl" style="width: 100%;">
+                        <span class="pall0">手机号：{$comment.mobile}</span>
+                        <span class="pall0">团队业绩:{$comment.team_performance}</span>
+                        <span class="pall0">{$comment.reg_time|date='Y.m.d H:i',###}</span>
+                    </div> 
+                </div>
+
+            </foreach>
+        </div>
+
+    </div>
+
+    </if>
+
+</div>
+
+
+
+<div id="getmore"  style="font-size:.32rem;text-align: center;color:#888;margin-top: 10px;margin-bottom: 2.5rem; clear:both;display: none">
+
+    <a >已显示完所有记录</a>
+
+</div>
+<!--底部导航-start-->
+
+        <include file="public/footer"/>
+
+        <!--底部导航-end-->
+<script type="text/javascript" src="__STATIC__/js/sourch_submit.js"></script>
+
+<script src="__STATIC__/js/style.js" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript">
+
+    /**
+
+     * ajax加载更多商品
+
+     */
+
+    var  page = 1;
+
+    function ajax_sourch_submit()
+
+    {
+
+        ++page;
+
+        $.ajax({
+
+            type : "GET",
+
+            url:"/index.php?m=Mobile&c=User&a=userclass&is_ajax=1&status={$Request.param.status}&p="+page,
+
+            success: function(data) {
+
+                if ($.trim(data) == '') {
+
+                    $('#getmore').show();
+
+                    return false;
+
+                } else {
+
+                    $('#maleri30').append(data);
+
+                }
+
+            }
+
+        });
+
+    }
+
+</script>
+
+</body>
+
+</html>
+

@@ -1,0 +1,574 @@
+<include file="public/header" title="首页"/>
+<!-- <script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1265282947'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1265282947%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+		</script> -->
+    <!--顶部搜索栏-s-->
+    <header>
+        <div class="content">
+            <div class="ds-in-bl logo">
+                <!-- <a href=""><img src="__STATIC__/images/logo.png" alt="LOGO"></a> -->
+                <a href="{:U('User/reg')}" style="color: #fff;font-size: .6rem;display:block;width:2.133rem;text-align: center">注册</a>
+            </div>
+            <div class="ds-in-bl search">
+                <div class="sea-box  ">
+                    <span ></span>
+                    <form action=""  method="post">
+                        <div class="sear-input">
+                            <a href="{:U('Goods/ajaxSearch')}">
+                                <input type="text" name="q" id="search_text" class="search_text"   value="" placeholder="请输入您所搜索的商品">
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="ds-in-bl login">
+                <if condition="$user_id gt 0"> <a href="{:U('User/index')}"><else/>
+                    <a href="{:U('User/login')}"></if>
+                    <span><if condition="$user_id gt 0"><img style="width:0.8rem" src="__STATIC__/images/my.png"><else/>登录</if></span>
+                </a>
+            </div>
+        </div>
+    </header>
+    <!--顶部搜索栏-e-->
+    <!--顶部滚动广告栏-s-->
+    <div class="banner ban1">
+        <div class="mslide" id="slideTpshop">
+            <ul>
+                <!--广告表-->
+                <adv pid="2" limit="5" item="v">
+                    <li><a href="{$v.ad_link}">
+                        <img src="{$v[ad_code]}" title="{$v[title]}" style="{$v[style]}" alt="">
+                    </a></li>
+                </adv>
+            </ul>
+        </div>
+    </div>
+    <!--顶部滚动广告栏-e-->
+    <!--菜单-start-->
+    <div class="floor dh">
+        <nav>
+            <a href="{:U('Mobile/User/qrcode')}">
+                <span>
+                    <img src="__STATIC__/images/icon_03.png" alt="我的微店" /><br />
+                    <span>我的微店</span>
+                </span>
+            </a>
+            <a href="{:U('Index/street')}">
+                <span>
+                    <img src="__STATIC__/images/icon_05.png" alt="店铺街" /><br />
+                    <span>商家联盟</span>
+                </span>
+            </a>
+            <a href="javascript:alert('服务尚未开通');">
+                <span>
+                    <img src="__STATIC__/images/icon_07.png" alt="品牌街" /><br />
+                    <span>本地服务</span>
+                </span>
+            </a>
+            <a href="{:U('Activity/promote_goods')}">
+                <span>
+                    <img src="__STATIC__/images/icon_09.png" alt="优惠活动" /><br />
+                    <span>优惠活动</span>
+                </span>
+            </a>
+            <a href="{:U('Activity/group_list')}">
+                <span>
+                    <img src="__STATIC__/images/icon_15.png" alt="团购" /><br />
+                    <span>团购</span>
+                </span>
+            </a>
+            <a href="{:U('User/ruzhu')}">
+                <span>
+                    <img src="__STATIC__/images/icon_16.png" alt="商家入驻" /><br />
+                    <span>商家入驻</span>
+                </span>
+            </a>
+            <!--<a href="shopcar.html">-->
+            <a href="{:U('Goods/integralMall')}">
+                <span>
+                    <img src="__STATIC__/images/icon_17.png" alt="积分商城" /><br />
+                    <span>积分商城</span>
+                </span>
+            </a>
+            <!--<a href="my.html">-->
+            <a href="{:U('User/index')}">
+                <span>
+                    <img src="__STATIC__/images/icon_19.png" alt="个人中心" /><br />
+                    <span>个人中心</span>
+                </span>
+            </a>
+             <!-- <a href="javascript:alert('服务尚未开通');">
+                <span>
+                    <img src="__STATIC__/images/icon_yanglaobaoxian.png" alt="众筹专区" /><br />
+                    <span>众筹专区</span>
+                </span>
+            </a> -->
+            <a href="{:U('Store/index',array('store_id'=>1))}">
+                <span>
+                    <img src="__STATIC__/images/icon_jinrong.png" alt="自营专区" /><br />
+                    <span>自营专区</span>
+                </span>
+            </a>
+            <!-- <a href="javascript:alert('服务尚未开通');">
+                <span>
+                    <img src="__STATIC__/images/icon_falvfuwu.png" alt="积分抽奖" /><br />
+                    <span>积分抽奖</span>
+                </span>
+            </a> -->
+              <a href="{:U('Article/articleList')}">
+                <span>
+                    <img src="__STATIC__/images/icon_jiaoyouhunlian.png" alt="新淘公告" /><br />
+                    <span>新淘公告</span>
+                </span>
+            </a>
+<!--             <a href="{:U('Recognize/index')}">
+                <span>
+                    <img src="__STATIC__/images/ico/ico_chain_bean.png" alt="新淘链" style="height: auto;background-color: #1c7aef;border-radius: 50%"/><br />
+                    <span>新淘认筹</span>
+                </span>
+            </a> -->
+            <a href="{:U('lottery/index')}">
+				<span>
+                    <img src="__STATIC__/images/ico/choujiang2.png" alt="抽奖" /><br/>
+                    <span>推广抽奖</span>
+                </span>
+            </a>
+        </nav>
+    </div>
+      <style>
+             .news {
+               margin: 0 auto 0.1rem;
+               font-size: 15px;
+               color: #666;
+               display: -webkit-flex;
+               display: flex;
+               justify-content: flex-start;
+               align-items: center;
+               padding: 0 .1rem;
+               background-color: #fff;
+               border-top: 1px solid #eee;
+               padding: .1rem .2rem;
+               border-bottom: .2rem solid #f8f8f8;
+           }
+           .news>a{
+               width: 25%;
+               border-right: .1rem solid #2196f3;
+               height: 1rem;
+               line-height: 1rem;
+               margin-right: .3rem;
+               padding-right: .3rem;
+           }
+           .news img{
+               width: 100%;
+               min-height: .8rem;
+           }
+           .news ul{
+               height: 1.5rem;
+               overflow: hidden;
+           }
+           .news ul li{
+               font-size: .7rem;
+               height: 1.5rem;
+               line-height: 1.5rem;
+           }
+       </style>
+       <div class="news flex-box">
+           <a href="{:U('Article/articleList')}"><img src="__STATIC__/images/ico/ico_chain_text.png" alt=""></a>
+           <ul class="box-1">
+             <foreach name="article" id="article">
+               <li><a href="{:U('Article/articleList')}">{$article.title}</a></li> 
+              </foreach>
+           </ul>
+       </div>
+       <script>
+           setInterval(function () {
+                $('.news ul>li:first-child').animate({'margin-top':'-1rem'},500,function () {
+                    $(this).css('marginTop',0).appendTo($('.news ul'))
+                })
+           },2000)
+       </script>
+    <!--菜单-end-->
+<!-- 快讯-start -->
+<style> 
+/* .demo{
+height:1.4rem;
+width: 100%;
+overflow:hidden;
+border:1px solid #ddd;
+border-left: none;
+border-right: none;
+display: flex;
+box-sizing: border-box;
+padding:0.2rem;
+}
+.demo img{
+width: 1.0rem;
+height: 1.0rem;
+margin:0 0.2rem 0 0.2rem;
+}
+.demo ul{
+width: 90%;
+height: auto;
+overflow: hidden;
+}
+.demo ul li{
+height:1.0rem;
+line-height: 1.0rem;
+font-size: 0.44rem;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+} */
+</style>
+<!-- <div class="demo">
+<img src="__STATIC__/images/gotop.png" alt="">
+<ul class="mingdan">
+<foreach name="flash" id="v">
+<li>{$v['content']}</li>
+</foreach>
+</ul>
+</div> -->
+<!-- 滚动-end -->
+<!--秒杀-start-->
+<!-- <div class="floor secondkill">
+    <div class="content">
+        <div class="time p">
+            <div class="djs lightning fl">
+                <span class="add">秒杀</span>
+                <span class="red" id="">{:date('H',$start_time)}点场</span>
+                <span class="hms"></span>
+            </div>
+            <div class="xsxl fr">
+                <a href="{:U('Mobile/Activity/flash_sale_list')}">
+                    <span>限时限量<img src="__STATIC__/images/or.png" alt="" /></span>
+                </a>
+            </div>
+        </div>
+        <div class="shop p">
+            <if condition="count($flash_sale_list) eq nll">
+                <div style="text-align: center;font-size:.512rem; ">暂无抢购商品。。。。</div>
+            </if>
+            <foreach name="flash_sale_list" item="v">
+                <a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$v[goods_id],'item_id'=>$v[item_id]))}">
+                    <div class="timerBox shopnum">
+                        <img src="{$v[goods_id]|goods_thum_images=200,200}"/>
+						
+							 <p>￥<span>{$v[price]}</span>元</p>
+							
+                    </div>
+                </a>
+            </foreach>
+        </div>
+    </div>
+</div> -->
+<!--秒杀-end-->
+    <!--广告位-start-->
+    <div class="banner ma-to-20">
+        <adv limit="1" item="v" pid="400">
+            <a href="{$v.ad_link}">
+            <img src="{$v[ad_code]}" title="{$v[title]}" style="{$v[style]}"/>
+            </a>
+        </adv>
+    </div>
+    <div class="floor advertisement">
+        <div class="content">
+            <div class="le lefhe fl">
+                <adv  limit="1" item="v" pid="301">
+                    <a href="{$v.ad_link}">
+                        <div class="td">
+                            <img src="{$v[ad_code]}">
+                        </div>
+                    </a>
+                </adv>
+                <adv  limit="1" item="v" pid="302">
+                    <a href="{$v.ad_link}">
+                        <div class="td">
+                            <img src="{$v[ad_code]}" title="{$v[title]}" style="{$v[style]}">
+                        </div>
+                    </a>
+                </adv>
+            </div>
+            <div class="le re fr">
+                <adv  limit="1" item="v" pid="300">
+                    <a href="{$v.ad_link}">
+                        <div class="td">
+                            <img src="{$v[ad_code]}" title="{$v[title]}" style="{$v[style]}">
+                        </div>
+                    </a>
+                </adv>
+            </div>
+        </div>
+    </div>
+    <!--广告位-end-->
+    <!--新品上市-start-->
+    <div class="floor newshop">
+        <div class="banner">
+            <img src="__STATIC__/images/ind_22.jpg" alt="新品上市"/>
+        </div>
+        <div class="advertisement">
+            <div class="content">
+                <div class="le re fl">
+                    <adv  limit="1" item="v" pid="303">
+                        <a href="{$v[ad_link]}" >
+                            <div class="td">
+                                <img src="{$v[ad_code]}" title="{$v[title]}" style="{$v[style]}"/>
+                            </div>
+                        </a>
+                    </adv>
+                </div>
+                <div class="le lefhe fr">
+                    <adv  limit="2" item="v" pid="304">
+                        <a href="{$v[ad_link]}" >
+                            <div class="td">
+                                <img src="{$v[ad_code]}" title="{$v[title]}" style="{$v[style]}"/>
+                            </div>
+                        </a>
+                    </adv>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--新品上市-end-->
+    <!--热销商品-start-->
+    <div class="floor hotshop index_hot">
+        <!--<div class="banner">
+            <img src="__STATIC__/images/ind_33.jpg" alt="热销商品"/>
+        </div>-->
+                <div class="hotsome">
+                    <div class="bloc hottop">
+                        <adv  limit="1" item="v" pid="305">
+                            <div class="le fl">
+                                <a href="{$v[ad_link]}" >
+                                    <div class="td">
+                                        <img src="{$v[ad_code]}" title="{$v[title]}" style="{$v[style]}"/>
+                                    </div>
+                                </a>
+                            </div>
+                        </adv>
+                        <adv  limit="1" item="v" pid="306">
+                            <div class="le fr">
+                                <a href="{$v[ad_link]}" >
+                                    <div class="td">
+                                        <img src="{$v[ad_code]}" title="{$v[title]}" style="{$v[style]}"/>
+                                    </div>
+                                </a>
+                            </div>
+                        </adv>
+                    </div>
+                    <div class="bloc">
+                        <div class="le foura">
+                            <adv  limit="4" item="v" pid="307">
+                                <a href="{$v[ad_link]}" >
+                                    <img src="{$v[ad_code]}" title="{$v[title]}" style="{$v[style]}"/>
+                                </a>
+                            </adv>
+                        </div>
+                    </div>
+                </div>
+    </div>
+    <!--热销商品-end-->
+    <!--猜您喜欢-start-->
+    <div class="floor guesslike">
+        <div class="banner">
+            <img src="__STATIC__/images/ind_52.jpg" alt="猜您喜欢"/>
+        </div>
+        <div class="likeshop">
+            <div id="J_ItemList">
+                <ul class="product single_item info">
+                </ul>
+                <a href="javascript:;" class="get_more" style="text-align:center; display:block;">
+                    <img src='__STATIC__/images/category/loader.gif' width="12" height="12">
+                </a>
+            </div>
+        </div>
+        <!--<div class="add" onClick="getGoodsList()">点击继续加载</div>-->
+        <div class="loadbefore">
+            <img class="ajaxloading" src="__STATIC__/images/category/loader.gif" alt="loading...">
+        </div>
+        <div id="getmore"  style="font-size:.32rem;text-align: center;color:#888;padding:.25rem .24rem .4rem; clear:both;display: none"><a >已显示完所有记录</a></div>
+    </div>
+    <!--猜您喜欢-end-->
+    <!--底部-start-->
+    
+    <include file="public/footer"/>
+    <!--底部-end-->
+    <!--底部导航-start-->
+    <!-- <include file="public/footer_nav"/> -->
+    <!--底部导航-end-->
+<script type="text/javascript" src="__STATIC__/js/sourch_submit.js"></script>
+<script src="__STATIC__/js/style.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    /**
+     * 秒杀模块倒计时
+     * */
+    function GetRTime(end_time){
+        var NowTime = new Date();
+        var t = (end_time*1000) - NowTime.getTime();
+        var d=Math.floor(t/1000/60/60/24);
+        var h=Math.floor(t/1000/60/60%24);
+        var m=Math.floor(t/1000/60%60);
+        var s=Math.floor(t/1000%60);
+        if(s >= 0)
+            return (d * 24 + h) + '时' + m + '分' +s+'秒';
+    }
+    
+    function GetRTime2(){
+        var text = GetRTime('{$end_time}');
+        if (text== 0){
+            $(".hms").text('活动已结束');
+        }else{
+            $(".hms").text(text);
+        }
+    }
+    setInterval(GetRTime2,1000);
+    /**
+     * 继续加载猜您喜欢
+     * */
+    var before_request = 1; // 上一次请求是否已经有返回来, 有才可以进行下一次请求
+     var page = 0;
+     function ajax_sourch_submit(){
+         if(before_request == 0)// 上一次请求没回来 不进行下一次请求
+             return false;
+         before_request = 0;
+         ++page;
+         $('.get_more').show();
+         $.ajax({
+             type : "get",
+             url:"/index.php?m=Mobile&c=Index&a=ajaxGetMore&p="+page,
+             success: function(data)
+             {
+                 if(data){
+                     $("#J_ItemList>ul").append(data);
+                     $('.get_more').hide();
+                     before_request = 1;
+                 }else{
+                     $('.get_more').hide();
+                 }
+             }
+         });
+     }
+// 滚动 
+function AutoScroll() {
+    $('.mingdan').animate({
+    marginTop: "-1.0rem"
+    }, 500, function() {
+    $(this).css({ marginTop: "0px" }).find("li:first").appendTo(this);
+    });
+    }
+    setInterval('AutoScroll()', 2000);
+</script>
+<style>
+    .xintaoFix{
+        position: fixed;
+        top: 45%;
+        right: .2rem;
+        z-index: 100;
+        width: 1.8rem;
+        height: 1.8rem;
+        border-radius: .5rem;
+        /* border-radius: 50%; */
+        border: .1rem solid #03a3de;
+        padding: .1rem;
+        background-color: #162123;
+        animation: round 2s linear infinite;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .xintaoFix img{
+        width: 100%;
+    }
+    @keyframes round{
+        from{
+            transform: rotate(0deg)
+        }
+        to{
+            transform: rotate(360deg)
+        }
+    }
+</style>
+    <div class="xintaoFix">
+        <a href="{:U('Recognize/index')}"><img src="__STATIC__/images/ico/ico_chain_bean.png" alt=""></a>
+    </div>
+    <style>
+        .lay_tanceng{
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(51, 51, 51, .8);
+            z-index: 100;
+            /* display: none; */
+        }
+        .lay_tanceng .tc_box{
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            background-color: transparent;
+            text-align: center;
+        }
+        .lay_tanceng .tc_box .tc_bg{
+            text-align: center;
+        }
+        .lay_tanceng .tc_box .one{
+            width: 35%;
+        }
+        .lay_tanceng .tc_box .two{
+            width: 80%;
+            margin-top: -1rem;
+        }
+        .lay_tanceng .tc_box p{
+            margin-top: .5rem;
+            font-size: 1.2rem;
+            color:#1c7aef;
+            background: linear-gradient(to bottom, #039cd5, #4bb7de  );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color:transparent;
+        }
+        .lay_tanceng .tc_box a{
+            font-size: .6rem;
+            color:#fff;
+            margin-top: .5rem;
+            padding: .3rem 1.5rem;
+            background: linear-gradient(to bottom, #039cd5 0%,#74c5e2 50%,#039ed9 100%);
+            border-radius: .6rem;
+            letter-spacing: .1rem;
+            font-weight: bold;
+            display: inline-block;
+        }
+        .lay_tanceng .tc_box .close{
+            display: inline-block;
+            width: 1rem;
+            height: 1rem;
+            margin-top: .5rem;
+           background: url('__STATIC__/images/ico/close.png') no-repeat 0 0 /100% 100%;
+            opacity: .5;
+            
+        }
+        
+    </style>
+<!--     <div class="lay_tanceng">
+        <div class="tc_box">	
+            <div class="tc_bg">
+                <img src="__STATIC__/images/ico/ico_chain_bean.png" alt="新淘链" class="one">
+                <img src="__STATIC__/images/ico/ico_chain_beanBg.png" alt="新淘链" class="two">
+            </div>
+            <p>立即众筹新淘链</p>
+            <a href="{:U('Recognize/index')}">立即众筹</a> <br/>
+            <span class="close"></span>
+        </div>
+    </div> -->
+    <script>
+        $(function () {
+            $('.lay_tanceng .close').click(function(){
+                console.log(123)
+                $('.lay_tanceng').hide();
+            })
+        })
+    </script>
+	</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title> - www.ohbbs.cn 欧皇源码论坛 </title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link href="__STATIC__/css/styles.css" rel="stylesheet">
+<script type="text/javascript" src="__STATIC__/js/jquery1.42.min.js"></script>
+<script type="text/javascript" src="__STATIC__/js/jquery.SuperSlide.2.1.1.js"></script>
+<script src="__STATIC__/js/mobileSelect.js" type="text/javascript"></script>
+
+
+    <script src="__PUBLIC__/js/layer/layer-min.js"></script>
+    <script src="__PUBLIC__/js/global.js"></script>
+    <script src="__PUBLIC__/js/pc_common.js"></script>
+</head>
+<style>
+  .pic_lction {
+    width: 30%;
+    height: 80px;
+    background-color: white;
+    margin-left: 4%;
+    margin-top: 15px;
+}
+</style>
+<body style="background:#f3f5f4;">
+<div class="tabs photo_xin">
+     <div class="hd">
+         <span class="more"><a href="#">更多1</a><a href="#">更多2</a></span>
+         <ul>
+             <li class="on" style="margin-left:6rem;">通用信息</li>
+         </ul>
+     </div>
+     <div class="bd">
+          <div class="con">
+                <div class="con1">注意：带<span>*</span>号为必填项</div>
+                <div class="con2">
+                      <div class="tit_xin">
+                          <p>
+                             <b>基本信息</b>
+                          </p>
+                      </div>
+                </div>
+                 <div class="c_t_xin">
+                        <form>
+                        <div class="one_jb">
+                            <p>商品分类：</p>
+                            <!-- <input type="text" placeholder="请输入商品分类"> -->
+    <div class="contain">
+    <div class="fixWidth">
+                <div class="demo">
+                <span><select name="一级分类" id="yiji" onchange="fenlei()">
+                <volist name="yiji" id="vo">
+                <option value="{$vo['id']}">{$vo["name"]}</option>
+                </volist>
+                </select></span>
+                <span><select name="二级分类" id="erji">
+                  <volist name="erji" id="vos">
+                  <option value="{$vos['id']}">{$vos["name"]}</option>
+                  </volist>
+                <select></span>
+            <div id="trigger5">车型选择-级联</div>
+        </div>
+    </div>
+
+</div>
+
+                        </div>
+                        <div class="one_jb">
+                            <p><span>*</span>商品名称：</p>
+                            <input type="text" placeholder="请输入商品名称" id="name"/>
+                        </div>
+                        <!-- <div class="one_jb">
+                            <p>商品货号：</p>
+                            <input type="text" placeholder="请输入商品货号"/ >
+                        </div> -->
+                        <div class="one_jb">
+                            <p>商品损耗：</p>
+                            <select name="一级分类" id="sunhao">
+                                  <option value="6">六成新</option>
+                                  <option value="7">七成新</option>
+                                  <option value="8">八成新</option>
+                                  <option value="9">九成新</option>
+                            </select>
+                        </div>
+                        <!-- <div class="one_jb">
+                             <p>商品重量：</p>
+                             <input type="text" placeholder="800克" id="zhongliang"/ >
+                        </div> -->
+                        <div class="one_jb">
+                             <p style="width: 37%;"><span>*</span>商品数量：</p>
+                             <input type="num" placeholder="请输入你要交易的商品数量" id="goodnum"/>
+                        </div>
+                        <div class="one_jb">
+                             <p>兑换积分：</p>
+                             <input type="text" placeholder="请输入您需要兑换的积分"  id="jifen"/ >
+                        </div>
+                        <div class="one_jb">
+                             <p>市场价：</p>
+                             <input type="text" placeholder="请输入您购买时的商品价格"  id="money"/ >
+                        </div>
+                        <div class="one_jb">
+                             <p>联系方式：</p>
+                             <input type="text" placeholder="请输入您的联系方式"  id="mobeil"/ >
+                        </div>
+                        <div class="one_jb">
+                             <p>商品关键词：</p>
+                             <input type="text" placeholder="请输入商品搜索的关键字" id="guanjian"/ >
+                        </div>
+                        </form>
+                    </div>
+                    <div class="con2">
+                      <div class="tit_xin">
+                          <p>
+                             <b>商品简介</b>
+                          </p>
+                      </div>
+                    </div>
+                   <div class="two_jj">
+                       <form><textarea placeholder="请输入商品简介" id="jianjie"></textarea></form>
+                   </div>
+                   <div class="con2">
+                      <div class="tit_xin">
+                          <p>
+                             <b><span>*</span>商品图片</b>
+                          </p>
+                      </div>
+                    </div>
+                    <div class="three_pic">
+                       <div class="pic_lction" style="background-color: #fff;margin-left: 8.5rem;"><img src="{$apply.paying_amount_certs}" id="paying_amount_certss" nc_type="store_label" style="width:100%"></div>
+                          <div class="pic_2_xin">
+                               <p class="u_picture" style="margin-left: 0%; color: #ED007C;">
+                                <span style="display: inline-block;position: relative;bottom: -1px;font-size:0.36rem;color: #cbcbcb;">
+                                <input style="display: none" type="text" name="cert1" id="paying_amount_certs" class="input260" value="" />
+                                    <input type="button" class="gome-btn-red" style="background-color: orange;color: white;border: none;margin-left: 9rem;height: 2.6rem;" onClick="GetUploadify2(1,'paying_amount_certs','seller','changs')"  value="选择上传图片"/>
+                                    <!-- <input type="submit" class="gome-btn-gray"  value="提交"/> -->
+
+                              </span>
+                          </p>
+                          </div>
+                   </div>
+                   <div class="con2">
+                      <div class="tit_xin">
+                          <p>
+                             <b>详情描述</b>
+                          </p>
+                      </div>
+                    </div>
+                    <div class="four_jj">
+                       <form><textarea placeholder="详情描述" id="xiangqing"></textarea></form>
+                   </div>
+                </div>
+          <div class="con">
+               <div class="con1">注意：带<span>*</span>号为必填项</div>
+               <div class="edit_c_2">
+                    <a href="#" class="tj_c_2">添加缩略图</a>
+                    <ul>
+                        <li>
+                          <div class="pic_1_xin" style="background: white;border: none"><img src="{$apply.paying_amount_cert1}" id="paying_amount_cert1s" nc_type="store_label" style="width: 100%;margin: 0 auto;height: 120px;"></div>
+                          <div class="pic_2_xin">
+                               <p class="u_picture" style="margin-left: 0%; color: #ED007C;">
+                                <span style="display: inline-block;position: relative;bottom: -1px;font-size:0.36rem;color: #cbcbcb;">
+                                <input style="display: none" type="text" name="cert1" id="paying_amount_cert1" class="input260" value="" />
+                                    <input type="button" class="gome-btn-red" style="background-color:orange;color: white;" onClick="GetUploadify2(1,'paying_amount_cert1','seller','chang1')"  value="选择上传图片"/>
+                                    <!-- <input type="submit" class="gome-btn-gray"  value="提交"/> -->
+
+                              </span>
+                          </p>
+                          </div>
+                        </li>
+                          
+                        <li>
+                          <div class="pic_1_xin" style="background: white;border: none"><img src="{$apply.paying_amount_cert2}" id="paying_amount_cert2s" nc_type="store_label" style="width: 100%;margin: 0 auto;height: 120px;"></div>
+                          <div class="pic_2_xin">
+                               <p class="u_picture" style="margin-left: 0%; color: #ED007C;">
+                                <span style="display: inline-block;position: relative;bottom: -1px;font-size:0.36rem;color: #cbcbcb;">
+                                <input style="display: none" type="text" name="cert1" id="paying_amount_cert2" class="input260" value="" />
+                                    <input type="button" class="gome-btn-red" style="background-color:orange;color: white;" onClick="GetUploadify2(1,'paying_amount_cert2','seller','chang2')"  value="选择上传图片"/>
+                                    <!-- <input type="submit" class="gome-btn-gray"  value="提交"/> -->
+
+                              </span>
+                          </p>
+                          </div>
+                        </li>
+
+                       <li>
+                          <div class="pic_1_xin" style="background: white;border: none"><img src="{$apply.paying_amount_cert3}" id="paying_amount_cert3s" nc_type="store_label" style="width: 100%;margin: 0 auto;height: 120px;"></div>
+                          <div class="pic_2_xin">
+                               <p class="u_picture" style="margin-left: 0%; color: #ED007C;">
+                                <span style="display: inline-block;position: relative;bottom: -1px;font-size:0.36rem;color: #cbcbcb;">
+                                <input style="display: none" type="text" name="cert1" id="paying_amount_cert3" class="input260" value="" />
+                                    <input type="button" class="gome-btn-red" style="background-color:orange;color: white;" onClick="GetUploadify2(1,'paying_amount_cert3','seller','chang3')"  value="选择上传图片"/>
+                                    <!-- <input type="submit" class="gome-btn-gray"  value="提交"/> -->
+
+                              </span>
+                          </p>
+                          </div>
+                        </li>
+
+                        <li>
+                          <div class="pic_1_xin" style="background: white;border: none"><img src="{$apply.paying_amount_cert4}" id="paying_amount_cert4s" nc_type="store_label" style="width: 100%;margin: 0 auto;height: 120px;"></div>
+                          <div class="pic_2_xin">
+                               <p class="u_picture" style="margin-left: 0%; color: #ED007C;">
+                                <span style="display: inline-block;position: relative;bottom: -1px;font-size:0.36rem;color: #cbcbcb;">
+                                <input style="display: none" type="text" name="cert1" id="paying_amount_cert4" class="input260" value="" />
+                                    <input type="button" class="gome-btn-red" style="background-color:orange;color: white;" onClick="GetUploadify2(1,'paying_amount_cert4','seller','chang4')"  value="选择上传图片"/>
+                                    <!-- <input type="submit" class="gome-btn-gray"  value="提交"/> -->
+
+                              </span>
+                          </p>
+                          </div>
+                        </li>
+                    </ul>
+                    <div class="pic_2_xin">
+                               <p class="u_picture" style="margin-left: 0%; color: #ED007C;">
+                                    <input type="button" class="gome-btn-red" style="background-color: orange;color: white;border: none;width: 100%;height: 2.6rem;margin-bottom: 5rem"   value="确认上传" onClick="tijiao()"/>
+                                    <!-- <input type="submit" class="gome-btn-gray"  value="提交"/> -->
+
+                              </span>
+                          </p>
+                    </div>
+               </div>
+          </div>
+     </div>
+</div>
+</body>
+</html>
+
+<script>
+    function chang1(seller){
+      document.getElementById("paying_amount_cert1s").src=seller;
+      document.getElementById("paying_amount_cert1").value=seller;
+      }
+    function chang2(seller){
+    document.getElementById("paying_amount_cert2s").src=seller;
+    document.getElementById("paying_amount_cert2").value=seller;
+    }
+    function chang3(seller){
+    document.getElementById("paying_amount_cert3s").src=seller;
+    document.getElementById("paying_amount_cert3").value=seller;
+    }
+    function chang4(seller){
+    document.getElementById("paying_amount_cert4s").src=seller;
+    document.getElementById("paying_amount_cert4").value=seller;
+    }
+    function changs(seller){
+    document.getElementById("paying_amount_certss").src=seller;
+    document.getElementById("paying_amount_certs").value=seller;
+    }
+    function createOption(value,text){
+      var $option=$("<option></option>");
+      $option.attr("value",value);
+      $option.text(text);
+      return $option;
+      }
+    function fenlei(){
+      var option="<option value='0'>未选择</option>";
+      var url = '/index.php?m=mobile&c=Goods&a=ywsqings';
+      var num=document.getElementById("yiji").value;
+      $.ajax({
+              type : "POST",
+              url  : url,
+              data : "num="+ num,
+              success: function(ew) {
+                //$("#erji").html(createOption(ew[k].id,ew[k].name));
+                 $("#erji").html(ew);
+              }
+          });
+    }
+    function tijiao(){
+      var yiji=document.getElementById("yiji").value;
+      var mobeil=document.getElementById("mobeil").value;
+      var erji=document.getElementById("erji").value;
+      var name=document.getElementById("name").value;
+      var sunhao=document.getElementById("sunhao").value;
+      var goodnum=document.getElementById("goodnum").value;
+      var jifen=document.getElementById("jifen").value;
+      var money=document.getElementById("money").value;
+      var guanjian=document.getElementById("guanjian").value;
+      var jianjie=document.getElementById("jianjie").value;
+      var image1=document.getElementById("paying_amount_certs").value;
+      var xiangqing=document.getElementById("xiangqing").value;
+      var image2=document.getElementById("paying_amount_cert1").value;
+      var image3=document.getElementById("paying_amount_cert2").value;
+      var image4=document.getElementById("paying_amount_cert3").value;
+      var image5=document.getElementById("paying_amount_cert4").value;
+         if(yiji == ""){
+          alert("请确认您的产品分类");
+         }else if(mobeil == ""){
+          alert("请确认您的联系方式");
+         }else if(erji == ""){
+          alert("请确认您的产品分类");
+         }else if(name == ""){
+          alert("请确认您的商品名称");
+         }else if(sunhao == ""){
+          alert("请对您的商品损耗率进行描述");
+         }else if(goodnum == ""){
+          alert("请对您的商品数量");
+         }else if(jifen == ""){
+          alert("请对您需要换取的积分");
+         }else if(money == ""){
+          alert("请对您购买商品时的价格");
+         }else if(guanjian == ""){
+          alert("请输入您的商品的关键字,以便搜索");
+         }else if(jianjie == ""){
+          alert("请输入您的商品简介");
+         }else if(xiangqing == ""){
+          alert("请输入您的商品详情");
+         }else if(image1 == ""){
+          alert("请上传商品主照片");
+         }else if(image2 == ""){
+          alert("请上传足够的商品照片");
+         }else if(image3 == ""){
+          alert("请上传足够的商品照片");
+         }else if(image4 == ""){
+          alert("请上传足够的商品照片");
+         }else if(image5 == ""){
+          alert("请上传足够的商品照片");
+         }else{
+          url = '/index.php?m=mobile&c=Goods&a=ywsqadd';
+            $.ajax({
+                type : "POST",
+                url  : url,
+                data : "image1="+ image1 +"&image2="+image2+"&image3="+image3+"&image4="+image4+"&image5="+image5+"&goods_name="+name+"&cat_id2="+yiji+"&cat_id3="+erji+"&fewnew="+sunhao+"&store_count="+goodnum+"&shop_price="+jifen+"&exchange_integral="+jifen+"&market_price="+money+"&keywords="+guanjian+"&goods_remark="+jianjie+"&goods_content="+xiangqing+"&chact="+mobeil,
+                success: function(ew) {
+                    if(ew == 1){
+                      alert("添加成功,请耐心等待审核");
+                      window.location="{:U('mobile/User/index')}";
+                    }else if(ew == 2){
+                      alert("添加失败,请重试");
+                    }else{
+                      alert(ew);
+                    }
+                }
+            });
+         }
+    }
+</script>

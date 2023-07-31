@@ -1,0 +1,215 @@
+<include file="public/header" title="个人中心" body="g4"/>
+<style>
+    .myhearder .person{
+        position: relative;
+    }
+</style>
+    <div class="myhearder" >
+        <div class="person">
+                <div class="personicon">
+                    <img src="{$user[head_pic]|default="__STATIC__/images/user68.jpg"}"/>
+                </div>
+                <div class="lors">
+                    <span style="font-size:.7rem">{$user['nickname']}</span>
+                    <if condition="$nickname neq ''">
+                        <br />
+                        <span style="font-size:.512rem">由({$nickname})推荐</span>
+                    </if>
+                </div>
+                <div class="performance">
+                    <p >团队业绩：{$user['team_performance']}</p>
+                    <p >本月新增业绩：{$yeji['money']|default=0}</p>
+                </div>
+        </div>
+        <div class="set">  
+             <!--我的留言-->
+            <a class="massage iconfont icon-xiaoxi002" href="{:U('User/message_notice')}"></a>
+            <!--设置--> 
+            <a class="setting iconfont icon-tubiaolunkuo-" href="{:U('Mobile/User/userinfo')}"></a>
+        </div>
+        <div class="head_money">
+            <ul>
+                <li>
+                <a href="{:U('Mobile/User/account')}">
+                   <span>{$user['user_money']}</span>
+                   <p>账户余额(元)</p>
+                </a>
+               </li>
+               <li>
+                <a href="{:U('Mobile/Gold/gold_chain')}">
+                    <span>{$user['jin_num']}</span>
+                    <p>新淘链</p>
+                </a>
+                </li>
+                <li>
+                    <a href="{:U('Mobile/User/cash')}">
+                    <span>{$user['withdraw_money']}</span>
+                    <p>可提现金额(元)</p>
+                </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="floor my p">
+        <div class="content">
+            <!--订单管理模块-s-->
+            <div class="floor myorder ma-to-20 p">
+                <div class="content30">
+                    <div class="order">
+                        <div class="fl order-left">
+                            <!-- <img src="__STATIC__/images/mlist.png"/> -->
+                            <span>我的订单</span>
+                        </div>
+                        <div class="fr">
+                            <a href="{:U('Mobile/Order/order_list')}">
+                                <span style="color: #999;font-size: .512rem ">全部订单>></span>
+                                <!-- <i class="Mright"></i> -->
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="floor nav-list">
+                <ul>
+                    <li>
+                        <a href="{:U('Mobile/Order/order_list',array('type'=>'WAITPAY'))}">
+                            <if condition="$user.waitPay!=0"><span>{$user.waitPay}</span></if>
+                            <i class="iconfont icon-zhifu"></i>
+                            
+                            <p>待付款</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{:U('Mobile/Order/order_list',array('type'=>'WAITSEND'))}">
+                            <if condition="$user.waitSend!=0"><span>{$user.waitSend}</span></if>
+                                <i class="iconfont icon-wuliuguanli"></i>
+                            <!--<img src="__STATIC__/images/ka.png" alt="" />-->
+                            <p>待发货</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{:U('Mobile/Order/order_list',array('type'=>'WAITRECEIVE'))}">
+                            <if condition="$user.waitReceive!=0"><span>{$user.waitReceive}</span></if>
+                            <i class="iconfont icon-shouhuo"></i>
+                            <p>待收货</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{:U('Mobile/Order/comment',array('status'=>0))}">
+                            <if condition="$user.uncomment_count!=0"><span>{$user.uncomment_count}</span></if>
+                            <i class="iconfont icon-pingjia-tianchong"></i>
+                            <p>待评价</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{:U('Mobile/Order/return_goods_list')}">
+                            <if condition="$user.return_count!=0"><span>{$user.return_count}</span></if>
+                            <i class="iconfont icon-kefu"></i>
+                            <p>退款/退货</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        <div class="mycenter ma-to-20">
+            <ul class="center-list">
+                <li><a href="{:U('Mobile/User/userinfo')}">
+                    <i class="iconfont icon-gerenxinxi" style="color: #ffd730"></i>
+                    <span>个人资料</span>
+                </a></li>
+                <li><a href="{:U('Mobile/User/visit_log')}">
+                    <i class="iconfont icon-jiaoyin" style="color: #c69df9"></i>
+                    <span>我的足迹</span>
+                </a></li>
+                <li><a href="{:U('Mobile/User/collect_list')}">
+                    <i class="iconfont icon-shoucang" style="color: #4bbafc "></i>
+                    <span>我的收藏</span>
+                </a></li>
+                <li><a href="{:U('Mobile/User/myfocus')}">
+                    <i class="iconfont icon-guanzhu" style="color: #ff5d5d"></i>
+                    <span>我的关注</span>
+                </a></li>
+                <li><a href="{:U('Mobile/User/coupon')}">
+                    <i class="iconfont icon-youhuiquan" style="color: #f96594"></i>
+                    <span>优惠券</span>
+                </a></li>
+                <li><a href="{:U('Mobile/Order/comment',array('status'=>1))}">
+                    <i class="iconfont icon-pinglun" style="color: #7297fc"></i>
+                    <span>我的评论</span>
+                </a></li>
+                <li><a href="{:U('Mobile/User/userclass',array('status'=>1))}">
+                    <i class="iconfont icon-tuandui" style="color: #fe8d5e"></i>
+                    <span>我的盟友</span>
+                </a></li>
+                <li><a href="{:U('Mobile/User/qrcode')}">
+                    <i class="iconfont icon-fenxiang" style="color: #9179fe"></i>
+                    <span>我的推广码</span>
+                </a></li>
+            </ul>
+
+         </div>
+<style>
+.my .content .floor ul li a span{
+	width: 0.6rem;
+	height: 0.6rem;
+	line-height:0.6rem;
+	font-size: 0.4rem;
+}
+</style>
+    <div class="floor list7 ma-to-20">
+        <div class="myorder p">
+            <div class="content30">
+                <a href="{:U('Mobile/User/address_list')}">
+                    <div class="order">
+                        <div class="fl">
+                            <!-- <img src="__STATIC__/images/w8.png"/> -->
+                            <i class="iconfont iconfont-size iconfont-color-meihong">&#xe600;</i>
+                            <span>地址管理</span>
+                        </div>
+                        <div class="fr">
+                            <i class="Mright"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+      
+<div class="floor list7 ma-to-20">
+        <div class="myorder p">
+            <div class="content30">
+              	<a href="https://pubres.aihecong.com/web/link/chatLink.html?entId=10205"  target="_blank" >
+                    <div class="order">
+                        <div class="fl">
+                            <!-- <img src="__STATIC__/images/w8.png"/> -->
+                            <i class="iconfont icon-kefu iconfont-color-meihong"></i>
+                            <span>在线客服</span>
+                        </div>
+                        <div class="fr">
+                            <i class="Mright"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="setting">
+    <div class="close">
+        <a href="{:U('Mobile/User/logout')}" id="logout">安全退出</a>
+    </div>     
+</div>
+</div>
+
+    <!--底部导航-start-->
+    <style>
+    #gotop{opacity: 0;}
+    </style>
+    <include file="public/footer"/>
+
+    <!--底部导航-end-->
+    <script src="__STATIC__/js/style.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>

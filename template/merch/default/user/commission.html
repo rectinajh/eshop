@@ -1,0 +1,228 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>平台佣金列表 - www.ohbbs.cn 欧皇源码论坛 </title>
+<include file="public/header_style"/>
+<script type="text/javascript" src="__STATIC__/js/sourch_submit.js"></script>
+<script src="__STATIC__/js/style.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+var  page = 1;
+/**
+ *加载更多
+ */
+function ajax_sourch_submit()
+{
+    page += 1;
+    $.ajax({
+        type : "GET",
+        url:"/index.php?m=merch&c=user&a=commission&is_ajax=1&p="+page,//+tab,
+        success: function(data)
+        {
+        	if(data == 1) {
+                $('#getmore').show();
+                return false;
+            }else{
+                $(".ajax_return").append(data);
+            }
+        }
+    });
+}
+</script>
+<script type='text/javascript'>
+  Zepto(function($)
+  {
+    $.zcontent.set("url","/mobile/supplier/supplier_rebate.php");
+        $.zcontent.set("act","list");
+            $.zcontent.set("start_time","");
+        $.zcontent.set("end_time","");
+        $.zcontent.set("payid","0");
+        $.zcontent.set("orderid","0");
+        $.zcontent.set("sort_by"," sr.add_time");
+        $.zcontent.set("sort_order"," ASC");
+        $.zcontent.set("page","1");
+        $.zcontent.set("page_size","15");
+        $.zcontent.set("record_count","3");
+        $.zcontent.set("page_count","1");
+            $.zcontent.add_static("act")
+          $.intimidatetime.setDefaults($.intimidatetime.i18n['zh-CN']);
+   $(document).on('ajaxStart', $.zprogress.start).on('ajaxStop', $.zprogress.done)
+   $("#toTop").scrollToTop();
+  });
+          // 这里把JS用到的所有语言都赋值到这里
+      var process_request = "正在处理您的请求...";
+      var todolist_caption = "记事本";
+      var todolist_autosave = "自动保存";
+      var todolist_save = "保存";
+      var todolist_clear = "清除";
+      var todolist_confirm_save = "是否将更改保存到记事本？";
+      var todolist_confirm_clear = "是否清空内容？";
+   </script> 
+   <script src='js/touch.js'></script>
+    <script>
+    (function($)
+    {
+        Zepto(function($)
+        {
+            init();
+            $.zcontent.add_success(init);
+        });
+        function init()
+        {
+            $('#rebate_paytime_start').intimidatetime({format:'yyyy-MM-dd'});
+            $('#rebate_paytime_end').intimidatetime({format:'yyyy-MM-dd'});
+        }
+    })(Zepto)
+     
+      function search_commission()
+      {
+        if(check_form_empty('theForm'))
+        {
+          $.zalert.add('至少有一项输入不为空！',1)
+        }
+        else
+        {
+          $.zcontent.set('rebate_paytime_start',$('#rebate_paytime_start').val());
+          $.zcontent.set('rebate_paytime_end',$('#rebate_paytime_end').val());
+          return true;
+        }
+        return false;
+      }
+      
+      function change_is_pay_ok(is_pay_ok)
+      {
+        $.zcontent.set('is_pay_ok',is_pay_ok);
+        search();
+      }
+      
+    </script>
+  </head>
+  <body>
+    <div id='container'>
+            <header id="header" class='header'>
+    <h1>平台佣金列表</h1>
+    <a href="javascript:history.back(-1)" class="back">返回</a>
+      <a onClick="refresh();" class="clear">刷新</a>
+    </header>      <section>
+        <ul class="order_tab" style="position:relative">
+  <li id="order_manage1" class="first" onclick="toggle_menu();">平台佣金列表    <i id="menu_list_marker" class='on'></i>
+    <include file="public/header_nav"/>
+  </li>
+  
+  <li id="order_manage2" onclick="toggle_search();"><span class="line"></span>查询<i class='search'></i></li>
+  <!--<li class="order_tab_li curr" id="type1" onclick="change_is_pay_ok('0')">本期结算</li>
+  <li class="order_tab_li " id="type2" onclick="change_is_pay_ok('1')">往期结算</li>-->
+  
+  </ul>        
+  <div class="order_con" id="con_order_manage_2" style="display:none">
+          <div class="order_pd">
+            <div class="order order_t">
+              <form name="theForm" method="post" action="{:U('merch/User/commission')}" class="order_search" onsubmit='return search_commission();'>
+                <table width="100%" border="0">
+                  <tr>
+                    <td>
+                      <input type="text" name="rebate_paytime_start" id='rebate_paytime_start' class="inputBg" placeholder="请选择开始时间" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="text" name="rebate_paytime_end" id='rebate_paytime_end' class="inputBg" placeholder="请选择结束时间" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="submit" name="" class="button2" value="查找"/>
+                    </td>
+                  </tr>
+                </table>
+              </form>
+            </div>
+          </div>
+        </div>
+         
+        <div class="order_con" id="con_order_manage_1">
+          <div class="order_pd"  id="con_type_1">
+            <div class="order">
+            <div class="ajax_return">
+              
+              	
+               	   <volist name="list" id="v">
+               	     <ul class="order_list">
+	                  <li>
+	                      <table cellpadding="0" cellspacing="0" class="order_manage_table" width="100%">
+	                        <tr>
+	                            <td><span>账户变动时间</span>{$v['confirm_time']|date="Y-m-d H:i:s",###}</td>
+	                        </tr>
+	                        <tr>
+	                            <td><span>订单号</span>{$v['order_sn']}</td>
+	                        </tr>
+	                        <tr>
+	                            <td><span>订单金额</span>{$v['total_amount']}</td>
+	                        </tr>
+	                        <tr>
+	                            <td><span>平台扣除佣金</span>{$v['commission']}</td>
+	                        </tr>
+	                        <tr>
+	                            <td><span>商家实际收入金额</span>{$v['money']}</td>
+	                        </tr>
+	                        <tr>
+	                            <td><span>支付方式</span>{$v['pay_name']}</td>
+	                        </tr>
+	                        <tr>
+	                            <td><span>备注</span>{$v['admin_note']}</td>
+	                        </tr>
+	                      </table>
+	                  </li>
+	              	</ul>
+                    </volist>
+                   
+               
+              </div> 
+            </div>         
+        </div>
+    </div>
+    <!--加载更多-s-->
+<if condition="$list!=''">
+    <div id="getmore"  style="font-size: 0.32rem;text-align: center;color: #888;clear: both;margin-top: -5rem;display:none;">
+        <a >已显示完所有记录</a>
+    </div>
+</if>
+</section>
+<!-- 脚部 -->
+<footer>
+  <div class="global-nav global-nav-current">
+    <div class="global-nav__nav-wrap">
+        <div class="global-nav__nav-item">
+            <a  href="{:U('User/index')}" > 
+                <p><i class="iconfont icon-size" >&#xe605;</i></p>
+                <span>首页</span>
+            </a>
+        </div>
+        <div class="global-nav__nav-item">
+            <a href="{:U('User/order_list')}" >
+               <p><i class="iconfont icon-size">&#xe60f;</i></p>
+                <span>订单管理</span>
+            </a>
+        </div>
+        <div class="global-nav__nav-item"  >
+            <a  href="{:U('User/commission')}" class="on">
+               <p><i class="iconfont icon-size">&#xe608;</i></p>
+                <span>佣金管理</span>
+            </a>
+        </div>
+        <div class="global-nav__nav-item">
+            <a  href="{:U('Login/logout')}" >
+               <p><i class="iconfont icon-size">&#xe642;</i></p>
+                <span>退出</span>
+            </a>
+        </div>
+    </div>
+</div>
+</footer> 
+<!-- 脚部 -->         
+</div>
+<div id='zalert'></div>
+<div id='zprogress'><div id='zprogress_indicator'></div></div>
+<a href="#top" id="toTop"></a>  
+</body>
+</html>
+

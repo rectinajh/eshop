@@ -1,0 +1,244 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{overflow:hidden /*取消滚动条*/}
+.box{
+position:fixed; /*绝对定位*/
+width:100%;
+height:100%; 
+margin:0 auto;
+top:0px;
+background: rgba(24,38,41, 0.1);
+background:url(../images/bj.png);
+padding:20px;
+}
+.box-a{
+width:100%;
+height:100%;
+position:relative;/*相对定位 参照物*/
+}
+
+@media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) { 
+    .masked{
+        background-image: -webkit-linear-gradient(left, #0ee5ff, #0e84ff 25%, #0ee5ff 50%, #0e84ff 75%, #0ee5ff);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+        -webkit-background-size: 200% 100%;
+        -webkit-animation: masked-animation 0.8s infinite linear;
+    }
+	.masked1{
+        background-image: -webkit-linear-gradient(left, #0ee5ff, #f4ab20 50%, #0ee5ff 50%, #f4ab20 100%, #0ee5ff);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+        -webkit-background-size: 200% 100%;
+        -webkit-animation: masked-animation 3s infinite linear;
+    }
+	.masked2{
+        background-image: -webkit-linear-gradient(left, #0ee5ff, #f4ab20 50%, #0ee5ff 50%, #f4ab20 100%, #0ee5ff);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+        -webkit-background-size: 200% 100%;
+        -webkit-animation: masked-animation 3s infinite linear;
+    }
+}
+@-webkit-keyframes masked-animation {
+    0%  { background-position: 0 0;}
+    100% { background-position: -100% 0;}
+}
+
+
+
+@-moz-keyframes rotate{
+	100%{
+		-moz-transform:rotate(0deg);
+		}
+		100%{
+		-moz-transform:rotate(360deg);
+		}
+	}
+@-webkit-keyframes rotate{
+	100%{
+		-webkit-transform:rotate(0deg);
+		}
+		100%{
+		-webkit-transform:rotate(360deg);
+		}
+	}
+@keyframes rotate{
+	100%{
+		transform:rotate(0deg);
+		}
+		100%{
+		transform:rotate(360deg);
+		}
+	}
+
+.box-a .m-x12 {
+	width: 500px;
+	height: 500px;
+	position:absolute;/*绝对定位*/top:200px;left:600px;
+	z-index:11;
+	filter:alpha(opacity=40);  /*支持 IE 浏览器*/
+	-moz-opacity:0.40; /*支持 FireFox 浏览器*/
+	opacity:0.40;  /*支持 Chrome, Opera, Safari 等浏览器*/
+	background: no-repeat url("../images/gif-6-4.png") left top;
+	-webkit-background-size: 500px 8.532rem;
+	-moz-background-size: 500px 8.532rem;
+	background-size: 500px 500px;
+	-webkit-border-radius: 8.532rem;
+	border-radius: 8.532rem;
+	-moz-transition:all .0.5s;
+    -webkit-transition:all .0.5s;
+    transition:all .0.5s;
+	-moz-animation:rotate 0.5s infinite linear;
+    -webkit-animation:rotate 0.5s infinite linear;
+    animation:rotate 0.5s infinite linear;
+}
+
+@keyframes myfirst
+{
+0%   {right:0px; top:0px;width:0px;height:34px;}
+100% {right:0px; top:0px;width:100px;height:34px;}
+}
+
+@-moz-keyframes myfirst /* Firefox */
+{
+0%   {right:0px; top:0px;width:0px;height:34px;}
+100% {right:0px; top:0px;width:58px;height:34px;}
+}
+
+@-webkit-keyframes myfirst /* Safari and Chrome */
+{
+0%   {right:0px; top:0px;width:0px;height:34px;}
+100% {right:0px; top:0px;width:100px;height:34px;}
+}
+
+@-o-keyframes myfirst /* Opera */
+{
+0%   {right:0px; top:0px;width:0px;height:34px;}
+100% {right:0px; top:0px;width:58px;height:34px;}
+}
+
+.m-12-k{
+	width: 8.532rem;
+	height:8.532rem;
+	position:fixed; /*绝对定位*/
+	left: 50%;
+	top: 7.466rem;
+	margin-left: -4.266rem
+}
+.m-12-k .m-12xz1{
+	width:8.532rem;
+	height:8.532rem;
+	position:absolute;/*绝对定位*/top:0px;left:0px;
+	z-index:9;
+	filter:alpha(opacity=80);  /*支持 IE 浏览器*/
+	-moz-opacity:0.80; /*支持 FireFox 浏览器*/
+	opacity:0.80;  /*支持 Chrome, Opera, Safari 等浏览器*/
+	background: no-repeat url("../images/gif-11-1.png") left top;
+	-webkit-background-size: 8.532rem 2.666rem;
+	-moz-background-size: 8.532rem 2.666rem;
+	background-size: 8.532rem 8.532rem;
+	-webkit-border-radius: 2.666rem;
+	border-radius: 2.666rem;
+	-moz-transition:all .0.6s;
+    -webkit-transition:all .0.6s;
+    transition:all .0.6s;
+	-moz-animation:rotate 0.6s infinite linear;
+    -webkit-animation:rotate 0.3s infinite linear;
+    animation:rotate 0.6s infinite linear;
+}
+.m-12-k .m-12xz2{
+	width:8.532rem;
+	height:8.532rem;
+	position:absolute;/*绝对定位*/top:0px;left:0px;
+	z-index:8;
+	filter:alpha(opacity=50);  /*支持 IE 浏览器*/
+	-moz-opacity:0.50; /*支持 FireFox 浏览器*/
+	opacity:0.50;  /*支持 Chrome, Opera, Safari 等浏览器*/
+	background: no-repeat url("../images/gif-11-2.png") left top;
+	-webkit-background-size: 8.532rem 2.666rem;
+	-moz-background-size: 8.532rem 2.666rem;
+	background-size: 8.532rem 8.532rem;
+	-webkit-border-radius: 2.666rem;
+	border-radius: 2.666rem;
+	-moz-transition:all .2s;
+    -webkit-transition:all .2s;
+    transition:all .2s;
+	-moz-animation:rotate 2s infinite linear;
+    -webkit-animation:rotate 2s infinite linear;
+    animation:rotate 2s infinite linear;
+}
+.m-12-k .m-12xz3{
+	width:8.532rem;
+	height:8.532rem;
+	position:absolute;/*绝对定位*/top:0px;left:0px;
+	z-index:9;
+	filter:alpha(opacity=50);  /*支持 IE 浏览器*/
+	-moz-opacity:0.50; /*支持 FireFox 浏览器*/
+	opacity:0.50;  /*支持 Chrome, Opera, Safari 等浏览器*/
+	background: no-repeat url("../images/gif-11-3.png") left top;
+	-webkit-background-size: 8.532rem 2.666rem;
+	-moz-background-size: 8.532rem 2.666rem;
+	background-size: 8.532rem 8.532rem;
+	-webkit-border-radius: 2.666rem;
+	border-radius: 2.666rem;
+	-moz-transition:all .0.1s;
+    -webkit-transition:all .0.1s;
+    transition:all .0.1s;
+	-moz-animation:rotate 0.1s infinite linear;
+    -webkit-animation:rotate 0.1s infinite linear;
+    animation:rotate 0.1s infinite linear;
+}
+.m-12-k .m-12zt1{
+	width: 3.84rem;
+	height:.64rem;
+	margin:1.706rem auto 0 auto;
+	color:#19a9da;
+	font:.427rem '楷体';
+	text-align:center;
+}
+.m-12-k .m-12zt2{
+	width:8.532rem;
+	height:1.067rem;
+	margin-top:3.84rem;
+	color:#2a81f4;
+	font:.555rem 'ds-digitalbold';
+	text-align:center;
+}
+
+@keyframes myfirst
+{
+0%   {right:0px; top:0px;width:0px;height:35px;}
+100% {background-color:#FC0; right:0px; top:0px;width:180px;height:35px;}
+}
+
+@-moz-keyframes myfirst /* Firefox */
+{
+0%   {right:0px; top:0px;width:0px;height:35px;}
+100% {right:0px; top:0px;width:150px;height:35px;}
+}
+
+@-webkit-keyframes myfirst /* Safari and Chrome */
+{
+0%   {right:0px; top:0px;width:0px;height:35px;}
+100% {right:0px; top:0px;width:150px;height:35px;}
+}
+
+@-o-keyframes myfirst /* Opera */
+{
+0%   {right:0px; top:0px;width:0px;height:35px;}
+100% {right:0px; top:0px;width:150px;height:35px;}
+}
+
+@-webkit-keyframes pointRadius {
+	0% {width: 10px;height: 10px;background: rgba(169,191,116, 0.8);}
+	100% {width: 150px;height: 150px;background: rgba(62,219,200, 0.0);}
+}
+@-webkit-keyframes pointRadius {
+	0% {width: 10px;height: 10px;background: rgba(196,149,169, 0.8);}
+	25% {width: 150px;height: 150px;background: rgba(214,5,0, 0.6);}
+	75% {width: 160px;height: 160px;background: rgba(214,5,0, 0.0);}
+	90% {width: 100px;height: 100px;background: rgba(214,5,0, 0.6);}
+	100% {width: 10px;height: 10px;background: rgba(196,149,169, 0.8);}
+}

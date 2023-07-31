@@ -1,0 +1,79 @@
+<!-- 新浪获取ip地址 -start-->
+<if condition="$Think.cookie.province_id elt 0">
+	<script src="http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js&ip={$Request.ip}"></script>
+	<script type="text/JavaScript">
+		doCookieArea(remote_ip_info);
+	</script>
+</if>
+<div class="tpshop-tm-hander p">
+	<div class="top-hander p">
+		<div class="[w] pr">
+			<link rel="stylesheet" href="__STATIC__/css/location.css" type="text/css"><!-- 收货地址，物流运费 -->
+			<div class="fl">
+				<div class="ls-dlzc fl nologin">
+					<a href="{:U('Home/user/login')}">Hi,请登录</a>
+					<a class="red" href="{:U('Home/user/reg')}">免费注册</a>
+				</div>
+				<div class="ls-dlzc fl islogin">
+					<a class="red userinfo" href="{:U('Home/user/index')}"></a>
+					<a href="{:U('Home/user/logout')}">退出</a>
+				</div>
+				<div class="fl spc" style="margin-top:10px"></div>
+				<div class="sendaddress pr fl">
+					<if condition="strtolower(ACTION_NAME) neq 'goodsinfo' ">
+						<!-- 收货地址，物流运费 -start-->
+						<ul class="list1" >
+							<li class="jaj"><span>配&nbsp;&nbsp;送：</span></li>
+							<li class="summary-stock though-line" style="margin-top:-1px">
+								<div class="dd" style="border-right:0px;"  onmouseout="closeContent()">
+									<div class="store-selector add_cj_p">
+										<div class="text" style="margin-top:3px;border-left: 0 !important;"><div></div><b></b></div>
+										<div onclick="$(this).parent().removeClass('hover')" class="close"></div>
+									</div>
+								</div>
+							</li>
+						</ul>
+						<!--<i class="jt-x"></i>-->
+						<!-- 收货地址，物流运费 -end-->
+						<!--------收货地址，物流运费-开始-------------->
+						<script src="__PUBLIC__/js/locationJson.js"></script>
+						<script src="__STATIC__/js/location.js"></script>
+						<!--------收货地址，物流运费--结束-------------->
+					</if>
+				</div>
+			</div>
+			<div class="top-ri-header fr">
+				<ul>
+					<li><a target="_blank" href="{:U('Home/Order/order_list')}">我的订单</a></li>
+					<!-- <li><a target="_blank" href="{:U('Home/Goods/add_goods')}">我要易物</a></li> -->
+					<li class="spacer"></li>
+					<li><a target="_blank" href="{:U('Home/User/account')}">我的积分</a></li>
+					<li class="spacer"></li>
+					<li><a target="_blank" href="{:U('Home/User/coupon')}">我的优惠券</a></li>
+					<li class="spacer"></li>
+					<li><a target="_blank" href="{:U('Home/User/goods_collect')}">我的收藏</a></li>
+					<li class="spacer"></li>
+					<li class="hover-ba-navdh">
+						<div class="nav-dh">
+							<span>客户服务</span>
+							<i class="jt-x"></i>
+							<div class="conta-hv-nav">
+								<ul>
+									<!-- <li><a href="{:U('Seller/Index/index')}">商家后台</a></li> -->
+									<li><a href="{:U('Home/Newjoin/index')}">商家帮助</a></li>
+								</ul>
+							</div>
+						</div>
+					</li>
+					<li class="spacer"></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="nav-middan-z tphsop2_0 p">
+		<div class="header [w]">
+			<include file="public/header_search"/>
+		</div>
+	</div>
+	
+</div>

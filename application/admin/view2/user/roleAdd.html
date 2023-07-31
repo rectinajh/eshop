@@ -1,0 +1,79 @@
+<include file="public/layout" />
+<style>
+    .err{color:#F00; display:none;}
+</style>
+<body style="background-color: #FFF; overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+            <div class="subject">
+                <h3>会员角色管理 - 编辑会员角色</h3>
+                <h5>网站系统会员角色管理</h5>
+            </div>
+        </div>
+    </div>
+    <form class="form-horizontal" id="handleposition" action="{:U('Admin/User/addRole')}" method="post">
+        <input type="hidden" name="role_id" value="{$info.role_id}">
+        <div class="ncap-form-default">
+            <dl class="row">
+                <dt class="tit">
+                    <label for="role_name"><em>*</em>角色名称</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="role_name" value="{$info.role_name}" id="role_name" class="input-txt">
+                    <span class="err" id="err_role_name"></span>
+                    <p class="notic">设置会员角色名称</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="level"><em>*</em>角色等级</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="level" value="{$info.level}" id="level" class="input-txt">
+                    <span class="err" id="err_level"></span>
+                    <p class="notic">设置会员角色等级</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    角色描述
+                </dt>
+                <dd class="opt">
+                    <textarea  name="describe" class="tarea" rows="6">{$info.describe}</textarea>
+                    <span class="err" id="err_describe"></span>
+                    <p class="notic">会员角色描述信息</p>
+                </dd>
+            </dl>
+            <div class="bot"><a href="JavaScript:void(0);" onclick="verifyForm()" class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    function verifyForm(){
+        $.ajax({
+            type: "POST",
+            url: "",
+            data: $('#handleposition').serialize(),
+            dataType: "json",
+            error: function () {
+                layer.alert("服务器繁忙, 请联系管理员!");
+            },
+            success: function (data) {
+                if (data.code == 1) {
+                    layer.msg(data.msg, {icon: 1, end:function() {location.href = "{:U('Admin/User/role')}";} });
+                } else {
+                    layer.msg(data.msg, {icon: 2});
+                    $.each(data.result, function (index, item) {
+                        $('#err_' + index).text(item).show();
+                    });
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

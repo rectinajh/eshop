@@ -1,0 +1,238 @@
+<div id="flexigrid" cellpadding="0" cellspacing="0" border="0">
+
+    <table>
+
+        <tbody>
+
+        <volist name="userList" id="list">
+
+            <tr data-id="{$list['id']}">
+
+                <td class="sign">
+
+                    <div style="width: 24px;"><i class="ico-check"></i></div>
+
+                </td>
+
+                <td align="left" class="">
+
+                    <div style="text-align: center; width: 30px;">{$list.id}</div>
+
+                </td>
+
+                <td align="left" class="">
+
+                    <div style="text-align: center; width: 120px;">{$list.name}</div>
+
+                </td>
+
+                <td align="left" class="">
+
+                    <div style="text-align: center; width: 130px;">{$list.identitynum}</div>
+
+                </td>
+
+                <td align="left" class="">
+
+                    <div style="text-align: center; width: 60px;">{$list.sex}</div>
+
+                </td>
+
+                <td align="left" class="">
+
+                    <div style="text-align: center; width: 150px;">{$list.uhome}</div>
+
+                </td>
+
+                <td align="left" class="">
+
+                    <div style="text-align: center; width: 150px;">{$list.uwork}</div>
+
+                </td>
+
+                <td align="left" class="">
+
+                    <div style="text-align: center; width: 80px;">{$list.mobile}</div>
+
+                </td>
+
+                <td align="left" class="">
+                 
+                    <div style='text-align: center; width: 120px;color:<if condition="$list.isout==2">red;</if>'> <input type="text" name="isout" id="isout{$list.id}" onclick="changeTableVals('{$list.id}')" size='5' value="{$list.isouts}" readonly></div>
+
+                </td>
+
+                <td align="left" class="">
+                 
+                    <div style="text-align: center; width: 120px;"> <input type="text" style="text-align:center;" size='3' name="sort" id="sort{$list.id}" onblur="changeSort('{$list.id}')" size='5' value="{$list.sort}"></div>
+
+                </td>
+
+                <td align="left" class="">
+                 
+                    <div style="text-align: center; width: 100px;"> <input type="text" name="ishot" style="text-align:center;color:<if condition="$list.ishot==2">red</if>" id="ishot{$list.id}" onclick="setTableVal('{$list.id}')" size='3' value="{$list.ishots}" readonly></div>
+
+                </td>
+
+                <td align="left" class="">
+
+                    <div style="text-align: center; width: 120px;">{$list.add_time}</div>
+
+                </td>
+
+                <td align="center" class="handle">
+
+                    <div style="text-align: center; width: 150px; max-width:170px;">
+
+                        <a class="btn blue" href="{:U('Admin/user/hunliandetail',array('id'=>$list['id']))}"><i class="fa fa-pencil-square-o"></i>详情</a>
+
+                        <a class="btn red"  href="javascript:void(0)" data-url="{:U('Admin/user/hunlianajax_delete')}" data-id="{$list['id']}" onClick="delfun(this)"><i class="fa fa-trash-o"></i>删除</a>
+                    </div>
+
+                </td>
+
+                <td align="" class="" style="width: 100%;">
+
+                    <div>&nbsp;</div>
+
+                </td>
+
+            </tr>
+
+        </volist>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<!--分页位置-->
+
+{$page}
+
+<script>
+
+    $(".pagination  a").click(function(){
+
+        var page = $(this).data('p');
+
+        ajax_get_table('search-form2',page);
+
+    });
+
+    $(document).ready(function(){
+
+        // 表格行点击选中切换
+
+        $('#flexigrid >table>tbody>tr').click(function(){
+
+            $(this).toggleClass('trSelected');
+
+        });
+
+        $('#user_count').empty().html("{$pager->totalRows}");
+
+    });
+
+    function delfun(obj) {
+        var id=$(obj).attr('data-id');
+        // 删除按钮
+        layer.confirm('确认删除？', {
+
+            btn: ['确定', '取消'] //按钮
+
+        }, function () {
+
+            $.ajax({
+
+                type: 'POST',
+
+                url: $(obj).attr('data-url'),
+
+                data: 'id='+id,
+
+                dataType: 'json',
+
+                success: function (data) {
+
+                    if (data.status == 1) {
+                        layer.msg(data.msg);
+                        
+                        $(obj).parent().parent().parent().remove();
+                    } else {
+
+                        layer.msg(data.msg, {icon: 2});
+
+                    }
+
+                }
+
+            })
+
+        }, function () {
+
+        });
+
+    }
+    function changeTableVals(id){
+        var str='isout'+id;
+        var isout=$('#'+str).val();
+        $.ajax({
+            url:'{:U("User/ajaxChangeTableVal")}',
+            type:'POST',
+            dataType:'',
+            data:'id='+id+'&isout='+isout,
+            success:function(ret){
+                if(ret==1){
+                     layer.msg('审核成功');
+                     $('#'+str).val('已审核');
+                }else if(ret==2){
+                    layer.msg('操作失败，请重试！', {icon: 2});
+                }else if(ret==3){
+                    layer.msg('此会员已审核过', {icon: 2});
+                }
+            }
+        });
+    }
+    function setTableVal(id){
+        var st='ishot'+id;
+        var ishot=$('#'+st).val();
+        $.ajax({
+            url:'{:U("User/ajaxSetTableVal")}',
+            type:'POST',
+            dataType:'',
+            data:'id='+id+'&ishot='+ishot,
+            success:function(ret){
+                if(ret==1){
+                     layer.msg('设置成功');
+                     $('#'+st).val('是');
+                     $('#'+st).css('color','red');
+                }else if(ret==2){
+                    layer.msg('操作失败，请重试！', {icon: 2});
+                }else if(ret==3){
+                    layer.msg('热搜会员最多可设置6个', {icon: 2});
+                }else if(ret==4){
+                    layer.msg('设置成功');
+                     $('#'+st).val('否');
+                     $('#'+st).css('color','#333');
+                }
+            }
+        });
+    }
+    function changeSort(id){
+        var st='sort'+id;
+        var sort=$('#'+st).val();
+        $.ajax({
+            url:'{:U("User/ajaxChangeSort")}',
+            type:'POST',
+            dataType:'',
+            data:'id='+id+'&sort='+sort,
+            success:function(ret){
+                if(ret==1){
+                     layer.msg('更新成功');
+                }
+            }
+        });
+    }
+</script>

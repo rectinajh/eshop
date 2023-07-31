@@ -1,0 +1,159 @@
+<include file="public/header" title="需求明细" body="g4"/>
+<include file="public/header_nav" title="需求明细" href="javascript:history.back(-1)"/>    
+<div id="#app">  
+<style>
+    .demo-hidden{
+        display: none
+    }
+    .right-sell{
+        line-height: 1;
+    }
+    .right-sell2 .sell-statu {
+        cursor: pointer;
+        line-height: 1;
+        flex-direction: column;
+    }
+    .right-sell2 .chexiao {
+        cursor: pointer;
+    }
+
+</style>
+<section>
+        <form action="" submit-type="ajax">
+            <div class="sellgec">
+                <div class="sell-box">
+                    <p class="sell-active">买入XTC</p>
+                    <p>卖出XTC</p>
+                 </div> 
+            </div>
+        </form>
+    </section>
+    <section>
+        <div class="demodata demo-hidden" id="app">
+            <ul class="demo data-active" style="background: #f7f7f7;margin-bottom: 2rem">
+                <li v-for="item in selists">
+                    <div class="sell-data">
+                        <div class="left-sell">
+                            <p>对方昵称：<span>{{item.relation_nickname}}</span></p>
+                            <p>单价：<span>{{item.price}}G</span></p>
+                        </div>
+                        <div class="middle-sell">
+                                <p style="font-size: .547rem;color: #2A81F4"><span>{{item.amount}}G</span></p>
+                                <p style="margin-top: .213rem">数量：<span>{{item.trade_qty}}</span></p>
+                                <p style="margin-top: .213rem">{{item.create_time}}</p>
+                        </div>
+
+                        <div class="right-sell2 gm-btn" >
+                            <div class="sell-statu" :data-id="item.id">{{status[item.status]}}</div>
+                            <div  class="sell-statu chexiao" v-if="item.status==0" :data-id="item.id">撤销</div>
+                        </div>
+                       
+                   </div>
+                </li>
+            </ul>
+            <ul class="demo" style="background: #f7f7f7;margin-bottom: 2rem">
+                <li v-for="item in gmlists">
+                    <div class="sell-data">
+                        <div class="left-sell">
+                            <p>对方昵称：<span>{{item.relation_nickname}}</span></p>
+                            <p>单价：<span>{{item.price}}G</span></p>
+                        </div>
+                        <div class="middle-sell">
+                            <p style="font-size: .547rem;color: #2A81F4"><span>{{item.amount}}G</span></p>
+                            <p style="margin-top: .213rem">数量：<span>{{item.trade_qty}}</span></p>
+                            <p style="margin-top: .213rem">{{item.create_time}}</p>
+                        </div>
+                        <!-- <div class="right-sell gm-btn" :data-id="item.id">{{status[item.status]}}</div> -->
+                        <div class="right-sell2 gm-btn" >
+                                <div class="sell-statu" :data-id="item.id">{{status[item.status]}}</div>
+                                <div  class="sell-statu chexiao" v-if="item.status==0" :data-id="item.id" data-type="2">撤销</div>
+                    </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+</div>
+</body>
+</html>
+<script src="__PUBLIC__/js/vue.min.js"></script>
+<script>
+$(function () {
+ 
+    $(".sell-box p").bind("click",function(){
+        var n = $(".sell-box p").index($(this));
+        $(".sell-box p").removeClass("sell-active");
+        $(this).addClass("sell-active");
+        $(".take-goods .takeitem").removeClass("take-active");
+        $(".take-goods .takeitem").eq(n).addClass("take-active");
+        $(".demodata>.demo").removeClass("data-active");
+        $(".demodata>.demo").eq(n).addClass("data-active");
+    })
+    var app = new Vue({
+        el: '#app',
+        data: {
+            selists: [],
+            gmlists:[],
+            status:['未完成','已完成','已取消']
+        },
+        methods:{
+            getData:function(){ 
+                var that= this;
+                $.ajax({
+                    url:'/Mobile/goldchain/myBuyList/',
+                    type:"GET",
+                    success:function(datas){
+                        that.selists=datas;
+                        console.log(datas);
+                    }
+                });
+                $.ajax({
+                    url:'/Mobile/goldchain/MySoldList/',
+                    type:"GET",
+                    success:function(datas){
+                        that.gmlists=datas;
+                        console.log(datas);
+                        
+                    }
+                })   
+               
+            }
+             
+        },
+        created: function () {
+            $(".demo-hidden").removeClass("demo-hidden");
+           
+                getCookieByName('type')=='1'?$('.sell-box p').eq(1).trigger('click'):$('.sell-box p').eq(0).trigger('click'); 
+                setCookies('type','')
+           
+        },
+        mounted:function(){
+            this.getData();
+        },
+    })
+    $(document).on('click','.chexiao',function () {
+       
+        $.ajax({
+            url:'/Mobile/goldchain/cancelTrade/',
+            data:{trade_id:$(this).data().id},
+            type:'POST',
+            success:function(res){
+                if(res.code==1){
+                    layer.open({
+                        content:res.msg,
+                        time: 2,
+                        end:function(){
+                            $('.sell-box>p').eq(1).hasClass('sell-active')?setCookies('type',1):setCookies('type',0); 
+                            // setcookie('type',1)
+                            window.location.reload();
+                           
+                        }
+                    })
+                }
+            }
+        })
+    })
+   
+})     
+   
+</script>

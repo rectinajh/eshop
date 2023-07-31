@@ -1,0 +1,619 @@
+.newcarlist_head{
+    position: relative;
+    height: 88px/$ppr;
+    line-height: 88px/$ppr;
+    border-bottom: 1px solid #e3e5e9;
+    background: white;
+    .tit_car{
+        font-size: 36px/$ppr;
+        color:#222222;
+        font-family: "黑体";
+        text-align: center;
+        display: block;
+    }
+}
+.editamessage{
+    position: absolute;
+    right: 30px/$ppr;
+    top: 0;
+    .edit_car a{
+        font-size: 30px/$ppr;
+        color:#666666;    
+    }
+    .message_car{
+        background: url(../images/conta.png) no-repeat;
+        width: 52px/$ppr;
+        height: 51px/$ppr;
+        background-size: 52px/$ppr;
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 26px/$ppr;
+    }
+    .none_message{
+        background-position: 0 -50px/$ppr;
+    }
+}
+.bulletin_car{
+    height: 67px/$ppr;
+    line-height: 70px/$ppr;
+    background: #f77f7a;
+    .news_car{
+        p{
+            font-family: "黑体";
+            font-size: 26px/$ppr;
+            color: white;
+            display: inline-block;
+            vertical-align: middle;
+            width: 577px/$ppr;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            span{
+                position: relative;
+                vertical-align: bottom;
+            }
+        }
+        &>span a{
+            float: right;
+            color: white;
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 26px/$ppr;
+        }
+    }
+}
+.carnew{
+    background: url(../images/carnew.png) no-repeat;
+    background-size: 286px/$ppr;
+    display: inline-block;
+    vertical-align: middle;
+}
+.bell{
+    width: 39px/$ppr;
+    height: 35px/$ppr;
+    background-position:2px/$ppr 2px/$ppr;
+    margin-right: 18px/$ppr;
+}
+.newallshoporder{
+    background: #f8f8f8;
+    border-top: 1px solid #e3e5e9;
+    .radio i{
+        width: 34px/$ppr;
+        height: 32px/$ppr;
+    }
+    .check_t{
+        i{
+           background-position: -36px/$ppr 0; 
+        }
+    }
+    .logoshopcar{
+        .lsc{
+            width: 40px/$ppr;
+            height: 40px/$ppr;
+            background-position: -87px/$ppr 1px/$ppr;
+        }
+        .s_name{
+            font-size: 30px/$ppr;
+            color: #333333;
+            font-family: "黑体";
+            vertical-align: middle;
+            display: inline-block;
+            max-width: 280px/$ppr;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        .Mright{
+            float: none;
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 10px/$ppr;
+        }
+    }
+    .fr{
+        a{
+            color: #e23435;
+            font-size: 28px/$ppr;
+        }
+        .spea{
+            color: #222222;
+            font-size: 24px/$ppr;
+            border-right: 1px solid #bbbbbb;
+            margin-right: 10px/$ppr;
+            padding-right: 10px/$ppr;
+        }
+        .tycor{
+            width: 30px/$ppr;
+            height: 30px/$ppr;
+            background-position: -172px/$ppr -5px/$ppr;
+            margin-left: 10px/$ppr;
+        }
+    }
+}
+.fullm{
+    line-height: 77px/$ppr;
+    .mi{
+        float: left;
+        a{
+            display: inline-block;
+            padding: 6px/$ppr;
+            border: 1px solid #e23435;
+            font-size: 28px/$ppr;
+            color: #e23435;
+            border-radius: 4px/$ppr;
+            line-height: 27px/$ppr;
+        }
+        span{
+            display: inline-block;
+            font-size: 28px/$ppr;
+            color: #333333;
+        }
+    }
+    .brow{
+        float: right;
+        line-height: 77px/$ppr;
+        span{
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 28px/$ppr;
+            color: #e23435;
+        }
+        .rear{
+            width: 30px/$ppr;
+            height: 30px/$ppr;
+            background-position:-134px/$ppr -4px/$ppr;
+        }
+    }
+}
+.group_ord{
+    background: white;
+    .sc_list{
+        padding: 20px/$ppr 30px/$ppr;
+        &:first-child{
+            padding-top: 0;
+        }
+    }
+    .sc_list .shopimg{
+        position: relative;
+    }
+    .sc_list .shopimg img{
+        width: 210px/$ppr;
+        height: 210px/$ppr;
+        border: 1px solid #eaeaea;
+    }
+    .sc_list .shopimg .lt{
+        width: 100%;
+        height: 46px/$ppr;
+        line-height: 46px/$ppr;
+        background: rgba(30,20,19,0.65);
+        color: white;
+        text-align: center;
+        font-size: 30px/$ppr;
+        position: absolute;
+        bottom: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .sc_list .radio{
+        padding-top: 91px/$ppr;
+    }
+    .sc_list .deleshow .deletes .similar-product-text{
+        line-height: 38px/$ppr;
+        height: 76px/$ppr;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .sc_list .deleshow{
+        width: 410px/$ppr;
+    }
+    .sc_list .deleshow .weight{
+        line-height: 40px/$ppr;
+        span{
+            margin-left: 10px/$ppr;
+            display:inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            width: 180px/$ppr;
+            &:first-child{
+                margin-left: 0;
+            }
+        }
+    }
+    .sc_list .deleshow .edit_weight{
+        background: #f0f2f5;
+        position:relative; 
+        &:after{
+            content: '';
+            position: absolute;
+            background: url(../images/carnew.png) no-repeat;
+            background-size:286px/$ppr ;
+            width: 30px/$ppr;
+            height: 30px/$ppr;
+            right: 2px;
+            top:4px/$ppr;
+            background-position: -49px/$ppr 0;
+        }
+    }
+    .sc_list .deleshow .prices .sc_pri{
+        font-size: 34px/$ppr;
+    }
+    .sc_list .deleshow .prices .sc_pri .m{
+        font-size: 24px/$ppr;
+        vertical-align: bottom;
+    }
+    .sc_list .deleshow .prices{
+        margin-top: 42px/$ppr;
+    }
+    .sc_list .deleshow .emk .sc_pri{
+        color: #666666;
+        em{
+            margin-left: 6px/$ppr;
+            color: #999999;
+            font-size: 28px/$ppr;
+        }
+    }
+    .sc_list .deleshow .emk{
+        overflow: inherit;
+    }
+    .sc_list .deleshow .emk .plus{
+        a{
+            padding: 16px/$ppr 18px/$ppr;
+            color: #333333;
+            border: 1px solid #666666;
+            border-radius: 6px/$ppr;
+            font-size: 30px/$ppr;
+            position: relative;
+            top: 15px/$ppr;
+        }
+    }
+}
+.empty_so{
+    position: relative;
+    @include opacity(0.6);
+    &:before{
+        content: '';
+        background: url(../images/empty.png) no-repeat;
+        width: 146px/$ppr;
+        height: 146px/$ppr;
+        position: absolute;
+        background-size: cover;
+        left: 50%;
+        top: 50%;
+        margin-left: -73px/$ppr;
+        margin-top: -73px/$ppr;
+        z-index: 99;
+    }
+}
+.givejf{
+    font-size: 26px/$ppr;
+    color: #666666;
+    background: #fff7f7;
+    height: 50px/$ppr;
+    line-height: 50px/$ppr;
+    padding-left: 80px/$ppr;
+    .g{
+        color: #999999;
+        margin-left: 20px/$ppr;
+    }
+}
+.newcarfoo{
+    
+    .payallb{
+        @media screen and (min-width: 1300px) {
+            bottom: 50px/$ppr;
+        }
+        bottom:100px/$ppr;
+    }
+    .payallb .alllef .radio .all{
+        top: -8px/$ppr;
+    }
+    .payallb .youbia p{
+        text-align: left;
+        color: #333333;
+        font-weight: bold;
+    }
+    .payit .fl .lastime{
+        color: #666666;
+        font-weight: normal;
+    }
+    .payallb .youbia{
+        width: 300px/$ppr;
+        margin-left: 50px/$ppr;
+    }
+}
+.edit_c{
+    height: 100px/$ppr;
+    line-height: 100px/$ppr;
+    display: none;
+    .all_c{
+        .radio{
+            width: inherit;
+            padding-top: 0;
+            i{
+                display: inline-block;
+                vertical-align: middle;
+                float: none;
+            }
+        }
+        .all{
+            font-size: 26px/$ppr;
+            position: relative;
+            top: 4px/$ppr;
+        }
+    }
+    .ed3_c{
+        float: right;
+        a{
+            display: inline-block;
+            width: 150px/$ppr;
+            height: 66px/$ppr;
+            text-align: center;
+            line-height: 66px/$ppr;
+            border: 1px solid #666666;
+            font-size: 30px/$ppr;
+            color: #666666;
+            border-radius: 6px/$ppr;
+            margin-left: 20px/$ppr;
+            &.del{
+                border-color: #e23435;
+                color: #e23435;
+            }
+        }
+    }
+}
+.soldout{
+    position: relative;
+    border-bottom: 1px solid #e3e5e9;
+    padding-bottom: 30px/$ppr;
+    .shopimg{
+        float: left;
+        width: 210px/$ppr;
+        height: 210px/$ppr;
+        img{
+            width: 210px/$ppr;
+            height: 210px/$ppr;
+            border: 1px solid #eaeaea;
+        }
+    }
+    .empty_price{
+        float: left;
+        position: absolute;
+        left: 270px/$ppr;
+        bottom: 30px/$ppr;
+        .yp{
+            font-size: 34px/$ppr;
+            color: #e23435;
+            margin-bottom: 30px/$ppr;
+            em{
+                font-size: 24px/$ppr;
+            }
+        }
+        p{
+            font-size: 26px/$ppr;
+            color: #666666;
+        }
+    }
+}
+.closer{
+    background: url(../images/clos.png) no-repeat;
+    width: 40px/$ppr;
+    height: 40px/$ppr;
+    background-size: cover;
+    display: inline-block;
+    float: right;
+    cursor: pointer;
+}
+.choseg{
+    display: none;
+    .choose-titr{
+        padding-left: 30px/$ppr;
+        padding-right: 30px/$ppr;
+        overflow: hidden;
+    }
+}
+.handard_gg{
+    padding: 30px/$ppr 0;
+    a{
+        width: 323px/$ppr;
+        height: 68px/$ppr;
+        text-align: center;
+        line-height: 68px/$ppr;
+        color: #333333;
+        font-size: 27px/$ppr;
+        border-radius: 6px/$ppr;
+        border: 1px solid #e3e5e9;
+        float: right;
+        margin-bottom: 30px/$ppr;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        &.current{
+            color: #e23435;
+            border-color: #e23435;
+        }
+        &:nth-child(2n){
+            float: left;
+        }
+    }
+    .submits_de{
+        margin-top: 100px/$ppr;
+    }
+}
+.hdd{
+    color: #666666;
+    font-size: 28px/$ppr;
+    padding-bottom: 16px/$ppr;
+}
+.handard_color_size{
+    padding: 30px/$ppr 0;
+    a{
+        display: block;
+        width: 128px/$ppr;
+        height: 68px/$ppr;
+        text-align: center;
+        line-height: 68px/$ppr;
+        color: #333333;
+        font-size: 27px/$ppr;
+        border-radius: 6px/$ppr;
+        border: 1px solid #e3e5e9;
+        float: left;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        margin-bottom: 30px/$ppr;
+        margin-right: 40px/$ppr;
+        &.current{
+            color: #e23435;
+            border-color: #e23435;
+        }
+    }
+    .submits_de{
+        background: #e23435;
+        margin-top: 100px/$ppr;
+    }
+}
+.coupongg{
+    background: #f8f8f8;
+    .closer{
+        position: absolute;
+        right: 30px/$ppr;
+    }
+    .soldout_cp{
+        text-align: center;
+        .nmy{
+            width: 159px/$ppr;
+            height: 127px/$ppr;
+            margin-top: 50px/$ppr;
+        }
+        .nzw{
+            font-size: 28px/$ppr;
+            color: #bfbfbf;
+            margin-top: 40px/$ppr;
+        }
+    }
+}
+.c_uscoupon{
+    height: 682px/$ppr;
+    overflow: auto;
+    margin-top: 30px/$ppr;
+    .canus{
+        font-size: 30px/$ppr;
+        color: #333333;
+        font-weight: bold;
+        span{
+            font-size: 24px/$ppr;
+            color: #999999;
+        }
+    }
+}
+.cuptyp{
+    height: 185px/$ppr;
+    margin: 30px/$ppr 0;
+    &:first-child{
+        margin-top: 0;
+    }
+    .le_pri{
+        width: 36%;
+        height: 185px/$ppr;
+        float: left;
+        background: #51c9df;
+        position: relative;
+        border-top-left-radius: 6px/$ppr;
+        border-bottom-left-radius: 6px/$ppr;
+        background-image: -webkit-gradient(linear,0% 0%, 100% 0%, from(#63EAE8), to(#51CADF));
+        background-image: -moz-linear-gradient(0% 100% 180deg, #63EAE8,#51CADF);
+        &:before{
+            content: '';
+            background: url(../images/cp.png) no-repeat;
+            width: 10px/$ppr;
+            height: 184px/$ppr;
+            background-size: cover;
+            position: absolute;
+            left: -6px/$ppr;
+            top: 0;
+        }
+        h1{
+            font-size: 80px/$ppr;
+            color: white;
+            text-align: center;
+            margin: 0;
+            margin-top: 30px/$ppr;
+            em{
+                font-size: 40px/$ppr;
+            }
+        }
+        p{
+            margin-top: 10px/$ppr;
+            color: white;
+            font-size: 26px/$ppr;
+            text-align: center;
+        }
+    }
+    .ri_int{
+        width: 64%;
+        height: 185px/$ppr;
+        float: left;
+        background: white;
+        padding: 20px/$ppr 0 20px/$ppr 20px/$ppr ;
+        position: relative;
+        border-top-right-radius: 6px/$ppr;
+        border-bottom-right-radius: 6px/$ppr;
+        border: 1px solid #e3e5e9;
+        border-left: 0;
+        .ba{
+            background: #56d4e2;
+            color: white;
+            padding: 10px/$ppr;
+            border-radius: 6px/$ppr;
+            line-height: 47px/$ppr;
+            margin-right: 20px/$ppr;
+        }
+        .foi{
+            display: inline-block;
+            width: 264px/$ppr;
+            font-size: 24px/$ppr;
+            line-height: 48px/$ppr;
+        }
+        span{
+            color: #666666;
+            font-size: 24px/$ppr;
+        }
+        .cp9{
+            color: #999999;
+        }
+        .bo_two{
+            font-size: 24px/$ppr;
+            color: #999999;
+            position: absolute;
+            bottom: 20px/$ppr;
+            a{
+                padding: 7px/$ppr 16px/$ppr;
+                border: 1px solid #54cfe1;
+                color: #54cfe1;
+                font-size: 24px/$ppr;
+                border-radius: 25px/$ppr;
+                margin-left: 20px/$ppr;
+            }
+        }
+    }
+}
+.canget{
+    span{
+        vertical-align: top;
+    }
+}
+.newchoosecar{
+    @media screen and (min-width: 1300px) {
+        bottom: 50px/$ppr;
+    }
+    bottom:100px/$ppr;
+    .choose-titr{
+        overflow: hidden;
+    }
+}
+.ovfHiden{
+    overflow: hidden;
+    height: 100%;
+}

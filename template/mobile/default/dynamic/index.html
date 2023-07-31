@@ -1,0 +1,128 @@
+<include file="public/header" title="新淘链收入明细" body=""/>
+
+<include file="public/header_nav" title="新淘链收入明细"  href="javascript:history.go(-1);"/>
+<style>
+    .fll_info{
+        font-size: .48rem;
+        color: #999;
+    }
+    .fll_acc ul li{
+        padding: .42667rem 0rem;
+    }
+</style>
+<div class="allaccounted" style="margin-bottom: 65px">
+
+    <div class="maleri30">
+
+         <div class="allpion">
+
+            <div class="fll_acc">
+
+            <ul><li>奖励金额</li><li>奖励类型</li><li>时间</li></ul>
+
+         </div>
+
+              <foreach name="date" item="v">
+
+                  <div class="fll_acc fll_box">
+
+                      <ul style="overflow: hidden;">
+
+                          <li>{$v[jin_num]}</li>
+
+                          <li><span class="red">{$v[type]}</span></li>
+
+                          <li>
+
+                              <p class="coligh">
+
+                                  <span style="font-size:.44rem">{$v[creat_time]}</span>
+
+                              </p>
+
+                          </li>
+
+                      </ul>
+                      <div class="fll_info" style="display: none;padding:0 10px;">
+                            <p>手机号：{$v[u_mobile]}</p>
+                            <p style="padding: 10px 0">消费算力：{$v[u_consume_cp]}</p>
+
+                      </div>
+                  </div>
+              </foreach>
+        
+        </div>
+        
+
+
+        <div id="getmore"  style="font-size:.32rem;text-align: center;color:#888;padding:.25rem .24rem .4rem; clear:both;display: none">
+
+            <a >已显示完所有记录</a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div style="margin-bottom: 3rem"></div>
+<!--底部导航-start-->
+
+        <include file="public/footer"/>
+
+        <!--底部导航-end-->
+<script type="text/javascript" src="__STATIC__/js/sourch_submit.js"></script>
+
+<script src="__STATIC__/js/style.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    $(".fll_box").click(function(){
+        $(this).children(".fll_info").toggle();
+        $(this).siblings().children(".fll_info").hide();
+    })
+</script>
+
+<script type="text/javascript">
+
+//    var record=$('.record').val();   //获取记录类型
+
+    //加载更多记录
+
+    var page = 0;
+
+    function ajax_sourch_submit()
+
+    {
+
+        page ++;
+
+        $.ajax({
+
+            type : "GET",
+
+            url:"/index.php?m=Mobile&c=User&a=account_list&is_ajax=1&type={$type}&p="+page,//+tab,
+
+            success: function(data)
+
+            {
+
+                if($.trim(data) == '') {
+
+                    $('#getmore').show();
+
+                    return false;
+
+                }else{
+
+                    $(".allpion").append(data);}
+
+            }
+
+        });
+
+    }
+
+</script>
+
+</body>
+
+</html>

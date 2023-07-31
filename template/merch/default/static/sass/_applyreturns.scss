@@ -1,0 +1,95 @@
+.askget{
+    line-height: 116px/$ppr;
+    span{
+        font-size: 30px/$ppr;
+        color: #222222;
+    }
+    .item_ask_1{
+        float: left;
+    }
+    .item_ask_2{
+        float: right;
+        a{
+            border: 1px solid #666666;
+            color: #666666;
+            display: inline-block;
+            width: 150px/$ppr;
+            height: 68px/$ppr;
+            text-align: center;
+            line-height: 68px/$ppr;
+            border-radius: 10px/$ppr;
+            &.n{
+                margin-right: 30px/$ppr;
+            }
+            &.action{
+                border-color: #e23435;
+                color: #e23435;
+            }
+        }
+    }
+}
+.reminder{
+    .bop{
+        border-top: 1px solid #e3e5e9;
+        padding-top: 30px/$ppr;
+    }
+    .message{
+        background: #f8f8f8;
+        padding: 30px/$ppr;
+        p{
+            font-family: "黑体";
+            font-size: 28px/$ppr;
+            color: #333333;
+            line-height: 38px/$ppr;
+            letter-spacing: -1px;
+        }
+    }
+}
+.resonalist{
+    background: white;
+    margin-top: 30px/$ppr;
+    .returnreson{
+        border-top: 1px solid #f8f8f8;
+    }
+    .firde{
+        color: #222222 !important;
+    }
+    .Mright{
+        margin-left: -22px/$ppr !important;
+        @include transform(rotate(90deg));
+    }
+}
+.reminder_r{
+    margin-top: 60px/$ppr;
+    .message{
+        background: white;
+        p{
+            color: #e23435;
+        }
+    }
+}
+.ma-to-30{
+    margin-top: 30px/$ppr;
+}
+.applyandreyurn{
+    text-align: center;
+    padding: 30px/$ppr 0;
+    a{
+        background: #e23435;
+        color: white;
+        font-size: 34px/$ppr;
+        font-family: "黑体";
+        padding: 30px/$ppr 100px/$ppr;
+    }
+}
+.y_hadgetgoods{
+    display: none;    
+}
+.describequestion{
+    textarea{
+        border: 0;
+        outline: none;
+        padding: 10px/$ppr 0;
+        height: 180px/$ppr;
+    }
+}
